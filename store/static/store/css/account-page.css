@@ -1,0 +1,1050 @@
+/* ==========================================================
+My Account Page (Profile, Orders, Profile Drawer)
+========================================================== */
+
+/* ==========================================================
+   MY ACCOUNT
+========================================================== */
+
+.account-page{
+    background:#f8f5f1;
+    min-height:100vh;
+    padding-bottom:70px;
+}
+.password-match{
+
+    margin-top:12px;
+
+    font-size:.9rem;
+
+    font-weight:500;
+
+    min-height:20px;
+
+}
+
+/* ==========================================================
+   TOP BANNER
+========================================================== */
+
+.account-banner{
+    background:linear-gradient(135deg,#f6efe8,#fff);
+    padding:70px 20px;
+    text-align:center;
+    border-bottom:1px solid #ece4db;
+}
+
+.banner-content h1{
+    font-size:42px;
+    color:#222;
+    font-weight:600;
+    margin-bottom:12px;
+    letter-spacing:1px;
+}
+
+.banner-content p{
+    font-size:18px;
+    color:#777;
+}
+
+
+/* ==========================================================
+   MAIN LAYOUT
+========================================================== */
+
+.account-container{
+
+    width:90%;
+    max-width:1350px;
+
+    margin:50px auto;
+
+    display:grid;
+
+    grid-template-columns:330px 1fr;
+
+    gap:40px;
+
+}
+
+
+/* ==========================================================
+   PROFILE SIDEBAR
+========================================================== */
+
+.profile-sidebar{
+
+    background:#fff;
+
+    border-radius:22px;
+    padding:40px;
+
+    box-shadow:0 15px 45px rgba(0,0,0,.06);
+
+    text-align:center;
+
+    position:sticky;
+
+    top:30px;
+
+    height:fit-content;
+
+}
+
+
+.profile-photo{
+
+    margin-bottom:25px;
+
+}
+
+.profile-photo img{
+
+    width:150px;
+    height:150px;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+    border:5px solid #d6b98c;
+
+}
+
+
+.avatar{
+
+    width:150px;
+    height:150px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:#d6b98c;
+
+    color:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:60px;
+
+    font-weight:600;
+
+}
+
+.profile-sidebar h2{
+
+    margin:20px 0 8px;
+
+    font-size:28px;
+
+    color:#222;
+
+}
+
+.profile-sidebar p{
+
+    color:#777;
+
+    margin-bottom:8px;
+
+}
+
+.profile-sidebar span{
+
+    color:#999;
+
+    display:block;
+
+    margin-bottom:25px;
+
+}
+
+.edit-btn{
+
+    width:100%;
+
+    border:none;
+
+    padding:14px;
+
+    border-radius:10px;
+
+    background:#111;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    transition:.3s;
+
+}
+
+.edit-btn:hover{
+
+    background:#b38b59;
+
+}
+
+
+/* ==========================================================
+   RIGHT CONTENT
+========================================================== */
+
+.account-content{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:30px;
+
+}
+
+
+/* ==========================================================
+   INFO CARDS
+========================================================== */
+
+.info-card{
+
+    background:#fff;
+    
+    border-radius:20px;
+
+    padding:35px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.05);
+
+}
+
+
+.card-header{
+
+    margin-bottom:30px;
+
+    border-bottom:1px solid #eee;
+
+    padding-bottom:15px;
+
+}
+
+.card-header h3{
+
+    font-size:24px;
+
+    color:#222;
+
+}
+
+
+.info-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:30px;
+
+}
+
+
+.info-grid label{
+
+    display:block;
+
+    color:#999;
+
+    font-size:13px;
+
+    margin-bottom:6px;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+}
+
+
+.info-grid p{
+
+    font-size:18px;
+
+    color:#333;
+
+}
+
+
+/* ==========================================================
+   ORDERS
+========================================================== */
+
+.order-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:18px 0;
+
+    border-bottom:1px solid #eee;
+
+}
+
+.order-row:last-child{
+
+    border-bottom:none;
+
+}
+
+.order-row strong{
+
+    display:block;
+
+    font-size:17px;
+
+}
+
+.order-row small{
+
+    color:#999;
+
+}
+.shop-btn{
+    display:inline-block;
+    padding:15px 40px;
+    border:2px solid #b38b59;
+    color:#b38b59;
+    text-decoration:none;
+    border-radius:12px;
+    font-family:'Calibri Light',sans-serif;
+    font-size:17px;
+    transition:.35s;
+
+}
+
+.shop-btn:hover{
+    border:2px solid #D4AF37; 
+
+}
+
+/* ==========================================================
+   QUICK CARDS
+========================================================== */
+
+.quick-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:20px;
+
+}
+
+
+.quick-card{
+
+    background:white;
+
+    border-radius:18px;
+
+    text-align:center;
+
+    padding:35px 20px;
+
+    text-decoration:none;
+
+    color:#333;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.05);
+
+    transition:.35s;
+
+    cursor:pointer;
+
+    border:none;
+
+}
+
+.quick-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 20px 40px rgba(0,0,0,.12);
+
+}
+
+
+.quick-card h4{
+
+    margin:15px 0 10px;
+
+    font-size:20px;
+
+}
+
+
+.quick-card p{
+
+    color:#888;
+
+    font-size:15px;
+
+}
+
+
+.logout{
+
+    background:#222;
+
+    color:white;
+
+}
+/* ==========================================================
+   PROFILE DRAWER
+========================================================== */
+
+.drawer-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.45);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.35s ease;
+
+    z-index:999;
+
+}
+.drawer-overlay.show{
+    opacity:1;
+    visibility:visible;
+}
+.drawer-overlay.active{
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+.profile-drawer{
+
+    position:fixed;
+    z-index: 3001;
+    top:0;
+
+    right:-100%;
+
+    width:520px;
+
+    max-width:100%;
+
+    height:100vh;
+
+    background:#fff;
+
+    overflow-y:auto;
+
+    box-shadow:-10px 0 40px rgba(0,0,0,.15);
+
+    transition:.35s ease;
+
+    padding:35px;
+    box-sizing:border-box;
+
+}
+.profile-drawer.open{
+    right:0;
+}
+.profile-drawer.active{
+
+    right:0;
+
+}
+
+
+/* ==========================================================
+   DRAWER HEADER
+========================================================== */
+
+.drawer-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:30px;
+
+    padding-bottom:18px;
+
+    border-bottom:1px solid #ececec;
+
+}
+
+.drawer-header h2{
+
+    font-size:28px;
+
+    color:#222;
+
+}
+
+.drawer-header button{
+
+    background:none;
+
+    border:none;
+
+    font-size:34px;
+
+    cursor:pointer;
+
+    color:#666;
+
+    transition:.3s;
+
+}
+
+.drawer-header button:hover{
+
+    color:#b38b59;
+
+}
+
+
+/* ==========================================================
+   PROFILE PHOTO
+========================================================== */
+
+.drawer-photo{
+
+    text-align:center;
+
+    margin-bottom:35px;
+
+}
+
+.drawer-photo img{
+
+    width:140px;
+
+    height:140px;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+    border:5px solid #d6b98c;
+
+    display:block;
+
+    margin:auto;
+
+}
+
+.upload-btn{
+
+    display:inline-block;
+
+    margin-top:18px;
+
+    padding:10px 22px;
+
+    background:#111;
+
+    color:#fff;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    font-size:14px;
+
+}
+
+.upload-btn:hover{
+
+    background:#b38b59;
+
+}
+
+
+/* ==========================================================
+   DRAWER FORM
+========================================================== */
+
+.profile-drawer form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:30px;
+
+}
+
+.drawer-section h3{
+
+    font-size:20px;
+
+    margin-bottom:20px;
+
+    color:#222;
+
+}
+
+.drawer-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:18px;
+
+    margin-bottom:18px;
+
+}
+
+.profile-drawer label{
+
+    display:block;
+
+    font-size:13px;
+
+    color:#777;
+
+    margin-bottom:8px;
+
+    text-transform:uppercase;
+
+    letter-spacing:.8px;
+
+}
+
+.profile-drawer input,
+
+.profile-drawer textarea{
+
+    width:100%;
+
+    padding:14px 16px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    font-size:15px;
+
+    background:#fafafa;
+
+    transition:.3s;
+
+    outline:none;
+
+}
+
+.profile-drawer textarea{
+
+    resize:vertical;
+
+    min-height:110px;
+
+}
+
+.profile-drawer input:focus,
+
+.profile-drawer textarea:focus{
+
+    border-color:#b38b59;
+
+    background:#fff;
+
+}
+
+
+/* ==========================================================
+   DRAWER BUTTONS
+========================================================== */
+
+.drawer-actions{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-top:10px;
+
+}
+
+.cancel-btn,
+
+.save-profile{
+
+    flex:1;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    transition:.3s;
+
+}
+
+.cancel-btn{
+
+    background:#efefef;
+
+    color:#444;
+
+}
+
+.cancel-btn:hover{
+
+    background:#ddd;
+
+}
+
+.save-profile{
+
+    background:#111;
+
+    color:#fff;
+
+}
+
+.save-profile:hover{
+
+    background:#b38b59;
+
+}
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media(max-width:1100px){
+
+.account-container{
+grid-template-columns:1fr;
+
+}
+
+.profile-sidebar{
+
+position:relative;
+
+top:0;
+
+}
+
+.quick-grid{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+
+@media(max-width:768px){
+
+.info-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.drawer-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.profile-drawer{
+
+width:100%;
+max-width:100vw;
+padding:25px;
+box-sizing:border-box;
+}
+.drawer-actions{flex-direction:column;}
+
+.banner-content h1{font-size:32px;}
+
+.profile-sidebar{
+
+padding:30px;
+
+}
+.drawer-photo img{
+    width:120px;
+    height:120px;
+}
+}
+
+
+
+
+
+
+
+.delete-modal{
+    position:fixed;
+    inset:0;
+    opacity:0;
+    visibility:hidden;
+    transition:.3s;
+    background:rgba(0,0,0,.55);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:9999;
+
+}
+
+.delete-modal.show{
+    opacity:1;
+    visibility:visible;
+    display:flex;
+
+}
+
+.delete-box{
+
+    width:420px;
+
+    background:#fff;
+
+    border-radius:15px;
+
+    padding:35px;
+
+    text-align:center;
+
+}
+
+.delete-box h2{
+
+    margin-bottom:15px;
+
+}
+
+.delete-box p{
+
+    color:#666;
+
+    margin-bottom:25px;
+
+    line-height:1.7;
+
+}
+
+.delete-btn{
+
+    width:100%;
+
+    background:#c62828;
+
+    color:#fff;
+
+    border:none;
+
+    padding:14px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    margin-bottom:12px;
+
+}
+
+.cancel-btn{
+
+    width:100%;
+
+    background:#eee;
+
+    border:none;
+
+    padding:14px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+}
+/* ==========================================================
+ACCOUNT STAT CARDS (Orders / Wishlist / Member Since)
+========================================================== */
+
+.account-banner{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:24px;
+}
+
+.account-stats{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:16px;
+    width:100%;
+    max-width:640px;
+}
+
+.account-stat-card{
+    background:#fff;
+    border:1px solid #ece4db;
+    border-radius:14px;
+    padding:16px 26px;
+    min-width:120px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.account-stat-number{
+    font-size:22px;
+    font-weight:700;
+    color:#163414;
+}
+
+.account-stat-label{
+    font-size:13px;
+    color:#888;
+    margin-top:4px;
+}
+
+/* ==========================================================
+QUICK CARD ICON + button reset (some cards are now <button>)
+========================================================== */
+
+.quick-card{
+    border:none;
+    cursor:pointer;
+    font-family:inherit;
+    width:100%;
+}
+
+.quick-card-icon{
+    font-size:26px;
+    display:block;
+}
+
+/* ==========================================================
+ORDER STATUS BADGE
+========================================================== */
+
+.order-status-badge{
+    display:inline-block;
+    padding:4px 12px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:600;
+    background:#eee;
+    color:#555;
+}
+
+.order-status-delivered{ background:#e5f3e8; color:#1e7a3b; }
+.order-status-shipped{ background:#eaf1fb; color:#1d5fae; }
+.order-status-paid{ background:#eaf1fb; color:#1d5fae; }
+.order-status-submitted{ background:#f3e8fd; color:#7b3fa0; }
+.order-status-pending{ background:#fdf3e0; color:#a5730f; }
+
+/* ==========================================================
+RECENTLY VIEWED (account dashboard)
+========================================================== */
+
+.recently-viewed-row{
+    display:flex;
+    gap:14px;
+    overflow-x:auto;
+    padding-bottom:6px;
+}
+
+.recently-viewed-item{
+    flex:0 0 110px;
+    text-align:center;
+    text-decoration:none;
+    color:#333;
+}
+
+.recently-viewed-item img{
+    width:100%;
+    aspect-ratio:1/1;
+    object-fit:cover;
+    border-radius:10px;
+    margin-bottom:6px;
+}
+
+.recently-viewed-item span{
+    font-size:12.5px;
+    display:block;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+/* ==========================================================
+DELETE MODAL — password field
+========================================================== */
+
+.delete-password-label{
+    display:block;
+    text-align:left;
+    font-size:13px;
+    color:#555;
+    margin:16px 0 6px;
+}
+
+.delete-password-input{
+    width:100%;
+    padding:10px 14px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    margin-bottom:16px;
+    box-sizing:border-box;
+}
+
+.delete-password-input:focus{
+    outline:2px solid #D4AF37;
+    border-color:#D4AF37;
+}
+
+@media(max-width:600px){
+    .account-stats{
+        gap:10px;
+    }
+    .account-stat-card{
+        min-width:0;
+        flex:1;
+        padding:12px 10px;
+    }
+}

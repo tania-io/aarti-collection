@@ -1,0 +1,68 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block title %}Shop The Look | {{ site_settings.brand_name }}{% endblock %}
+
+{% block content %}
+
+<div class="breadcrumb">
+    <a href="{% url 'home' %}">Home</a>
+    <span>/</span>
+    <span>Shop The Look</span>
+</div>
+
+<section class="collection-page">
+
+    <div class="page-header">
+        <h1>Shop The Look</h1>
+        <p>Complete outfits, curated for effortless styling.</p>
+    </div>
+
+    {% if shop_looks %}
+
+    <div class="shop-look-list">
+
+        {% for look in shop_looks %}
+        <section class="shop-look-entry" id="look-{{ look.slug }}">
+
+            <div class="shop-look-banner">
+                <img src="{{ look.image.url }}" alt="{{ look.title }}" loading="lazy">
+                <div class="shop-look-banner-overlay">
+                    <h2>{{ look.title }}</h2>
+                    {% if look.subtitle %}
+                    <p class="shop-look-subtitle">{{ look.subtitle }}</p>
+                    {% endif %}
+                    {% if look.description %}
+                    <p>{{ look.description }}</p>
+                    {% endif %}
+                    {% if look.cta_text and look.cta_url %}
+                    <a href="{{ look.cta_url }}" target="_blank" rel="noopener noreferrer" class="shop-look-cta-btn">
+                        {{ look.cta_text }}
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+
+            {% if look.products.exists %}
+            {% include "store/includes/product_grid.html" with products=look.products.all %}
+            {% endif %}
+
+        </section>
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <div class="pg-empty">
+        <img src="{% static 'store/icons/search.svg' %}" alt="">
+        <h2>No looks published yet</h2>
+        <p>Check back soon — we're curating new outfit edits.</p>
+        <a href="{% url 'product_list' %}" class="shop-btn">Browse Collection</a>
+    </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

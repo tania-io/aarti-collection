@@ -1,0 +1,293 @@
+{% extends "store/base.html" %}
+{% load static %}
+{% block title %}{{ product.name }} | {{ site_settings.brand_name }}{% endblock %}
+{% block content %}
+<section class="product-page">
+    <nav class="pd-breadcrumb">
+        <a href="{% url 'home' %}">Home</a> /
+        <a href="{% url 'category_products' product.category.slug %}">{{ product.category.name }}</a> /
+        <span>{{ product.title }}</span>
+    </nav>
+    <div class="product-container">
+<div class="product-gallery">
+    <div class="gallery-stage">
+        <button class="gallery-arrow left" aria-label="Previous image">
+            &#10094;
+        </button>
+        <img
+            id="mainProductImage"
+            class="main-product-image"
+            src="{% if variants and variants.0.image %}{{ variants.0.image.url }}{% elif product.image %}{{ product.image.url }}{% else %}{% static 'store/icons/placeholder.svg' %}{% endif %}"
+            alt="{{ product.title }}"
+            loading="eager">
+        <button type="button" id="galleryZoomBtn" class="gallery-zoom-btn" aria-label="Zoom image">
+            🔍
+        </button>
+        <video
+            id="mainProductVideo"
+            class="main-product-video"
+            style="display:none;"
+            controls
+            playsinline
+            preload="metadata">
+        </video>
+        <button class="gallery-arrow right" aria-label="Next image">
+            &#10095;
+        </button>
+    </div>
+    <div class="gallery-thumbs" id="galleryThumbs"></div>
+</div>
+<div class="gallery-lightbox" id="galleryLightbox">
+    <button type="button" class="gallery-lightbox-close" id="galleryLightboxClose" aria-label="Close zoom">&times;</button>
+    <img id="galleryLightboxImage" src="" alt="{{ product.title }}">
+</div>
+{{ gallery_slides|json_script:"gallery-slides-data" }}
+<div class="product-info">
+    <div class="title-row">
+        <h1>{{ product.title }}</h1>
+        <a href="#"
+            class="wishlist-toggle wishlist-icon {% if product.id in wishlist_product_ids %}active{% endif %}"
+            data-product="{{ product.id }}"
+            data-add-url="{% url 'add_to_wishlist' product.id %}"
+            data-remove-url="{% url 'remove_wishlist' product.id %}">
+            <img
+                class="wishlist-heart"
+                src="{% if product.id in wishlist_product_ids %}
+                    {% static 'store/icons/heart.svg' %}
+                {% else %}
+                    {% static 'store/icons/wishlist.svg' %}
+                {% endif %}"
+                alt="Wishlist">
+        </a>
+    </div>
+    <div class="product-price">
+        <span class="current-price">
+            ₹{{ product.price }}
+        </span>
+        {% if product.old_price %}
+        <span class="old-price">₹{{ product.old_price }}</span>
+        {% endif %}
+    </div>
+    <p class="tax-text">
+        Inclusive of all taxes
+    </p>
+    {% with rating=product.average_rating %}
+    <a href="#reviewsSection" class="rating-summary">
+        {% if rating %}
+        <span class="rating-stars">
+            {% for i in "12345" %}
+                {% if forloop.counter <= rating %}⭐{% else %}☆{% endif %}
+            {% endfor %}
+        </span>
+        <span class="rating-value">{{ rating }}</span>
+        <span class="rating-count">({{ product.review_count }} review{{ product.review_count|pluralize }})</span>
+        {% else %}
+        <span class="rating-count">Be the first to review this product</span>
+        {% endif %}
+    </a>
+    {% endwith %}
+    {% if variants %}
+    <div class="product-section">
+        <h4>Colour<span class="selected-colour-name" id="selectedColourName">
+            : {{ variants.0.colour.name }}
+        </span></h4>
+        <div class="colour-list">
+            {% for variant in variants %}
+            <span
+                class="colour-dot {% if forloop.first %}active{% endif %} {% if variant.colour.slug == 'white' %}colour-dot-white{% endif %} {% if variant.stock == 0 %}disabled{% endif %}"
+                data-variant-index="{{ forloop.counter0 }}"
+                data-variant-id="{{ variant.id }}"
+                data-colour-name="{{ variant.colour.name }}"
+                style="background:{% if variant.colour.css_style %}{{ variant.colour.css_style }}{% else %}#{{ variant.colour.hex_code|upper }}{% endif %};"
+                title="{{ variant.colour.name }}{% if variant.stock == 0 %} (Out of stock){% endif %}">
+            </span>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+    {% if product.sizes.exists %}
+    <div class="product-section">
+        <h4>Available Sizes</h4>
+        <div class="size-list">
+            {% for size in product.sizes.all %}
+                <span class="size-chip">
+                    {{ size.name }}
+                </span>
+            {% endfor %}
+        </div>
+        <div class="pd-policy-links">
+            <span class="pd-policy-help-text">Not sure what fits? Check our</span>
+            {% if product.size_category and "bangle" in product.size_category.name|lower %}
+            <a href="{% url 'bangle_size_guide' %}">Bangle Size Guide</a> ·
+            {% else %}
+            <a href="{% url 'bangle_size_guide' %}">Size Guide</a> ·
+            {% endif %}
+            <a href="{% url 'privacy' %}">Privacy Policy</a> ·
+            <a href="{% url 'terms_conditions' %}">Terms &amp; Conditions</a>
+        </div>
+    </div>
+    {% endif %}
+    <!-- =======================
+    QUANTITY / CART / BUY NOW - single row
+    ======================== -->
+    <div class="pd-purchase-row">
+        <select id="qty" class="qty-select">
+            {% for n in "123456789" %}
+            <option value="{{ forloop.counter }}">Qty: {{ forloop.counter }}</option>
+            {% endfor %}
+        </select>
+        <button
+            class="add-cart-btn"
+            data-product="{{ product.id }}"
+            data-url="{% url 'add_to_cart' product.id %}"
+            {% if variants %}data-variant-id="{{ variants.0.id }}"{% endif %}>
+            Add to Cart
+        </button>
+        <a
+            href="{% url 'buy_now' product.id %}"
+            target="_blank"
+            class="buy-btn"
+            {% if variants %}data-variant-id="{{ variants.0.id }}"{% endif %}>
+            Buy Now
+        </a>
+    </div>
+    <div class="stock-box">
+        {% with stock_msg=product.get_stock_status %}
+        <p class="stock {{ stock_msg.1 }}">
+            {% if stock_msg.1 == "stock-out" %}✕{% else %}✓{% endif %}
+            {{ stock_msg.0 }}
+        </p>
+        {% endwith %}
+    </div>
+    <div class="pd-shipping-note">
+        <span>🚚 Free shipping on orders above ₹999</span>
+        <span>✨ Need it sooner? Choose Special Delivery at checkout</span>
+        <span>🎁 <a href="{% url 'checkout' %}#giftWrap">Add a gift wrap &amp; note at checkout</a></span>
+    </div>
+</div>
+</div>
+</section>
+<!-- =======================================
+DESCRIPTION | PRODUCT DETAILS | CARE INSTRUCTIONS
+======================================= -->
+<section class="pd-accordion" id="pdAccordion" data-product-slug="{{ product.slug }}">
+    <div class="pd-accordion-item active" data-panel="description">
+        <button type="button" class="pd-accordion-toggle" aria-expanded="true">
+            <span>Description</span>
+            <span class="pd-accordion-icon">−</span>
+        </button>
+        <div class="pd-accordion-panel">
+            <div class="pd-accordion-panel-inner">
+                <p>{{ product.description }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="pd-accordion-item" data-panel="details">
+        <button type="button" class="pd-accordion-toggle" aria-expanded="false">
+            <span>Product Details</span>
+            <span class="pd-accordion-icon">+</span>
+        </button>
+        <div class="pd-accordion-panel">
+            <div class="pd-accordion-panel-inner">
+                <div class="spec-grid">
+                    {% if product.material %}
+                    <div><strong>Material</strong></div>
+                    <div>{{ product.material }}</div>
+                    {% endif %}
+                    {% if product.purpose %}
+                    <div><strong>Purpose</strong></div>
+                    <div>{{ product.purpose }}</div>
+                    {% endif %}
+                    <div><strong>Category</strong></div>
+                    <div>{{ product.category.name }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pd-accordion-item" data-panel="care">
+        <button type="button" class="pd-accordion-toggle" aria-expanded="false">
+            <span>Care Instructions</span>
+            <span class="pd-accordion-icon">+</span>
+        </button>
+        <div class="pd-accordion-panel">
+            <div class="pd-accordion-panel-inner">
+                <ul>
+                    {% for item in product.get_care_instructions %}
+                        <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+{% if same_look_products %}
+<section class="complete-the-look">
+    <h2>Complete the Look</h2>
+    {% include "store/includes/product_grid.html" with products=same_look_products %}
+</section>
+{% endif %}
+<section class="related-products">
+    <h2>You May Also Like</h2>
+    {% include "store/includes/product_grid.html" with products=related_products %}
+</section>
+<section class="reviews" id="reviewsSection">
+    <h2>
+        Reviews ({{ product.review_count }})
+    </h2>
+    {% for review in reviews %}
+        <div class="review-card">
+            <h4>{{ review.name }}</h4>
+            <p class="review-stars">
+                {% for i in "12345" %}
+                    {% if forloop.counter <= review.rating %}
+                        ⭐
+                    {% else %}
+                        ☆
+                    {% endif %}
+                {% endfor %}
+            </p>
+            <p>{{ review.comment }}</p>
+            <small>
+                {{ review.created_at|date:"d M Y" }}
+            </small>
+        </div>
+    {% empty %}
+        <p>No reviews yet. Be the first to share your thoughts!</p>
+    {% endfor %}
+</section>
+<section class="review-form">
+    <h2>Write a Review</h2>
+    <form method="POST"
+          action="{% url 'add_review' product.slug %}">
+        {% csrf_token %}
+        <input
+            type="text"
+            name="name"
+            placeholder="Your Name"
+            required>
+        <input
+            type="email"
+            name="email"
+            placeholder="Email">
+        <select
+            name="rating"
+            required>
+            <option value="">Rating</option>
+            <option value="5">⭐⭐⭐⭐⭐</option>
+            <option value="4">⭐⭐⭐⭐</option>
+            <option value="3">⭐⭐⭐</option>
+            <option value="2">⭐⭐</option>
+            <option value="1">⭐</option>
+        </select>
+        <textarea
+            name="comment"
+            rows="5"
+            placeholder="Write your review..."
+            required>
+        </textarea>
+        <button type="submit">
+            Submit Review
+        </button>
+    </form>
+</section>
+{% endblock %}

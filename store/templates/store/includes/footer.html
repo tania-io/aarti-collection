@@ -1,0 +1,197 @@
+{% load static %}
+
+<!-- ==========================================
+FOOTER
+========================================== -->
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <!-- Brand -->
+
+        <div class="footer-column footer-column-brand">
+
+            <h3 class="footer-heading">
+                {{ site_settings.brand_name|default:"Aarti Collection" }}
+            </h3>
+
+            <p class="footer-tagline">
+                {{ site_settings.footer_text|default:"Premium Ethnic Wear" }}
+            </p>
+
+            <ul class="footer-links">
+
+                <li>
+                    <a href="{% url 'about' %}">
+                        About Us
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'contact' %}">
+                        Contact Us
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+        <!-- Customer Care -->
+
+        <div class="footer-column">
+
+            <h3 class="footer-heading">Customer Care</h3>
+
+            <ul class="footer-links">
+
+                <li>
+                    <a href="{% url 'shipping_returns' %}">
+                        Shipping &amp; Returns
+                    </a>
+                </li>
+
+            </ul>
+
+            <h4 class="footer-subheading">Connect</h4>
+            <div class="footer-social">
+                {% if site_settings.instagram %}
+                <a
+                    href="{{ site_settings.instagram }}"
+                    target="_blank"
+                    rel="noopener noreferrer">
+
+                    <img src="{% static 'store/icons/instagram.svg' %}" alt="Instagram">
+
+                </a>
+                {% endif %}
+
+                {% if site_settings.facebook %}
+                <a
+                    href="{{ site_settings.facebook }}"
+                    target="_blank"
+                    rel="noopener noreferrer">
+
+                    <img src="{% static 'store/icons/facebook.svg' %}" alt="Facebook">
+
+                </a>
+                {% endif %}
+
+                {% if site_settings.pinterest %}
+                <a
+                    href="{{ site_settings.pinterest }}"
+                    target="_blank"
+                    rel="noopener noreferrer">
+
+                    <img src="{% static 'store/icons/pinterest.svg' %}" alt="Pinterest">
+
+                </a>
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        <!-- Resources -->
+
+        <div class="footer-column">
+
+            <h3 class="footer-heading">Resources</h3>
+
+            <ul class="footer-links">
+
+                <li>
+                    <a href="{% url 'accessibility' %}">
+                        Accessibility
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'bangle_size_guide' %}">
+                        Bangle Size Guide
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'faq' %}">
+                        FAQs
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+        <!-- Our Policy — unlimited, admin-controlled (PolicyPage.show_in_policy_footer) -->
+
+        <div class="footer-column">
+
+            <h3 class="footer-heading">Our Policy</h3>
+
+            <ul class="footer-links">
+
+                {% for page in footer_policies %}
+
+                <li>
+                    <a href="{% url 'policy_page' page.slug %}">
+                        {{ page.title }}
+                    </a>
+                </li>
+
+                {% empty %}
+
+                <li class="footer-links-empty">
+                    More policies coming soon.
+                </li>
+
+                {% endfor %}
+
+            </ul>
+
+        </div>
+
+    </div>
+
+    <div class="payment-icons footer-payments-row">
+        <span>Secure Payments</span>
+        <img src="{% static 'store/icons/upi.svg' %}" alt="UPI">
+    </div>
+
+    <!-- Footer Bottom -->
+
+    <div class="footer-bottom">
+
+        <p class="footer-bottom-line">
+
+            <span>© {% now "Y" %} {{ site_settings.brand_name|default:"Aarti Collection" }}</span>
+            <span class="footer-bottom-dot">•</span>
+            <a href="{% url 'terms_conditions' %}">Terms &amp; Conditions</a>
+            <span class="footer-bottom-dot">•</span>
+            <a href="{% url 'privacy' %}">Privacy Policy</a>
+            <span class="footer-bottom-dot">•</span>
+            <a href="{% url 'policy_index' %}">Our Policy</a>
+
+        </p>
+
+    </div>
+
+</footer>
+
+<!-- Floating WhatsApp -->
+
+{% if site_settings.phone %}
+
+<a
+    href="https://wa.me/{{ site_settings.phone }}"
+    class="floating-whatsapp"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Chat on WhatsApp">
+
+    <img
+        src="{% static 'store/icons/whatsapp.svg' %}"
+        alt="WhatsApp">
+
+</a>
+
+{% endif %}

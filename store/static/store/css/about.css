@@ -1,0 +1,226 @@
+/* ==========================================================
+ABOUT US PAGE
+========================================================== */
+
+.about-hero{
+    position:relative;
+    width:100%;
+    height:420px;
+    overflow:hidden;
+}
+
+.about-hero img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+.about-hero-overlay{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:0 6%;
+    background:linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45));
+}
+
+.about-hero-overlay h1{
+    font-family:'Cormorant Garamond',serif;
+    color:#fff;
+    font-size:44px;
+    line-height:1.25;
+    margin-bottom:14px;
+}
+
+.about-hero-overlay p{
+    color:#f0ead9;
+    font-size:16px;
+    max-width:520px;
+}
+
+/* ============================
+   STORY
+============================ */
+
+.about-story{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    max-width:1200px;
+    margin:70px auto;
+    padding:0 6%;
+    align-items:center;
+}
+
+.about-kicker{
+    display:inline-block;
+    color:#D4AF37;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:10px;
+}
+
+.about-story-text h2{
+    font-family:'Cormorant Garamond',serif;
+    font-size:32px;
+    color:#1a1a1a;
+    margin-bottom:18px;
+}
+
+.about-story-text p{
+    color:#555;
+    line-height:1.9;
+    margin-bottom:16px;
+}
+
+.about-story-images{
+    position:relative;
+    height:420px;
+}
+
+.about-story-images img{
+    position:absolute;
+    border-radius:16px;
+    object-fit:cover;
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+}
+
+.about-story-images .img-a{
+    width:70%;
+    height:75%;
+    top:0;
+    left:0;
+}
+
+.about-story-images .img-b{
+    width:55%;
+    height:55%;
+    bottom:0;
+    right:0;
+    border:6px solid #fff;
+}
+
+/* ============================
+   VALUES
+============================ */
+
+.about-values{
+    background:#faf8f2;
+    padding:60px 6%;
+}
+
+.about-values-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:24px;
+    max-width:1200px;
+    margin:30px auto 0;
+}
+
+.about-value-card{
+    background:#fff;
+    border-radius:16px;
+    padding:30px 20px;
+    text-align:center;
+    box-shadow:0 4px 16px rgba(0,0,0,.05);
+}
+
+.about-value-card h3{
+    font-family:'Cormorant Garamond',serif;
+    font-size:19px;
+    margin:14px 0 8px;
+    color:#1a1a1a;
+}
+
+.about-value-card p{
+    font-size:13.5px;
+    color:#777;
+    line-height:1.7;
+}
+
+/* ============================
+   LARGE BANNER
+============================ */
+
+.about-banner{
+    position:relative;
+    height:340px;
+    overflow:hidden;
+}
+
+.about-banner img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.about-banner-overlay{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    gap:18px;
+    background:rgba(0,0,0,.4);
+}
+
+.about-banner-overlay h2{
+    font-family:'Cormorant Garamond',serif;
+    color:#fff;
+    font-size:32px;
+}
+
+.about-banner-overlay .luxury-btn{
+    border-color:#fff;
+    color:#fff;
+}
+
+.about-banner-overlay .luxury-btn:hover{
+    background:#D4AF37;
+    border-color:#D4AF37;
+    color:#163414;
+}
+
+/* ============================
+   RESPONSIVE
+============================ */
+
+@media(max-width:900px){
+
+    .about-story{
+        grid-template-columns:1fr;
+    }
+
+    .about-values-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:600px){
+
+    .about-hero{
+        height:300px;
+    }
+
+    .about-hero-overlay h1{
+        font-size:30px;
+    }
+
+    .about-story-images{
+        height:300px;
+    }
+
+    .about-values-grid{
+        grid-template-columns:1fr;
+    }
+
+}

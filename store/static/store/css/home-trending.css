@@ -1,0 +1,200 @@
+/* ==========================================================
+Home Page - Trending Now (Infinite Product Slider)
+========================================================== */
+
+.trending-section {
+    width: 92%;
+    max-width: 1450px;
+    margin: 50px auto;
+    position: relative; /* Context parent container for side arrows */
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.section-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 25px;
+    color: #163414;
+    margin-bottom: 12px;
+}
+
+.section-header p {
+    font-family: 'Calibri Light', sans-serif;
+    font-size: 18px;
+    color: #666;
+}
+
+/* ==========================
+   PRODUCT TRACK (FOR INFINITE SLIDER)
+========================== */
+
+.trending-slider-container {
+    overflow: hidden; /* Clean viewport container clipping out-of-view cards */
+    width: 100%;
+}
+
+.trending-slider {
+    display: flex; /* Swapped out grid to enforce a single infinite row */
+    gap: 18px;
+    transition: transform 0.5s ease-in-out; /* Ready configuration for your JS Slider loop */
+}
+
+/* ==========================
+   PRODUCT CARD
+========================== */
+
+.product-card {
+    position: relative; /* CRITICAL: Must remain explicitly relative on all sizes */
+    overflow: hidden;
+    background: #fff;
+    border-radius: 22px;
+    box-shadow: 0 8px 30px rgba(0,0,0,.08);   /* Configures view width layout exactly for a clean 4-card slider row layout */
+    flex: 0 0 calc(25% - 22.5px); 
+    max-width: 280px; 
+}
+/* ==========================
+   INFO
+========================== */
+
+.product-info {
+    padding: 10px 13px 16px;
+}
+
+.product-info h3 {
+    text-align: center;
+    font-family: 'Calibri Light', sans-serif;
+    font-size: 18px;
+    color: #163414;
+    margin-bottom: 12px;
+    font-weight: 400;
+}
+
+.price {
+    text-align: center;
+    font-family: 'Calibri Light', sans-serif;
+    font-size: 18px;
+    color: #163414;
+    margin-bottom: 18px;
+}
+
+/* ==========================
+   CART & WISHLIST BUTTON MODULES
+========================== */
+.cart-icon,
+.wishlist-icon{
+    position:absolute;
+    bottom:12px;
+    width:30px;
+    height:30px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:50%;
+    z-index:50;
+    box-shadow:0 6px 16px rgba(0,0,0,.12);
+    opacity:0;
+    visibility:hidden;
+    transform:translateX(15px);
+    transition:.3s ease;
+}
+
+.cart-icon{ left:12px; }
+.wishlist-icon{ right:12px; }
+
+.cart-icon img,
+.wishlist-icon img{
+    width:20px;
+    height:20px;
+    object-fit:contain;
+    display:block;
+}
+/* Active Wishlist marker settings */
+.wishlist-icon.active {
+    background: rgba(255,255,255,.85);
+}
+/* Show BOTH icons only on hover */
+.product-card:hover .cart-icon,
+.product-card:hover .wishlist-icon,
+.best-card:hover .cart-icon,
+.best-card:hover .wishlist-icon,
+.popup-card:hover .cart-icon,
+.popup-card:hover .wishlist-icon{
+    opacity:1;
+    visibility:visible;
+    transform:translateX(0);
+}
+.wishlist-icon.active img {
+    transform: scale(1.05);
+    filter: none;
+}
+
+/* ==========================================================
+   SLIDER ARROWS
+========================================================== */
+
+.product-card-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 28px;
+    color: rgba(0,0,0,.55);
+    z-index: 50;
+}
+
+.product-card-prev {
+    left: -25px; /* Shifts arrows elegantly to float outer boundaries over track sides */
+}
+
+.product-card-next {
+    right: -25px;
+}
+
+/* ==========================
+   RESPONSIVE LAYOUT RESPONSES
+========================== */
+
+@media(max-width: 991px) {
+    .product-card {
+        flex: 0 0 calc(50% - 15px); /* Safely forces exact double item tracking slots */
+    }
+    .product-card img {
+        height: 200px;
+        object-fit:cover;
+    }
+    .product-main-image{
+        height:200px;
+    }
+    .trending-slider {
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+@media(max-width: 600px) {
+    .product-card {
+        flex:0 0 calc(82% - 12px);
+        min-width:0;
+        scroll-snap-align: start;
+    }
+    .product-card img {
+        height: 230px;
+        object-fit:cover;
+    }
+    .trending-slider::-webkit-scrollbar {display: none;}
+    .product-info{padding:10px 13px 16px}
+    .product-info h3{font-size:16px;}
+    .price{font-size:16px;}
+    .cart-icon,
+    .wishlist-icon{
+        width:25px;
+        height:25px;
+    }
+}

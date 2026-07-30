@@ -1,0 +1,627 @@
+/* =====================================
+COMMON PRODUCT CARD
+===================================== */
+
+.product-info{
+    padding:12px 8px;
+    text-align:center;
+}
+
+.product-info h3{
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.15rem;
+    font-weight:600;
+    margin-bottom:6px;
+    color:#222;
+}
+
+.product-info .price{
+    font-size:1rem;
+    font-weight:600;
+    color:#4444;
+}
+
+.product-image-wrapper{
+    position:relative;
+    overflow:hidden;
+}
+
+.product-image-wrapper img{
+    width:100%;
+    display:block;
+    transition:0.35s ease;
+}
+
+.product-image-wrapper:hover img{
+    transform:scale(1.05);
+}
+
+/* Back/second image swap on hover (falls back gracefully if absent) */
+.pg-image-wrap,
+.product-image-wrapper{
+    position:relative;
+}
+
+.pg-image-back{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    opacity:0;
+    transition:opacity .35s ease;
+}
+
+.pg-image-wrap:hover .pg-image-back,
+.product-image-wrapper:hover .pg-image-back{
+    opacity:1;
+}
+
+.wishlist-icon,
+.cart-icon,
+.pg-cart-btn,
+.pg-wishlist-btn{
+    background:transparent;
+    border:none;
+    transition:.25s;
+    opacity:1;
+}
+
+.wishlist-icon:hover,
+.cart-icon:hover{
+    transform:scale(1.1);
+    opacity:1;
+}
+.trending-section .product-info{
+    opacity:1;
+    transform:none;
+}
+.best-card{
+    position:relative;
+    overflow:hidden;
+}
+
+.best-card .product-info{
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+
+    background:rgba(255,250,245,.95);
+
+    transform:translateY(100%);
+    transition:.35s ease;
+
+    padding:20px;
+}
+.best-card .wishlist-icon,
+.best-card .cart-icon{
+
+    opacity:0;
+
+    transform:translateY(-10px);
+
+    transition:.3s;
+}
+
+.best-card:hover .wishlist-icon,
+.best-card:hover .cart-icon{
+
+    opacity:1;
+
+    transform:translateY(0);
+}
+.best-card:hover .product-info{
+    transform:translateY(0);
+}
+.collection-card .product-info{
+    position:static;
+    transform:none;
+    opacity:1;
+}
+.popup-card .product-info{
+    position:static;
+    transform:none;
+}
+/* ===========================
+FILTER DRAWER
+=========================== */
+
+.filter-drawer{
+    position:fixed;
+    top:0;
+    left:-460px;
+
+    width:420px;
+    max-width:92%;
+
+    height:100vh;
+    height:100dvh;
+
+    background:#fdfbf7;
+
+    display:flex;
+    flex-direction:column;
+
+    box-sizing:border-box;
+    overflow-x:hidden;
+
+    box-shadow:0 8px 30px rgba(0,0,0,.15);
+
+    transition:left .35s cubic-bezier(.4,0,.2,1);
+
+    z-index:3000;
+}
+
+.filter-drawer .drawer-form{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    min-height:0;
+    overflow:hidden;
+}
+
+.filter-drawer .drawer-header{
+    flex-shrink:0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:22px 26px;
+    border-bottom:1px solid #ece4d6;
+    background:#fdfbf7;
+}
+
+.filter-drawer .drawer-header h2{
+    font-family:'Cinzel',serif;
+    color:#163414;
+    font-size:22px;
+    margin:0;
+}
+
+.filter-drawer #closeDrawer{
+    background:none;
+    border:none;
+    font-size:26px;
+    line-height:1;
+    color:#163414;
+    cursor:pointer;
+    padding:4px;
+    transition:.2s;
+}
+
+.filter-drawer #closeDrawer:hover{
+    color:#D4AF37;
+}
+
+.filter-drawer.open{
+    left:0;
+}
+
+.drawer-scroll{
+    flex:1;
+    overflow-y:auto;
+    overflow-x:hidden;
+    overscroll-behavior:contain;
+    -webkit-overflow-scrolling:touch;
+    padding:20px 14px 20px 26px;
+    box-sizing:border-box;
+
+    /* thin, theme-matching scrollbar with room so it never overlaps content */
+    scrollbar-width:thin;
+    scrollbar-color:#c9bfa8 transparent;
+}
+
+.drawer-scroll::-webkit-scrollbar{
+    width:6px;
+}
+
+.drawer-scroll::-webkit-scrollbar-track{
+    background:transparent;
+}
+
+.drawer-scroll::-webkit-scrollbar-thumb{
+    background:#c9bfa8;
+    border-radius:10px;
+}
+
+.drawer-actions{
+    flex-shrink:0;
+    padding:16px 26px 24px;
+    box-sizing:border-box;
+    border-top:1px solid #ece4d6;
+    background:#fdfbf7;
+}
+
+/* ===========================
+OVERLAY
+=========================== */
+
+.drawer-overlay{
+    position:fixed;
+    inset:0;
+
+    background:rgba(15,38,15,.45);
+    backdrop-filter:blur(1px);
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:opacity .3s ease;
+
+    z-index:2999;
+}
+
+.drawer-overlay.show{
+    opacity:1;
+    visibility:visible;
+}
+
+@media (max-width:991px){
+    .filter-drawer{
+        width:380px;
+    }
+}
+
+@media (max-width:600px){
+    .filter-drawer{
+        width:94%;
+        max-width:94%;
+    }
+}
+.sort-wrapper{
+    position:relative;
+}
+
+.sort-menu{
+    position:absolute;
+    top:110%;
+    right:0;
+
+    display:none;
+
+    background:#fff;
+
+    border-radius:10px;
+
+    min-width:220px;
+    max-width:calc(100vw - 40px);
+
+    box-shadow:0 10px 30px rgba(0,0,0,.12);
+
+    overflow:hidden;
+
+    z-index:200;
+}
+
+.sort-menu.active{
+    display:block;
+}
+
+@media(max-width:480px){
+    .sort-menu{
+        position:fixed;
+        top:auto;
+        bottom:0;
+        left:12px;
+        right:12px;
+        width:auto;
+        min-width:0;
+        max-width:none;
+        margin-bottom:12px;
+        border-radius:14px;
+    }
+}
+
+.sort-option{
+    width:100%;
+    border:none;
+    background:transparent;
+    padding:14px 18px;
+    cursor:pointer;
+    text-align:left;
+    color:#333;
+}
+
+.sort-option:hover{
+    background:#f6f6f6;
+    color:#163414;
+}
+.collection-toolbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin:30px 0;
+}
+
+.filter-btn{
+    padding:10px 18px;
+    border:none;
+    background:transparent;
+    color:#163414;
+    cursor:pointer;
+    border-radius:8px;
+    min-width:120px;
+    font-weight:500;
+    transition:.2s;
+}
+
+.filter-btn:hover{
+    color:#D4AF37;
+}
+
+/* ===========================
+FILTER ACCORDION (unified — one mechanism for every section:
+Price, Category, Colour, Material, Size, Availability, Tags, Purpose)
+=========================== */
+
+.filter-section{
+    border-bottom:1px solid #ece4d6;
+}
+
+.filter-section:last-child{
+    border-bottom:none;
+}
+
+.filter-section-toggle{
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:none;
+    border:none;
+    cursor:pointer;
+    padding:16px 0;
+    font-family:'Cinzel',serif;
+    font-size:16px;
+    color:#163414;
+    text-align:left;
+}
+
+.filter-toggle-icon{
+    font-size:20px;
+    line-height:1;
+    transition:transform .3s ease;
+    color:#163414;
+    flex-shrink:0;
+}
+
+.filter-section.active .filter-toggle-icon{
+    transform:rotate(45deg);
+    color:#D4AF37;
+}
+
+.filter-section-body{
+    display:none;
+}
+
+.filter-section.active .filter-section-body{
+    display:block;
+    animation:accordionReveal .25s ease;
+}
+
+.filter-section-inner{
+    padding-bottom:18px;
+}
+
+/* ===========================
+CHECKBOX ROWS (Category / Material / Size / Availability / Tags / Purpose)
+=========================== */
+
+.filter-checkbox-row{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    padding:7px 0;
+    cursor:pointer;
+    max-width:100%;
+}
+
+.filter-checkbox-row input{
+    flex-shrink:0;
+    margin-top:3px;
+    width:16px;
+    height:16px;
+    accent-color:#163414;
+    cursor:pointer;
+}
+
+.filter-checkbox-row span{
+    font-family:'Poppins',sans-serif;
+    font-size:14.5px;
+    color:#3a3a3a;
+    word-break:break-word;
+    overflow-wrap:anywhere;
+    line-height:1.4;
+}
+
+/* ===========================
+COLOUR SWATCHES
+=========================== */
+
+.filter-color-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(46px, 1fr));
+    gap:14px 10px;
+}
+
+.filter-color-option{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:5px;
+    cursor:pointer;
+}
+
+.visually-hidden{
+    position:absolute;
+    width:1px;
+    height:1px;
+    padding:0;
+    margin:-1px;
+    overflow:hidden;
+    clip:rect(0,0,0,0);
+    white-space:nowrap;
+    border:0;
+}
+
+.filter-color-dot{
+    width:32px;
+    height:32px;
+    border-radius:50%;
+    display:block;
+    border:2px solid transparent;
+    box-shadow:0 0 0 1px rgba(0,0,0,.08);
+    transition:.2s;
+}
+
+/* White needs a visible border since it would otherwise vanish
+   against the drawer's cream background */
+.filter-color-white .filter-color-dot{
+    border:1px solid #ccc;
+    box-shadow:none;
+}
+
+.filter-color-option:hover .filter-color-dot{
+    transform:scale(1.08);
+}
+
+.filter-color-option.selected .filter-color-dot{
+    border-color:#163414;
+    box-shadow:0 0 0 2px #fff, 0 0 0 3px #163414;
+}
+
+.filter-color-label{
+    font-size:11px;
+    color:#777;
+    text-align:center;
+    line-height:1.2;
+    max-width:60px;
+}
+
+/* ==========================
+PRICE SLIDER
+(class names here MUST match filter_drawer.html exactly:
+ .price-slider / .slider-track / .price-range — a previous
+ mismatch with .price-slider-container/.price-track here was
+ why the green range bar rendered unconstrained and stayed
+ visible even when the Price section was collapsed.)
+========================== */
+
+.price-slider{
+    position:relative;
+    width:100%;
+    height:40px;
+    margin:14px 0 6px;
+}
+
+.slider-track{
+    position:absolute;
+    top:50%;
+    width:100%;
+    height:5px;
+    background:#e7ded0;
+    transform:translateY(-50%);
+    border-radius:10px;
+}
+
+.price-range{
+    position:absolute;
+    top:50%;
+    height:5px;
+    background:#163414;
+    transform:translateY(-50%);
+    border-radius:10px;
+}
+
+.price-slider input[type=range]{
+    position:absolute;
+    width:100%;
+    top:0;
+    left:0;
+    margin:0;
+    pointer-events:none;
+    background:none;
+    appearance:none;
+    -webkit-appearance:none;
+}
+
+.price-slider input[type=range]::-webkit-slider-thumb{
+    appearance:none;
+    -webkit-appearance:none;
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    background:#D4AF37;
+    cursor:pointer;
+    pointer-events:auto;
+    border:3px solid #fff;
+    box-shadow:0 3px 8px rgba(0,0,0,.25);
+    margin-top:9px;
+}
+
+.price-slider input[type=range]::-moz-range-thumb{
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    background:#D4AF37;
+    cursor:pointer;
+    pointer-events:auto;
+    border:3px solid #fff;
+    box-shadow:0 3px 8px rgba(0,0,0,.25);
+}
+
+.price-slider input[type=range]::-moz-range-track{
+    background:transparent;
+}
+
+.price-display{
+    display:flex;
+    justify-content:center;
+    font-family:'Poppins',sans-serif;
+    font-weight:600;
+    color:#163414;
+    margin-top:8px;
+}
+
+/* ===========================
+APPLY / CLEAR (sticky footer)
+=========================== */
+
+.apply-filter{
+    display:block;
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:#163414;
+    color:#fff;
+    font-family:'Poppins',sans-serif;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:background .25s ease, transform .15s ease;
+}
+
+.apply-filter:hover{
+    background:#D4AF37;
+    color:#163414;
+}
+
+.apply-filter:active{
+    transform:scale(.98);
+}
+
+.clear-filters{
+    display:block;
+    text-align:center;
+    margin-top:12px;
+    padding:8px;
+    color:#888;
+    font-size:14px;
+    text-decoration:underline;
+    transition:color .2s ease;
+}
+
+.clear-filters:hover{
+    color:#a43b2c;
+}

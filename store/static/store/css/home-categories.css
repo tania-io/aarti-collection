@@ -1,0 +1,111 @@
+/* ==========================================================
+Home Page - Shop By Category
+========================================================== */
+
+/* ==========================================================
+SHOP BY CATEGORY
+========================================================== */
+
+.shop-category{
+    width:92%;
+    max-width:1300px;
+    margin:40px auto;
+}
+/* ==========================
+GRID
+========================== */
+.category-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+/* ==========================
+CARD
+========================== */
+
+.category-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:18px;
+
+    display:block;
+
+    text-decoration:none;
+
+    height:340px;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.10);
+}
+.category-card img{
+    height:100%;
+    width:100%;
+    object-fit:cover;
+    display:block;
+}
+/* ==========================
+OVERLAY
+========================== */
+
+.category-overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:flex-end;
+
+    padding:40px;
+
+    background:linear-gradient(
+        transparent,
+        rgba(0,0,0,.55)
+    );
+
+}
+
+.category-overlay h3{
+    color:white;
+    font-size:25px;
+    font-family:'Cormorant Garamond',serif;
+    letter-spacing:1px;
+    padding:0;
+}
+
+/* ==========================
+RESPONSIVE
+========================== */
+
+@media(max-width:991px){
+
+    .category-grid{
+
+        grid-template-columns:repeat(3,1fr);
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .category-grid{
+        gap:20px;
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+    .category-card{
+
+        height:250px;
+
+    }
+
+}
+

@@ -1,0 +1,68 @@
+/* ==========================================================
+CSS Custom Properties (design tokens)
+Required by: policy.css
+Safe to include globally: only declares --variables, no selectors
+that touch existing elements, so it cannot visually affect any
+other page.
+========================================================== */
+
+:root{
+
+    /* Main Brand */
+    --primary:#163414;
+    --primary-dark:#0d220d;
+    --primary-light:#2f5f3c;
+
+    /* Luxury Gold */
+    --gold:#d4af37;
+    --gold-dark:#b98b18;
+    --gold-light:#f5deb3;
+
+    /* Cream Palette */
+    --cream:#fffaf5;
+    --cream-light:#fffdfb;
+    --cream-dark:#f8f1e6;
+
+    /* Text */
+    --text:#2d2d2d;
+    --text-light:#6d6d6d;
+    --text-muted:#949494;
+
+    /* UI */
+    --white:#fff;
+    --black:#000;
+    --border:#e8e2d8;
+    --border-dark:#d8cfbf;
+
+    /* Luxury Gradients */
+    --primary-gradient:linear-gradient(135deg,#0f260f 0%,#1d4822 40%,#3f7149 100%);
+    --gold-gradient:linear-gradient(135deg,#b8860b 0%,#d4af37 45%,#f0d878 100%);
+    --cream-gradient:linear-gradient(180deg,#fffdfb 0%,#fff8f0 50%,#fdf3e7 100%);
+    --footer-gradient:linear-gradient(135deg,#102412 0%,#18391b 45%,#2f5b39 100%);
+    --button-gradient:linear-gradient(135deg,#123116 0%,#1d4d25 50%,#356942 100%);
+    --hero-overlay:linear-gradient(rgba(12,30,14,.45),rgba(12,30,14,.25));
+
+    /* Shadows */
+    --shadow-xs:0 2px 8px rgba(0,0,0,.05);
+    --shadow-sm:0 6px 18px rgba(0,0,0,.08);
+    --shadow-md:0 10px 28px rgba(0,0,0,.12);
+    --shadow-lg:0 18px 45px rgba(0,0,0,.18);
+    --shadow-gold:0 8px 22px rgba(212,175,55,.28);
+
+    /* Radius */
+    --radius-xs:6px;
+    --radius-sm:10px;
+    --radius-md:16px;
+    --radius-lg:22px;
+    --radius-xl:32px;
+    --radius-round:999px;
+
+    /* Width */
+    --container:1400px;
+    --container-wide:1650px;
+
+    /* Transition */
+    --transition:.35s ease;
+    --transition-fast:.2s ease;
+}
+

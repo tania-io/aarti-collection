@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="wishlist" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="linear-gradient" x1="30.07" x2="76.57" y1="-.09" y2="80.45" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#d4af37" class="stopColor641b7f svgShape"></stop>
+      <stop offset="1" stop-color="#e1ac00" class="stopColor00d0e1 svgShape"></stop>
+    </linearGradient>
+  </defs>
+  <path d="M50,95.21a3.7,3.7,0,0,1-2.62-1.09L8.65,55.37A29.64,29.64,0,0,1,50,12.91,29.64,29.64,0,0,1,91.35,55.37L52.64,94.12A3.67,3.67,0,0,1,50,95.21Zm-20.41-83A22.22,22.22,0,0,0,13.89,50.13L50,86.26,86.11,50.13h0A22.22,22.22,0,0,0,54.68,18.7l-2,2.05A3.69,3.69,0,0,1,50,21.86h0a3.73,3.73,0,0,1-2.62-1.08L45.32,18.7A22.05,22.05,0,0,0,29.61,12.2Z" fill="url(#linear-gradient)"></path>
+</svg>

@@ -1,0 +1,54 @@
+{% load static %}
+{% for item in cart_items %}
+
+<div class="cart-item" id="cart-item-{{ item.id }}" data-id="{{ item.id }}">
+
+    {% if item.variant.image %}
+    <img src="{{ item.variant.image.url }}" alt="{{ item.product.title }}">
+    {% elif item.product.image %}
+    <img src="{{ item.product.image.url }}" alt="{{ item.product.title }}">
+    {% else %}
+    <img src="{% static 'store/icons/placeholder.svg' %}" alt="{{ item.product.title }}">
+    {% endif %}
+
+    <div class="cart-details">
+
+        <h3>{{ item.product.title }}</h3>
+
+        {% if item.variant %}
+        <p class="cart-item-colour">
+            <span class="cart-colour-dot" style="background:{% if item.variant.colour.css_style %}{{ item.variant.colour.css_style }}{% else %}#{{ item.variant.colour.hex_code }}{% endif %};"></span>
+            {{ item.variant.colour.name }}
+        </p>
+        {% endif %}
+
+        <p class="price">₹{{ item.product.price }}</p>
+
+        <div class="qty">
+            <a href="#" class="decrease-btn" data-id="{{ item.id }}" aria-label="Decrease Quantity">−</a>
+            <span class="qty-value">{{ item.quantity }}</span>
+            <a href="#" class="increase-btn" data-id="{{ item.id }}" aria-label="Increase Quantity">+</a>
+        </div>
+
+        <p class="cart-line-total">Item total: ₹{{ item.line_total }}</p>
+
+        <a href="#" class="remove-btn" data-id="{{ item.id }}">Remove</a>
+
+    </div>
+
+</div>
+
+{% empty %}
+
+<div class="empty-cart">
+    <img
+        src="{% static 'store/icons/empty-cart.svg' %}"
+        alt=""
+        class="empty-cart-illustration"
+        onerror="this.style.display='none'">
+    <h3>Your cart is empty.</h3>
+    <p>Start exploring our latest collection.</p>
+    <a href="{% url 'product_list' %}" class="continue-shopping-link">Start Shopping</a>
+</div>
+
+{% endfor %}

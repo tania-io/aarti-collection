@@ -1,0 +1,205 @@
+{% load static %}
+<!-- ==========================================
+TOP HEADER
+========================================== -->
+<header class="site-header">
+
+    <div class="top-header">
+
+        <div class="top-header-marquee">
+
+            <div class="top-header-track">
+
+                <span class="top-header-msg">
+                    ✨  Free Shipping on orders above ₹999
+                </span>
+                {% if site_settings.whatsapp or site_settings.phone %}
+                <span class="top-header-msg">
+                    📹 WhatsApp video call support available
+                </span>
+                {% endif %}
+                <span class="top-header-msg">
+                    📧 100% Secure UPI Payments
+                </span>
+            </div>
+        </div>
+    </div>
+    <!-- ==========================================
+    MAIN HEADER
+    ========================================== -->
+    <div class="sticky-header{% if request.resolver_match.url_name == 'home' %} transparent-nav{% endif %}">
+        <div class="middle-header">
+            <button
+                id="menuToggle"
+                class="menu-toggle">
+                ☰
+            </button>
+            <button
+                id="mobileSearchToggle"
+                class="mobile-search-toggle"
+                type="button"
+                aria-label="Search">
+
+                <img
+                    src="{% static 'store/icons/search.svg' %}"
+                    alt="Search">
+
+            </button>
+            <div class="logo">
+
+                <a href="{% url 'home' %}" aria-label="Home">
+
+                    {% if site_settings.logo %}
+
+                    <img
+                        src="{{ site_settings.logo.url }}"
+                        alt="{{ site_settings.brand_name }}">
+
+                    {% else %}
+
+                    <h1>{{ site_settings.brand_name }}</h1>
+
+                    {% endif %}
+
+                </a>
+
+            </div>
+
+            <!-- Desktop Search -->
+
+            <form
+                class="search-box"
+                id="desktopSearchForm"
+                action="{% url 'search_products' %}"
+                method="GET">
+
+                <input
+                    class="search-input search-input-animated"
+                    type="search"
+                    name="q"
+                    value="{{ request.GET.q }}"
+                    placeholder="Search for products..."
+                    autocomplete="off">
+
+                <button
+                    type="submit"
+                    aria-label="Search">
+
+                    <img
+                        src="{% static 'store/icons/search.svg' %}"
+                        alt="Search">
+
+                </button>
+
+            </form>
+
+            <!-- Header Icons -->
+
+            <div class="header-icons">
+
+                {% if user.is_authenticated %}
+
+                <a
+                    href="{% url 'profile' %}"
+                    aria-label="Profile">
+
+                    <img
+                        src="{% static 'store/icons/user.svg' %}"
+                        alt="Profile">
+
+                </a>
+
+                <a
+                    href="{% url 'wishlist' %}"
+                    id="wishlistBtn"
+                    aria-label="Wishlist">
+
+                    <img
+                        src="{% static 'store/icons/wishlist.svg' %}"
+                        alt="Wishlist">
+
+                    {% if wishlist_count %}
+                    <span class="wishlist-count">
+                        {{ wishlist_count }}
+                    </span>
+                    {% endif %}
+
+                </a>
+
+                <a
+                    href="#"
+                    id="cartToggle"
+                    aria-label="Shopping Cart">
+
+                    <img
+                        src="{% static 'store/icons/cart.svg' %}"
+                        alt="Cart">
+
+                    {% if cart_count %}
+                    <span class="cart-count">
+                        {{ cart_count }}
+                    </span>
+                    {% endif %}
+
+                </a>
+
+                {% else %}
+
+                <a
+                    href="{% url 'login' %}"
+                    aria-label="Login">
+
+                    <img
+                        src="{% static 'store/icons/user.svg' %}"
+                        alt="Login">
+
+                </a>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        <!-- Mobile Search -->
+
+        <form
+            id="mobileSearchForm"
+            class="mobile-nav-search"
+            action="{% url 'search_products' %}"
+            method="GET">
+
+            <button
+                type="button"
+                id="closeMobileSearch"
+                class="search-close-btn"
+                aria-label="Close search">
+
+                &#8592;
+
+            </button>
+
+            <input
+                class="search-input-animated"
+                type="search"
+                name="q"
+                placeholder="Search for products..."
+                autocomplete="off">
+
+            <button
+                type="submit"
+                aria-label="Search">
+
+                <img
+                    src="{% static 'store/icons/search.svg' %}"
+                    alt="Search">
+
+            </button>
+
+        </form>
+
+        {% include "store/includes/navbar.html" %}
+
+    </div>
+
+</header>

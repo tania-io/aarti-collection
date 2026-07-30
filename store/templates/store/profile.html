@@ -1,0 +1,534 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block title %}
+My Account | {{ site_settings.brand_name }}
+{% endblock %}
+
+{% block content %}
+
+<section class="account-page">
+
+    <div class="account-banner">
+
+        <div class="banner-content">
+
+            <h1>My Account</h1>
+
+            <p>
+                Welcome back,
+                {{ request.user.first_name|default:request.user.username }}
+            </p>
+
+        </div>
+
+        <div class="account-stats">
+
+            <div class="account-stat-card">
+                <span class="account-stat-number">{{ total_orders }}</span>
+                <span class="account-stat-label">Orders</span>
+            </div>
+
+            <div class="account-stat-card">
+                <span class="account-stat-number">{{ wishlist_count }}</span>
+                <span class="account-stat-label">Wishlist</span>
+            </div>
+
+            <div class="account-stat-card">
+                <span class="account-stat-number">{{ request.user.date_joined|date:"M Y" }}</span>
+                <span class="account-stat-label">Member Since</span>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="account-container">
+
+        <!-- LEFT PROFILE -->
+
+        <aside class="profile-sidebar">
+
+            <div class="profile-photo">
+
+                {% if profile.profile_image %}
+                    <img src="{{ profile.profile_image.url }}" alt="{{ request.user.first_name|default:request.user.username }}'s profile photo">
+                {% else %}
+                    <div class="avatar">
+                        {{ request.user.first_name|default:request.user.username|first|upper }}
+                    </div>
+                {% endif %}
+
+            </div>
+
+            <h2>
+                {{ request.user.get_full_name|default:request.user.username }}
+            </h2>
+            <p>{{ request.user.email }}</p>
+            {% if profile.phone %}
+                <span>{{ profile.phone }}</span>
+            {% endif %}
+
+            <button
+                class="edit-btn"
+                id="openDrawer">
+
+                ✎ Edit Profile
+
+            </button>
+
+        </aside>
+
+
+        <!-- RIGHT CONTENT -->
+
+        <div class="account-content">
+
+
+            <!-- PERSONAL INFO -->
+
+            <div class="info-card">
+
+                <div class="card-header">
+
+                    <h3>Personal Information</h3>
+
+                </div>
+
+                <div class="info-grid">
+
+                    <div>
+
+                        <label>Name</label>
+
+                        <p>
+                            {{ request.user.get_full_name|default:request.user.username }}
+                        </p>
+                    </div>
+                    <div>
+                        <label>Email</label>
+                        <p>{{ request.user.email }}</p>
+                    </div>
+
+                    <div>
+
+                        <label>Phone</label>
+
+                        <p>{{ profile.phone|default:"-" }}</p>
+
+                    </div>
+
+                    <div>
+
+                        <label>Address</label>
+
+                        <p>{{ profile.address|default:"-" }}</p>
+
+                    </div>
+
+                    <div>
+
+                        <label>City</label>
+
+                        <p>{{ profile.city|default:"-" }}</p>
+
+                    </div>
+
+                    <div>
+
+                        <label>Pincode</label>
+
+                        <p>{{ profile.pincode|default:"-" }}</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- RECENT ORDERS -->
+            <div class="info-card" id="recentOrders">
+
+                <div class="card-header">
+                    <h3>Recent Orders</h3>
+                </div>
+                                                 
+                {% if recent_orders %} 
+                <div class="orders-list">
+       
+                    {% for order in recent_orders %}
+
+                    <div class="order-row">
+
+                        <div>
+                            <strong>#{{ order.id }}</strong><br>
+                            <small>{{ order.created_at|date:"d M Y" }}</small>
+                        </div>
+
+                        <div>
+                            ₹{{ order.total_amount }}
+                        </div>
+
+                        <div>
+                            <span class="order-status-badge order-status-{{ order.status }}">
+                                {{ order.get_status_display }}
+                            </span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+            {% else %}
+
+                <div class="empty-state">
+
+                    <h4>No Orders Yet</h4>
+
+                    <p>You haven't placed any orders yet.</p>
+
+                    <a href="{% url 'product_list' %}" class="shop-btn">
+                        Continue Shopping
+                    </a>
+                </div>
+            {% endif %}
+            </div>
+
+            {% if recently_viewed %}
+            <!-- RECENTLY VIEWED -->
+            <div class="info-card">
+
+                <div class="card-header">
+                    <h3>Recently Viewed</h3>
+                </div>
+
+                <div class="recently-viewed-row">
+                    {% for product in recently_viewed %}
+                    <a href="{% url 'product_detail' product.slug %}" class="recently-viewed-item">
+                        {% if product.image %}
+                        <img src="{{ product.image.url }}" alt="{{ product.title }}" loading="lazy">
+                        {% endif %}
+                        <span>{{ product.title }}</span>
+                    </a>
+                    {% endfor %}
+                </div>
+
+            </div>
+            {% endif %}
+        
+            <!-- QUICK LINKS -->
+            <div class="quick-grid">
+
+                <button type="button" class="quick-card" id="openDrawerCard">
+                    <span class="quick-card-icon">👤</span>
+                    <h4>Profile</h4>
+                    <p>Edit your personal details</p>
+                </button>
+
+                <a href="#recentOrders" class="quick-card">
+                    <span class="quick-card-icon">📦</span>
+                    <h4>Orders</h4>
+                    <p>{{ total_orders }} order{{ total_orders|pluralize }} placed</p>
+                </a>
+
+                <a href="{% url 'wishlist' %}" class="quick-card">
+                    <span class="quick-card-icon">♡</span>
+                    <h4>Wishlist</h4>
+                    <p>{{ wishlist_count }} item{{ wishlist_count|pluralize }} saved</p>
+                </a>
+
+                <a href="{% url 'password_change' %}" class="quick-card">
+                    <span class="quick-card-icon">🔒</span>
+                    <h4>Password</h4>
+                    <p>Change your password</p>
+                </a>
+
+                <button type="button" class="quick-card logout" id="logoutBtn">
+                    <span class="quick-card-icon">↩</span>
+                    <h4>Logout</h4>
+                    <p>Sign out of your account</p>
+                </button>
+
+                <button
+                    type="button"
+                    class="quick-card delete-account"
+                    id="deleteAccountBtn">
+                    <span class="quick-card-icon">🗑</span>
+                    <h4>Delete Account</h4>
+                    <p>Permanently deactivate account</p>
+                </button>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ==========================
+PROFILE DRAWER
+========================== -->
+
+<div 
+    class="drawer-overlay"
+    id="drawerOverlay">
+</div>
+
+<div class="profile-drawer" id="profileDrawer">
+
+    <div class="drawer-header">
+
+        <h2>Edit Profile</h2>
+
+        <button
+            type="button"
+            id="closeDrawer"
+            aria-label="Close">
+            &times;
+        </button>
+
+    </div>
+
+    <form
+        method="POST"
+        enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        <!-- PROFILE PHOTO -->
+
+        <div class="drawer-photo">
+
+            {% if profile.profile_image %}
+
+                <img
+                    id="previewImage"
+                    src="{{ profile.profile_image.url }}"
+                    alt="Profile">
+
+            {% else %}
+
+                <img
+                    id="previewImage"
+                    src="{% static 'store/images/default-avatar.png' %}"
+                    alt="Profile">
+
+            {% endif %}
+
+            <label
+                for="profile_image"
+                class="upload-btn">
+
+                Change Photo
+
+            </label>
+
+            <input
+                type="file"
+                id="profile_image"
+                name="profile_image"
+                hidden>
+
+        </div>
+
+        <!-- PERSONAL DETAILS -->
+
+        <div class="drawer-section">
+
+            <h3>Personal Information</h3>
+
+            <div class="drawer-grid">
+
+                <div>
+
+                    <label>First Name</label>
+
+                    <input
+                        type="text"
+                        name="first_name"
+                        value="{{ request.user.first_name }}">
+
+                </div>
+
+                <div>
+
+                    <label>Last Name</label>
+
+                    <input
+                        type="text"
+                        name="last_name"
+                        value="{{ request.user.last_name }}">
+
+                </div>
+
+            </div>
+
+            <label>Email Address</label>
+
+            <input
+                type="email"
+                name="email"
+                value="{{ request.user.email }}">
+
+            <label>Phone Number</label>
+
+            <input
+                type="text"
+                name="phone"
+                value="{{ profile.phone }}">
+
+        </div>
+
+        <!-- ADDRESS -->
+
+        <div class="drawer-section">
+
+            <h3>Address</h3>
+
+            <label>Address</label>
+
+            <textarea
+                rows="3"
+                name="address">{{ profile.address }}</textarea>
+
+            <div class="drawer-grid">
+
+                <div>
+
+                    <label>City</label>
+
+                    <input
+                        type="text"
+                        name="city"
+                        value="{{ profile.city }}">
+
+                </div>
+
+                <div>
+
+                    <label>State</label>
+
+                    <input
+                        type="text"
+                        name="state"
+                        value="{{ profile.state }}">
+
+                </div>
+
+            </div>
+
+            <label>Pincode</label>
+
+            <input
+                type="text"
+                name="pincode"
+                value="{{ profile.pincode }}">
+
+        </div>
+
+        <!-- ACTIONS -->
+
+        <div class="drawer-actions">
+
+            <button
+                type="button"
+                class="cancel-btn"
+                id="closeDrawer2">
+
+                Cancel
+
+            </button>
+
+            <button
+                type="submit"
+                class="save-profile">
+
+                Save Changes
+
+            </button>
+
+        </div>
+
+    </form>
+
+</div>  
+<div class="delete-modal" id="deleteModal">
+
+    <div class="delete-box">
+
+        <h2>Delete Account?</h2>
+
+        <p>
+            This will deactivate your account and sign you out.
+            Your order history is kept for our records, but your
+            profile and saved details will no longer be accessible.
+            Contact support if you'd like your data fully erased.
+        </p>
+
+        <form
+            method="POST"
+            action="{% url 'delete_account' %}">
+
+            {% csrf_token %}
+
+            <label class="delete-password-label" for="deletePassword">
+                Confirm your password to continue
+            </label>
+
+            <input
+                type="password"
+                id="deletePassword"
+                name="password"
+                class="delete-password-input"
+                required
+                autocomplete="current-password">
+
+            <button
+                type="submit"
+                class="delete-btn">
+
+                Yes, Delete My Account
+
+            </button>
+
+            <button
+                type="button"
+                class="cancel-btn"
+                id="cancelDelete">
+
+                Cancel
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- ==========================
+LOGOUT CONFIRMATION MODAL
+========================== -->
+
+<div class="delete-modal" id="logoutModal">
+
+    <div class="delete-box">
+
+        <h2>Log out?</h2>
+
+        <p>You'll need to sign in again to access your account, orders and wishlist.</p>
+
+        <form method="POST" action="{% url 'logout' %}">
+
+            {% csrf_token %}
+
+            <button type="submit" class="delete-btn">
+                Yes, Log Out
+            </button>
+
+            <button type="button" class="cancel-btn" id="cancelLogout">
+                Cancel
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+{% endblock %}

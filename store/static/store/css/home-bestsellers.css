@@ -1,0 +1,113 @@
+/* ==========================================================
+Home Page - Best Sellers
+========================================================== */
+
+/* ==========================================================
+BEST SELLERS
+========================================================== */
+
+.best-sellers{
+
+    width:92%;
+
+    max-width:1450px;
+
+    margin:50px auto;
+
+}
+/* ==========================================================
+EDITORIAL GRID (CONVERTED TO 4-COLUMN MASONRY)
+========================================================== */
+
+.best-grid {
+    column-count: 4;          /* Creates 4 vertical columns */
+    column-gap: 18px;         /* Horizontal gap between columns */
+}
+
+/* ==========================================================
+GRID POSITIONS & INFINITE CARD FLOW
+========================================================== */
+
+/* Keeps individual cards intact so they don't split vertically across columns */
+.best-grid .best-card {
+    display: inline-block;
+    margin-bottom: 18px;     /* Vertical gap between stacked cards */
+}
+.best-card img {             /* Let heights remain dynamic for masonry effect */
+    object-fit: cover;
+    display: block;
+    width:100%;
+    height:auto;
+}
+
+/* ==========================================================
+CARD HOVER & GLOBAL STYLES (PRESERVED)
+========================================================== */
+
+.best-card {
+    position: relative;
+    border-radius: 22px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 8px 30px rgba(0,0,0,.08);   /* Configures view width layout exactly for a clean 4-card slider row layout */
+}
+
+/* ==========================================================
+VIEW MORE (reflows with the masonry, no separate blank row)
+========================================================== */
+
+.best-grid .view-more-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 200px;
+    background: #f2f2ef;
+    color: #163414;
+    text-decoration: none;
+    text-align: center;
+    transition: background .25s ease;
+}
+
+.best-grid .view-more-card:hover {
+    background: #e8e8e2;
+}
+
+.view-more-plus {
+    font-size: 2.4rem;
+    font-weight: 300;
+    line-height: 1;
+}
+
+.view-more-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+/* ==========================================================
+TABLET RESPONSIVENESS
+========================================================== */
+
+@media(max-width: 991px) {
+    .best-grid {
+        column-count: 3;     /* Drops beautifully down to 2 columns on tablet */
+        column-gap: 16px;
+        max-width:1300px;
+    }
+    .best-grid .best-card {
+        margin-bottom: 20px;
+    }
+}
+
+/* ==========================================================
+MOBILE RESPONSIVENESS
+========================================================== */
+
+@media(max-width: 600px) {
+    .best-grid {
+        column-count: 2;     /* Stacks vertically into a clean 1-column feed on phone */
+        column-gap: 12px;
+        max-width:1200px;
+    }
+}

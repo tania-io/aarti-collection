@@ -1,0 +1,460 @@
+/* ==========================================================
+Home Page - Shop This Look (Grid + Modal)
+========================================================== */
+
+/* ==========================================================
+SHOP THIS LOOK
+========================================================== */
+
+.shop-look{
+    width:92%;
+    max-width:1450px;
+    margin:50px auto;
+}
+/* ==========================================================
+EDITORIAL GRID (CONVERTED TO 4-COLUMN INFINITE MASONRY)
+========================================================== */
+
+.look-grid {
+    column-count: 4;          /* Creates 4 vertical masonry columns */
+    column-gap: 20px;         /* Horizontal spacing between columns */
+}
+
+/* ==========================================================
+CARD FLOW & REORDERING FOR MASONRY
+========================================================== */
+
+/* Keeps individual cards intact so they don't break split vertically across columns */
+.look-grid .look-card {
+    display: inline-block;
+    margin-bottom: 20px;     /* Vertical spacing between stacked cards */
+    
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px;
+    cursor: pointer;
+    box-shadow: 0 12px 30px rgba(0,0,0,.08);
+}
+.look-card img{
+    width:100%;
+    display:block;
+    height:auto;
+}
+
+.look-grid .view-more-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 200px;
+    background: #f2f2ef;
+    color: #163414;
+    text-decoration: none;
+    text-align: center;
+    transition: background .25s ease;
+}
+
+.look-grid .view-more-card:hover {
+    background: #e8e8e2;
+}
+
+/* ==========================================================
+OVERLAY (PRESERVED)
+========================================================== */
+
+.look-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    padding: 35px;
+    background: linear-gradient(
+        transparent,
+        rgba(0,0,0,.65)
+    );
+}
+
+.look-overlay h3 {
+    color: white;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+/* ==========================================================
+RESPONSIVE
+========================================================== */
+
+@media(max-width: 991px) {
+    .look-grid {
+        column-count: 3;     /* Drops down cleanly to 3 columns on tablet devices */
+        column-gap: 14px;
+    }
+    .look-grid .look-card {
+        margin-bottom: 14px;
+        max-width:1300px;
+    }
+}
+
+@media(max-width: 600px) {
+    .look-grid {
+        column-count: 2;     /* Stacks into a seamless single-column feed on mobile */
+        column-gap: 12px;
+    }
+    .look-grid .look-card {
+        margin-bottom: 12px;
+        max-width:1200px;
+    }
+}
+/* ==========================================================
+SHOP THIS LOOK MODAL
+========================================================== */
+
+.look-modal{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.70);
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:40px;
+
+    z-index:99999;
+
+    animation:fadeModal .35s ease;
+
+}
+
+.look-modal.active{
+
+    display:flex;
+
+}
+/* ==========================================================
+MODAL BOX
+========================================================== */
+
+.modal-box{
+
+    background:white;
+
+    width:95%;
+
+    max-width:1450px;
+
+    max-height:92vh;
+
+    overflow-y:auto;
+
+    border-radius:30px;
+
+    padding:25px;
+
+    position:relative;
+
+    box-shadow:0 25px 70px rgba(0,0,0,.25);
+
+}
+
+/* ==========================================================
+CLOSE BUTTON
+========================================================== */
+
+.close-modal{
+
+    position:absolute;
+
+    right:28px;
+
+    top:18px;
+
+    font-size:42px;
+
+    cursor:pointer;
+
+    color:#163414;
+
+    transition:.3s;
+
+    background:none;
+    border:none;
+    padding:0;
+    line-height:1;
+    z-index:10;
+
+}
+
+.close-modal:hover{
+    color:#D4AF37;
+}
+/* ==========================================================
+LOOK HEADER
+========================================================== */
+
+.look-header{
+
+    display:grid;
+
+    grid-template-columns:1.2fr 1fr;
+
+    gap:45px;
+
+    margin-bottom:40px;
+
+    align-items:center;
+
+}
+
+.look-image img{
+
+    width:100%;
+
+    border-radius:24px;
+
+    object-fit:cover;
+
+    display:block;
+
+}
+
+.look-details h2{
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:38px;
+
+    color:#163414;
+
+    margin-bottom:10px;
+
+}
+
+.look-details p{
+
+    font-family:'Calibri Light',sans-serif;
+
+    font-size:18px;
+
+    color:#666;
+
+    line-height:1.9;
+
+}
+
+/* ==========================================================
+PRODUCTS
+========================================================== */
+
+.look-products{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+    gap:30px;
+}
+/* ==========================================================
+PRODUCT CARD
+========================================================== */
+
+.popup-card{
+    position:relative;
+    background:white;
+    border-radius:22px;
+    overflow:hidden;
+    box-shadow:0 12px 28px rgba(0,0,0,.08);
+}
+.popup-card img{
+    height:330px;
+    width:100%;
+    display:block;
+    object-fit:cover;
+}
+.popup-card .product-info{
+    padding:10px;
+}
+
+.popup-card h3{
+
+    text-align:center;
+
+    font-family:'Calibri Light',sans-serif;
+
+    color:#163414;
+
+    font-size:20px;
+
+    margin-bottom:10px;
+
+}
+
+.popup-card .price{
+
+    text-align:center;
+
+    margin-bottom:18px;
+
+}
+
+/* ==========================================================
+SCROLLBAR
+========================================================== */
+
+.modal-box::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+.modal-box::-webkit-scrollbar-thumb{
+    background:#D4AF37;
+    border-radius:20px;
+
+}
+
+/* ==========================================================
+TABLET
+========================================================== */
+
+@media(max-width:991px){
+
+.look-header{
+    grid-template-columns:2fr;
+}
+
+.look-details{
+
+    text-align:center;
+
+}
+
+}
+
+/* ==========================================================
+MOBILE
+========================================================== */
+
+@media(max-width:600px){
+
+.modal-box{
+
+    padding:15px;
+
+}
+
+.look-details h2{
+
+    font-size:24px;
+
+}
+
+.look-products{
+
+    grid-template-columns:2fr;
+
+}
+
+.popup-card img{
+
+    height:200px;
+
+}
+
+}
+
+/* ==========================================================
+SHOP THE LOOK — standalone listing page (/shop-this-look/)
+========================================================== */
+
+.shop-look-list{
+    display:flex;
+    flex-direction:column;
+    gap:60px;
+    margin-top:20px;
+}
+
+.shop-look-entry{
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+}
+
+.shop-look-banner{
+    position:relative;
+    border-radius:16px;
+    overflow:hidden;
+    aspect-ratio:16/6;
+}
+
+.shop-look-banner img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+.shop-look-banner-overlay{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    padding:28px;
+    background:linear-gradient(to top, rgba(15,38,15,.75), rgba(15,38,15,0) 60%);
+    color:#fff;
+}
+
+.shop-look-banner-overlay h2{
+    font-size:26px;
+    margin-bottom:6px;
+}
+
+.shop-look-banner-overlay p{
+    max-width:520px;
+    opacity:.9;
+    font-size:14px;
+}
+
+@media(max-width:640px){
+    .shop-look-banner{
+        aspect-ratio:4/5;
+    }
+}
+
+/* ==========================================================
+LOOK SUBTITLE + CTA BUTTON
+========================================================== */
+
+.look-subtitle{
+    font-weight:600;
+    color:#163414 !important;
+    margin-bottom:6px !important;
+}
+
+.look-cta-btn,
+.shop-look-cta-btn{
+    display:inline-block;
+    margin-top:16px;
+    padding:12px 28px;
+    background:#163414;
+    color:#fff;
+    border-radius:999px;
+    text-decoration:none;
+    font-size:14px;
+    transition:.3s;
+}
+
+.look-cta-btn:hover,
+.shop-look-cta-btn:hover{
+    background:#D4AF37;
+}
+
+.shop-look-subtitle{
+    font-weight:600;
+    margin-bottom:4px;
+}

@@ -1,0 +1,544 @@
+{% extends "store/base.html" %}
+{% load static %}
+{% load media_filters %}
+
+{% block extra_head %}
+{% if banners.0.image and not banners.0.video %}
+<link rel="preload" as="image" href="{{ banners.0.image.url }}" fetchpriority="high">
+{% endif %}
+{% endblock %}
+{% block title %}
+Aarti Collection
+{% endblock %}
+
+{% block content %}
+<!-- ==========================
+HERO BANNER
+========================== -->
+<section class="hero">
+    <div class="hero-slider">
+        {% for banner in banners %}
+        <div class="hero-slide {% if forloop.first %}active{% endif %}">
+
+            <div class="hero-media">
+                {% if banner.video %}
+                <video
+                    class="hero-video"
+                    autoplay muted loop playsinline
+                    poster="{{ banner.image.url }}">
+                    <source src="{{ banner.video.url }}" type="video/mp4">
+                </video>
+                {% else %}
+                <img
+                    src="{{ banner.image.url }}"
+                    alt="{{ banner.title }}"
+                    loading="eager"
+                    {% if forloop.first %}fetchpriority="high"{% endif %}>
+                {% endif %}
+            </div>
+
+            <div class="hero-overlay">
+                <h1>{{ banner.title }}</h1>
+                {% if banner.subtitle %}
+                <h3>{{ banner.subtitle }}</h3>
+                {% endif %}
+                {% if banner.description %}
+                <p>{{ banner.description }}</p>
+                {% endif %}
+                <a
+                    href="{% url 'product_list' %}"
+                    class="hero-btn luxury-btn">
+                    {{ banner.button_text|default:"Explore Collection" }}
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="hero-arrow hero-prev">&#10094;</div>
+    <div class="hero-arrow hero-next">&#10095;</div>
+
+    <div class="hero-dots">
+        {% for banner in banners %}
+        <span class="hero-dot {% if forloop.first %}active{% endif %}"></span>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- ==========================
+TRENDING NOW
+========================== -->
+{% if trending_products %}
+<section class="trending-section">
+    <div class="section-header">
+        <h2>TRENDING NOW</h2>
+        <p>Our most loved designs this season.</p>
+    </div>
+
+    <div class="trending-slider-container">
+        <div class="trending-slider">
+            {% for product in trending_products %}
+            {% if product.image %}
+            <div class="product-card">
+                <div class="product-image-wrapper">
+                    <a href="{% url 'product_detail' product.slug %}">
+                        <img
+                            src="{{ product.image.url }}"
+                            alt="{{ product.title }}"
+                            loading="lazy">
+
+                        {% if product.video %}
+                        <video
+                            class="pg-video"
+                            muted
+                            loop
+                            playsinline
+                            preload="none"
+                            poster="{{ product.image.url }}"
+                            data-lazy-video>
+                            <source data-src="{{ product.video.url }}" type="{{ product.video|video_mime_type }}">
+                        </video>
+                        {% endif %}
+                    </a>
+                    <a
+                        href="{% url 'add_to_cart' product.id %}"
+                        class="cart-icon"
+                        aria-label="Add to cart">
+                        <img src="{% static 'store/icons/cart.svg' %}" alt="Cart">
+                    </a>
+
+                    <a
+                        href="#"
+                        class="wishlist-toggle wishlist-icon {% if product.id in wishlist_product_ids %}active{% endif %}"
+                        data-product="{{ product.id }}"
+                        data-add-url="{% url 'add_to_wishlist' product.id %}"
+                        data-remove-url="{% url 'remove_wishlist' product.id %}">
+                        <img
+                            class="wishlist-heart"
+                            src="{% if product.id in wishlist_product_ids %}
+                                {% static 'store/icons/heart.svg' %}
+                            {% else %}
+                                {% static 'store/icons/wishlist.svg' %}
+                            {% endif %}"
+                            alt="Wishlist">
+
+                    </a>
+                </div>
+
+                <div class="product-info">
+                    <h3>{{ product.title }}</h3>
+                    <div class="price">₹{{ product.price }}</div>
+                    {% with rating=product.average_rating %}
+                    {% if rating %}
+                    <div class="product-rating">
+                        <span class="product-rating-star">⭐</span>
+                        <span>{{ rating }}</span>
+                        {% if product.review_count %}
+                        <span class="product-rating-count">({{ product.review_count }})</span>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                    {% endwith %}
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    <div class="product-card-arrow product-card-prev">&#10094;</div>
+    <div class="product-card-arrow product-card-next">&#10095;</div>
+
+    <div class="view-all-trendings">
+        <a href="{% url 'product_list' %}?filter=trending" class="view-all-trendings-btn">View All Trendings</a>
+    </div>
+</section>
+{% endif %}
+
+<!-- ==========================
+SHOP BY CATEGORY
+========================== -->
+{% if categories %}
+<section class="shop-category">
+    <div class="section-header">
+        <h2>SHOP BY CATEGORY</h2>
+        <p>Discover timeless collections crafted for every occasion.</p>
+    </div>
+
+    <div class="category-grid">
+        {% for category in categories %}
+        {% if category.image %}
+        <a href="{% url 'category_products' category.slug %}" class="category-card">
+            <img src="{{ category.image.url }}" alt="{{ category.name }}" loading="lazy">
+            <div class="category-overlay">
+                <h3>{{ category.name }}</h3>
+            </div>
+        </a>
+        {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="view-all-trendings">
+        <a href="{% url 'all_categories' %}" class="view-all-trendings-btn">View All Categories</a>
+    </div>
+</section>
+{% endif %}
+
+<!-- ==========================
+BEST SELLERS
+========================== -->
+{% if best_sellers %}
+<section class="best-sellers">
+    <div class="section-header">
+        <h2>Best Sellers</h2>
+        <p>Handpicked favourites loved by our customers.</p>
+    </div>
+
+    <div class="best-grid">
+        {% for product in best_sellers %}
+        {% if product.image %}
+        <div class="best-card card-{{ forloop.counter }}">
+            <a href="{% url 'product_detail' product.slug %}">
+                <img src="{{ product.image.url }}" alt="{{ product.title }}" loading="lazy">
+            </a>
+
+            <a href="#"
+                class="wishlist-toggle wishlist-icon {% if product.id in wishlist_product_ids %}active{% endif %}"
+                data-product="{{ product.id }}"
+                data-add-url="{% url 'add_to_wishlist' product.id %}"
+                data-remove-url="{% url 'remove_wishlist' product.id %}">
+
+                <img
+                    class="wishlist-heart"
+                    src="{% if product.id in wishlist_product_ids %}
+                        {% static 'store/icons/heart.svg' %}
+                    {% else %}
+                        {% static 'store/icons/wishlist.svg' %}
+                    {% endif %}"
+                    alt="Wishlist">
+            </a>
+            <a href="{% url 'add_to_cart' product.id %}" class="cart-icon">
+                <img src="{% static 'store/icons/cart.svg' %}" alt="Cart">
+            </a>
+
+            <div class="product-info">
+                <h3>{{ product.title }}</h3>
+                <div class="price">₹{{ product.price }}</div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+
+        <a href="{% url 'best_sellers' %}" class="best-card view-more-card">
+            <span class="view-more-plus">+</span>
+            <span class="view-more-label">View All<br>Best Sellers</span>
+        </a>
+    </div>
+</section>
+{% endif %}
+
+<!-- ==========================
+SHOP THIS LOOK
+========================== -->
+{% if shop_looks %}
+<section class="shop-look">
+    <div class="section-header">
+        <h2>Shop This Look</h2>
+    </div>
+
+    <div class="look-grid">
+        {% for look in shop_looks %}
+        <div class="look-card {{ look.layout_size }}" data-look-id="{{ look.id }}">
+            <img src="{{ look.image.url }}" alt="{{ look.title }}" loading="lazy">
+            <div class="look-overlay">
+                <h3>{{ look.title }}</h3>
+                {% if look.subtitle %}
+                <p>{{ look.subtitle }}</p>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+
+        <a href="{% url 'shop_this_look' %}" class="look-card view-more-card">
+            <span class="view-more-plus">+</span>
+            <span class="view-more-label">View All<br>Looks</span>
+        </a>
+    </div>
+</section>
+{% endif %}
+
+<!-- ==========================
+SHOP THIS LOOK MODAL
+========================== -->
+{% if shop_looks %}
+<div class="look-modal" id="lookModal">
+    <div class="modal-box">
+        <button type="button" class="close-modal" id="closeLookBtn" aria-label="Close">&times;</button>
+
+        {% for look in shop_looks %}
+        <div class="modal-content" id="look{{ look.id }}" data-look="{{ look.id }}">
+            <div class="look-header">
+                <div class="look-image">
+                    <img src="{{ look.image.url }}" alt="{{ look.title }}" loading="lazy">
+                </div>
+                <div class="look-details">
+                    <h2>{{ look.title }}</h2>
+                    {% if look.subtitle %}
+                    <p class="look-subtitle">{{ look.subtitle }}</p>
+                    {% endif %}
+                    <p>{{ look.description }}</p>
+
+                    {% if look.cta_text %}
+                    <a
+                        href="{% if look.cta_url %}{{ look.cta_url }}{% else %}{% url 'shop_this_look' %}#look-{{ look.slug }}{% endif %}"
+                        {% if look.cta_url %}target="_blank" rel="noopener noreferrer"{% endif %}
+                        class="look-cta-btn">
+                        {{ look.cta_text }}
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="look-products">
+                {% for product in look.products.all %}
+                {% if product.image %}
+                <div class="popup-card">
+                    <div class="product-image-wrapper">
+                        <a href="{% url 'product_detail' product.slug %}">
+                            <img src="{{ product.image.url }}" alt="{{ product.title }}" loading="lazy">
+                        </a>
+                        <a href="#"
+                            class="wishlist-toggle wishlist-icon {% if product.id in wishlist_product_ids %}active{% endif %}"
+                            data-product="{{ product.id }}"
+                            data-add-url="{% url 'add_to_wishlist' product.id %}"
+                            data-remove-url="{% url 'remove_wishlist' product.id %}">
+                            <img
+                                class="wishlist-heart"
+                                src="{% if product.id in wishlist_product_ids %}
+                                    {% static 'store/icons/heart.svg' %}
+                                {% else %}
+                                    {% static 'store/icons/wishlist.svg' %}
+                                {% endif %}"
+                                alt="Wishlist">
+                        </a>
+                        <a href="{% url 'add_to_cart' product.id %}" class="cart-icon">
+                            <img src="{% static 'store/icons/cart.svg' %}" alt="Cart">
+                        </a>
+                    </div>
+                    <div class="product-info">
+                        <h3>{{ product.title }}</h3>
+                        <div class="price">₹{{ product.price }}</div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+<!-- ==========================
+GIFTING + PERSONALIZED RECOMMENDATIONS
+========================== -->
+<section
+    class="gift-personalized-row"
+    {% if site_settings.gift_background_image %}
+    style="background-image:url('{{ site_settings.gift_background_image.url }}');background-size:cover;background-position:center;"
+    {% endif %}>
+
+    <div class="gift-promo-card">
+
+        {% if site_settings.gift_section_video %}
+
+        <video
+            class="gift-promo-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto">
+
+            <source
+                src="{{ site_settings.gift_section_video.url }}"
+                type="video/mp4">
+
+            Your browser does not support the video tag.
+
+        </video>
+        {% elif site_settings.gift_section_image %}
+
+        <img
+            src="{{ site_settings.gift_section_image.url }}"
+            alt="Gift Beautifully">
+        {% else %}
+
+        <img
+            src="{% static 'store/images/greenglasscombo.png' %}"
+            alt="Gift Beautifully">
+
+        {% endif %}
+
+        {% if site_settings.gift_wrapper_image %}
+        <img
+            src="{{ site_settings.gift_wrapper_image.url }}"
+            alt=""
+            class="gift-wrapper-accent"
+            aria-hidden="true">
+        {% endif %}
+
+        <div class="gift-promo-overlay">
+
+            <h3>Gift Beautifully</h3>
+
+            <p>
+                Find thoughtful gifts for every occasion, wrapped with care and love.
+            </p>
+
+            <a
+                href="{% url 'product_list' %}?filter=gifts"
+                class="luxury-btn">
+
+                Shop Gifts
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="personalized-card">
+        <div class="section-header small">
+            <h2>Just For You</h2>
+            <p>Picks based on what you love.</p>
+        </div>
+
+        <div class="personalized-grid">
+            {% for product in personalized_products %}
+            <a href="{% url 'product_detail' product.slug %}" class="personalized-item">
+                {% with badge=product.get_badge %}
+                {% if badge %}
+                <span class="personalized-badge">{{ badge }}</span>
+                {% endif %}
+                {% endwith %}
+                {% if product.image %}
+                <img src="{{ product.image.url }}" alt="{{ product.title }}" loading="lazy">
+                {% endif %}
+                <span class="personalized-title">{{ product.title }}</span>
+                <span class="personalized-price">₹{{ product.price }}</span>
+            </a>
+            {% endfor %}
+        </div>
+
+        <div class="view-all-trendings">
+            <a href="{% url 'product_list' %}?filter=recommended" class="view-all-trendings-btn">
+                View All Suggestions →
+            </a>
+        </div>
+    </div>
+
+</section>
+
+<!-- ==========================
+WHY CHOOSE US
+========================== -->
+<section class="why-us">
+    <div class="section-header">
+        <h2>Why Choose Aarti Collection</h2>
+        <p>Crafted with elegance, trusted by families, and designed to make every celebration memorable.</p>
+    </div>
+
+    <div class="why-grid">
+        <div class="why-card">
+            <div class="why-icon"><img src="{% static 'store/icons/quality.svg' %}" alt="Quality"></div>
+            <h3>Premium Quality</h3>
+            <p>Carefully selected materials and craftsmanship for lasting beauty.</p>
+        </div>
+        <div class="why-card">
+            <div class="why-icon flex-center"><img src="{% static 'store/icons/fastdelivery.svg' %}" alt="Shipping"></div>
+            <h3>Fast Delivery</h3>
+            <p>Secure packaging with quick shipping across India.</p>
+        </div>
+        <div class="why-card">
+            <div class="why-icon flex-center"><img src="{% static 'store/icons/gift.svg' %}" alt="Gift"></div>
+            <h3>Perfect for Gifting</h3>
+            <p>Beautiful collections for weddings, festivals and every special occasion.</p>
+        </div>
+        <div class="why-card">
+            <div class="why-icon flex-center"><img src="{% static 'store/icons/Support.svg' %}" alt="Support"></div>
+            <h3>Dedicated Support</h3>
+            <p>We're always available to help you choose the perfect piece.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ==========================
+NEWSLETTER SUBSCRIBE
+========================== -->
+<section class="newsletter-block">
+
+    <h2>Join Our World</h2>
+    <p>Subscribe and get 10% off your first order.</p>
+
+    <form
+        id="newsletterForm"
+        class="newsletter-form"
+        method="POST"
+        action="{% url 'subscribe_newsletter' %}">
+
+        {% csrf_token %}
+
+        <input
+            type="email"
+            name="email"
+            placeholder="Enter your email address"
+            required>
+
+        <button type="submit">
+            <span class="btn-label">Subscribe</span>
+            <span class="btn-spinner" aria-hidden="true"></span>
+        </button>
+
+    </form>
+
+    <p class="newsletter-note" id="newsletterMsg">
+        No spam, just new arrivals &amp; special offers.
+    </p>
+
+</section>
+
+<!-- ==========================
+NEWSLETTER SUCCESS MODAL
+========================== -->
+<div class="newsletter-success-overlay" id="newsletterSuccessOverlay">
+    <div class="newsletter-success-box">
+
+        <button type="button" class="newsletter-success-close" id="newsletterSuccessClose" aria-label="Close">
+            &times;
+        </button>
+
+        <div class="newsletter-success-check">
+            <svg viewBox="0 0 52 52">
+                <circle cx="26" cy="26" r="24" fill="none"/>
+                <path fill="none" d="M14 27l7 7 16-16"/>
+            </svg>
+        </div>
+
+        <h2>Thank you for subscribing!</h2>
+        <p class="newsletter-success-lead">You'll receive</p>
+
+        <ul class="newsletter-success-list">
+            <li>New arrivals</li>
+            <li>Exclusive offers</li>
+            <li>Festive collections</li>
+            <li>Styling inspiration</li>
+        </ul>
+
+        <button type="button" class="continue-btn" id="newsletterSuccessContinue">
+            Continue Shopping
+        </button>
+
+    </div>
+</div>
+
+{% endblock %}

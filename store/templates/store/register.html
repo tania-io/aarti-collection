@@ -1,0 +1,144 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block title %}
+Register | {{ site_settings.brand_name }}
+{% endblock %}
+
+{% block content %}
+<section class="login-page">
+
+    <div class="login-card">
+
+        <div class="login-icon">
+            <img src="{% static 'store/icons/user.svg' %}" alt="">
+        </div>
+
+        <h1>Create Account</h1>
+
+        <p>
+            Join Aarti Collection and start shopping your favourite collections.
+        </p>
+        <div id="registerMessages">
+        {% if messages %}
+
+            {% for message in messages %}
+
+            <div class="login-message {{ message.tags }}">
+
+                {{ message }}
+
+            </div>
+
+            {% endfor %}
+
+        {% endif %}
+        </div>
+
+        <form id="registerForm" method="POST">
+
+            {% csrf_token %}
+
+            <div class="input-group">
+
+                <input
+                    id="fullName"
+                    type="text"
+                    name="full_name"
+                    placeholder="Full Name"
+                    autocomplete="name"
+                    required>
+
+            </div>
+
+            <div class="input-group">
+
+            <input
+                id="username"
+                type="text"
+                name="username"
+                placeholder="Username"
+                autocomplete="username"
+                required>
+
+            </div>
+
+            <div class="input-group">
+
+            <input
+                id="email"
+                type="email"
+                name="email"
+                placeholder="Email Address"
+                autocomplete="email"
+                required>
+
+            </div>
+
+            <div class="input-group password-group">
+
+            <input
+                id="password"
+                type="password"
+                name="password"
+                placeholder="Password"
+                autocomplete="new-password"
+                required>
+
+            <button
+                type="button"
+                class="toggle-password">
+                👁
+
+            </button>
+
+        </div>
+
+        <div class="input-group password-group">
+
+            <input
+                id="confirm_password"
+                type="password"
+                name="confirm_password"
+                placeholder="Confirm Password"
+                required>
+
+            <button
+                id="toggleConfirmPassword"
+                type="button"
+                class="toggle-password">
+
+                👁
+
+            </button>
+
+        </div>
+
+        <p id="passwordMatch" class="password-match"></p>
+
+        <button
+            id="loginSubmit"
+            type="submit"
+            class="login-btn">
+
+            Create Account →
+
+        </button>
+
+        <p class="auth-switch">
+
+            Already have an account?
+
+            <a href="{% url 'login' %}">
+                Login
+            </a>
+
+        </p>
+
+    </form>
+
+</div>
+
+</section>
+
+{% endblock %}

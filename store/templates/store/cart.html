@@ -1,0 +1,74 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block title %}Shopping Bag | {{ site_settings.brand_name }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'store/css/cart-page.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="cart-page-banner">
+    <div class="cart-page-banner-overlay">
+        <h1>Shopping Bag</h1>
+        <p>Review your items before checkout.</p>
+    </div>
+</section>
+
+<section class="cart-page-section">
+
+    <div class="cart-page-wrap" id="cartPageWrap">
+
+        <div class="cart-page-table-outer">
+
+            <table class="cart-page-table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Note</th>
+                        <th>Total</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="cartTableBody">
+                    {% include "store/includes/cart_table_rows.html" %}
+                </tbody>
+            </table>
+
+            <div class="cart-page-loading-overlay" id="cartPageLoadingOverlay" aria-hidden="true">
+                <span class="cart-spinner"></span>
+            </div>
+
+        </div>
+
+        <aside class="cart-page-summary">
+
+            <h2>Order Summary</h2>
+
+            <div class="cart-page-subtotal-row">
+                <span>Subtotal</span>
+                <strong data-cart-subtotal>₹{{ total }}</strong>
+            </div>
+
+            <p class="cart-page-note">
+                Taxes calculated at checkout. Shipping is free on orders above ₹999.
+            </p>
+
+            <a href="{% url 'checkout' %}" class="checkout-btn cart-page-checkout-btn">
+                Secure Checkout
+            </a>
+
+            <a href="{% url 'product_list' %}" class="continue-shopping-link">
+                ← Continue Shopping
+            </a>
+
+        </aside>
+
+    </div>
+
+</section>
+
+{% endblock %}

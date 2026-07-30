@@ -1,0 +1,136 @@
+/* ==========================================================
+Home Page - Why Choose Us
+========================================================== */
+.why-us{
+    width:92%;
+    max-width:1400px;
+    margin:50px auto;
+
+}
+
+.why-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:20px;
+
+    align-items:stretch;
+
+}
+
+.why-card{
+    position:relative;
+    background:white;
+
+    border-radius:22px;
+    margin-bottom:15px;
+    padding:25px 15px;
+
+    text-align:center;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-start;
+
+    box-sizing:border-box;
+    min-width:0;
+    height:100%;
+    overflow-wrap:break-word;
+    word-break:break-word;
+}
+.why-icon{
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    width:68px;
+    height:68px;
+
+    margin:auto;
+    margin-bottom:15px;
+    border-radius:50%;
+    background:#163414;
+}
+
+.why-icon img{
+
+    width:36px;
+
+    filter:brightness(0) invert(1);
+
+}
+
+.why-card h3{
+
+    font-family:'Cormorant Garamond',serif;
+
+    color:#163414;
+
+    font-size:24px;
+
+    margin-bottom:15px;
+
+}
+
+.why-card p{
+
+    font-family:'Calibri Light',sans-serif;
+
+    color:#666;
+
+    line-height:1;
+
+}
+
+@media(max-width:991px){
+
+.why-grid{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+@media(max-width:600px){
+
+.why-grid{
+
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+
+}
+
+.why-card{
+    padding:18px 10px;
+    margin-bottom:0;
+    border-radius:16px;
+}
+
+.why-icon{
+    width:52px;
+    height:52px;
+    margin-bottom:10px;
+}
+
+.why-icon img{
+    width:26px;
+}
+
+.why-card h3{
+    font-size:17px;
+    margin-bottom:8px;
+}
+
+.why-card p{
+    font-size:13px;
+    line-height:1.35;
+}
+
+}

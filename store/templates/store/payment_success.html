@@ -1,0 +1,61 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block title %}Order Confirmed | {{ site_settings.brand_name }}{% endblock %}
+
+{% block content %}
+
+<section class="payment-page">
+
+    <div class="payment-card payment-success-card">
+
+        <div class="payment-success-check">
+            <svg viewBox="0 0 52 52">
+                <circle cx="26" cy="26" r="24" fill="none"/>
+                <path fill="none" d="M14 27l7 7 16-16"/>
+            </svg>
+        </div>
+
+        <div class="payment-header">
+            <h1>Thank you! Your order is confirmed.</h1>
+            <p>We've received your payment details and will verify them shortly.</p>
+        </div>
+
+        <div class="payment-summary">
+
+            <h2>Order #{{ order.id }}</h2>
+
+            <h3>₹{{ order.total_amount }}</h3>
+
+            <p class="payment-note">
+                Status: <strong>{{ order.get_status_display }}</strong>
+            </p>
+
+            {% if order.shipping_option == "express" %}
+            <p class="payment-note">Special Delivery selected (+₹{{ order.shipping_fee }})</p>
+            {% endif %}
+
+            {% if order.is_gift %}
+            <p class="payment-note">🎁 Marked as a gift order</p>
+            {% endif %}
+
+            {% if order.gift_wrap %}
+            <p class="payment-note">📦 Gift wrapped ({{ order.get_gift_paper_display }}, +₹{{ order.gift_wrap_fee }})</p>
+            {% endif %}
+
+            {% if order.upi_transaction_id %}
+            <p class="payment-note">Transaction ID: {{ order.upi_transaction_id }}</p>
+            {% endif %}
+
+        </div>
+
+        <div class="payment-success-actions">
+            <a href="{% url 'profile' %}#recentOrders" class="payment-btn">View My Orders</a>
+            <a href="{% url 'product_list' %}" class="continue-shopping-link">← Continue Shopping</a>
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,156 @@
+{% load static %}
+{% load media_filters %}
+<!-- =========================================
+PRODUCT GRID (shared: product_list.html & category_products.html)
+========================================= -->
+
+<div class="pg-grid" id="productGrid">
+
+    {% for product in products %}
+
+    {% with discount=product.discount_percent %}
+
+    <div class="pg-card">
+
+        <a
+            href="{% url 'product_detail' product.slug %}"
+            class="pg-image-link">
+
+            <div class="pg-image-wrap">
+
+                {% if product.image %}
+                <img
+                    src="{{ product.image.url }}"
+                    alt="{{ product.title }}"
+                    class="pg-image"
+                    loading="lazy">
+                {% else %}
+                <div class="pg-image-placeholder" aria-hidden="true">
+                    <img src="{% static 'store/icons/placeholder.svg' %}" alt="">
+                </div>
+                {% endif %}
+
+                {% if product.image_back %}
+                <img
+                    src="{{ product.image_back.url }}"
+                    alt="{{ product.title }} back view"
+                    class="pg-image-back"
+                    loading="lazy">
+                {% endif %}
+
+                {% if product.video %}
+                <video
+                    class="pg-video"
+                    muted
+                    loop
+                    playsinline
+                    preload="none"
+                    {% if product.image %}poster="{{ product.image.url }}"{% endif %}
+                    data-lazy-video>
+                    <source data-src="{{ product.video.url }}" type="{{ product.video|video_mime_type }}">
+                </video>
+                {% endif %}
+
+                {% if discount %}
+                <span class="pg-discount-ribbon">
+                    <span class="pg-discount-text">{{ discount }}% OFF</span>
+                </span>
+                {% endif %}
+
+            </div>
+
+        </a>
+
+        {% with rating=product.average_rating %}
+        {% if rating %}
+        <div class="pg-rating">
+            <span class="pg-rating-star">⭐</span>
+            <span>{{ rating }}</span>
+            <span class="pg-rating-count">({{ product.review_count }})</span>
+        </div>
+        {% endif %}
+        {% endwith %}
+
+        <a
+            href="{% url 'add_to_cart' product.id %}"
+            class="pg-cart-btn"
+            aria-label="Add {{ product.title }} to cart">
+
+            <img src="{% static 'store/icons/cart.svg' %}" alt="">
+
+        </a>
+
+        <a
+            href="#"
+            class="pg-wishlist-btn wishlist-toggle wishlist-icon {% if product.id in wishlist_product_ids %}active{% endif %}"
+            data-product="{{ product.id }}"
+            data-add-url="{% url 'add_to_wishlist' product.id %}"
+            data-remove-url="{% url 'remove_wishlist' product.id %}"
+            aria-label="Add {{ product.title }} to wishlist">
+
+            <img
+                class="wishlist-heart"
+                src="{% if product.id in wishlist_product_ids %}{% static 'store/icons/heart.svg' %}{% else %}{% static 'store/icons/wishlist.svg' %}{% endif %}"
+                alt="">
+
+        </a>
+
+        <div class="pg-info">
+
+            <a href="{% url 'product_detail' product.slug %}" class="pg-title-link">
+                <h3 class="pg-title">{{ product.title }}</h3>
+            </a>
+
+            <div class="pg-price-row">
+
+                <span class="pg-price">₹{{ product.price }}</span>
+
+                {% if discount %}
+                <span class="pg-old-price">₹{{ product.old_price }}</span>
+                {% endif %}
+
+            </div>
+
+            {% if product.variants.exists %}
+            <div class="pg-colors">
+
+                {% for variant in product.variants.all|slice:":6" %}
+                <span
+                    class="pg-dot"
+                    title="{{ variant.colour.name }}"
+                    style="background:{% if variant.colour.css_style %}{{ variant.colour.css_style }}{% else %}#{{ variant.colour.hex_code }}{% endif %};">
+                </span>
+                {% endfor %}
+
+            </div>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    {% endwith %}
+
+    {% empty %}
+
+    <div class="pg-empty">
+
+        <img
+            src="{% static 'store/icons/search.svg' %}"
+            alt="">
+
+        <h2>{{ empty_title|default:"No products found" }}</h2>
+
+        <p>{{ empty_message|default:"Try changing your filters or browse another collection." }}</p>
+
+        {% if empty_link_url %}
+        <a href="{{ empty_link_url }}" class="shop-btn">
+            {{ empty_link_text|default:"Browse Collection" }}
+        </a>
+        {% endif %}
+
+    </div>
+
+    {% endfor %}
+
+</div>

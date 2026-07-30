@@ -1,0 +1,82 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block title %}
+Login | {{ site_settings.brand_name }}
+{% endblock %}
+
+{% block content %}
+
+<section class="login-page">
+
+    <div class="login-card">
+
+        <div class="login-icon">
+            <img src="{% static 'store/icons/user.svg' %}" alt="Profile">
+        </div>
+        <h1>Welcome Back</h1>
+
+        <p>
+            Sign in to your account to manage your wishlist,
+            cart and orders.
+        </p>
+        <div id="loginMessages">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="login-message {{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        </div>
+        <form id="loginForm" method="POST">
+            {% csrf_token %}
+
+            <div class="input-group">
+                <input
+                    id="loginUsername"
+                    type="text"
+                    name="username"
+                    placeholder="Username"
+                    autocomplete="username"
+                    required>
+            </div>
+
+            <div class="input-group password-group">
+                <input
+                    id="password"
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    autocomplete="current-password"
+                    required>
+                <button
+                    type="button"
+                    class="toggle-password">
+                    👁
+                </button>
+            </div>
+
+            <button id="loginSubmit" type="submit" class="login-btn">
+                Login ➜
+            </button>
+            <p class="auth-switch">
+                Don't have an account?
+                <a href="{% url 'register' %}">
+                    Create one
+                </a>
+            </p>
+        </form>
+
+        <div class="login-links">
+
+            <a href="{% url 'forgot_password' %}">
+                Forgot Password?
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+{% endblock %}

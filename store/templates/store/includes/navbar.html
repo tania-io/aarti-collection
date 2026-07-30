@@ -1,0 +1,61 @@
+{% load static %}
+
+<!-- ==========================================
+DESKTOP NAVIGATION
+========================================== -->
+
+<nav class="main-navbar">
+
+    <ul class="desktop-menu">
+
+        {% for category in categories %}
+
+        <li class="nav-item">
+
+            <a
+                href="{% url 'category_products' category.slug %}"
+                class="nav-link">
+
+                {{ category.name }}
+
+            </a>
+
+            {% if category.subcategories.exists %}
+
+            <div class="mega-menu">
+
+                <div class="mega-column">
+
+                    <h4>{{ category.name }}</h4>
+
+                    <a href="{% url 'category_products' category.slug %}">
+                        View All
+                    </a>
+
+                </div>
+
+                <div class="mega-column">
+
+                    <h4>Collections</h4>
+
+                    {% for subcategory in category.subcategories.all %}
+
+                    <a href="{% url 'subcategory_products' category.slug subcategory.slug %}">
+                        {{ subcategory.name }}
+                    </a>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+            {% endif %}
+
+        </li>
+
+        {% endfor %}
+
+    </ul>
+
+</nav>

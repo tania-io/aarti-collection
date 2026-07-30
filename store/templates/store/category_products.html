@@ -1,0 +1,50 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block title %}
+{% if selected_sub %}
+{{ selected_sub.name }}
+{% else %}
+{{ category.name }} | {{ site_settings.brand_name }}
+{% endif %}
+{% endblock %}
+
+{% block content %}
+
+{% include "store/includes/filter_drawer.html" with clear_url=clear_url %}
+
+<!-- =========================================
+COLLECTION PAGE
+========================================= -->
+
+<section class="collection-page">
+
+    <div class="page-header">
+
+        {% if selected_sub %}
+            <h1>{{ selected_sub.name }}</h1>
+        {% else %}
+            <h1>{{ category.name }}</h1>
+        {% endif %}
+
+        {% if selected_sub.description %}
+
+            <p>{{ selected_sub.description }}</p>
+
+        {% elif category.description %}
+
+            <p>{{ category.description }}</p>
+
+        {% endif %}
+
+    </div>
+
+    {% include "store/includes/collection_toolbar.html" %}
+
+    {% include "store/includes/product_grid.html" with empty_title="No products found." empty_message="Try changing your filters." %}
+
+    {% include "store/includes/pagination.html" %}
+
+</section>
+
+{% endblock %}

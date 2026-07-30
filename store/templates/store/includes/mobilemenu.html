@@ -1,0 +1,121 @@
+{% load static %}
+
+<!-- ==========================================
+MOBILE MENU
+========================================== -->
+
+<div
+    class="mobile-overlay"
+    id="mobileOverlay">
+</div>
+
+<aside
+    class="mobile-menu"
+    id="mobileMenu">
+
+    <!-- Header -->
+
+    <div class="mobile-menu-header">
+        <button
+            id="closeMenu"
+            class="close-menu">
+            ✕
+        </button>
+    </div>
+
+    <!-- Navigation -->
+
+    <nav class="mobile-menu-links">
+
+        {% for category in categories %}
+
+        <div class="mobile-category">
+
+            <button
+                class="mobile-category-btn"
+                type="button"
+                aria-expanded="false">
+
+                <span>{{ category.name }}</span>
+
+                <span class="mobile-arrow">›</span>
+
+            </button>
+
+            <div class="mobile-subcategories">
+
+                <a href="{% url 'category_products' category.slug %}">
+                    View All
+                </a>
+
+                {% for subcategory in category.subcategories.all %}
+
+                <a href="{% url 'subcategory_products' category.slug subcategory.slug %}">
+                    {{ subcategory.name }}
+                </a>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </nav>
+
+    <!-- Social -->
+
+    <div class="mobile-social">
+
+        {% if site_settings.instagram %}
+
+        <a
+            href="{{ site_settings.instagram }}"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram">
+
+            <img
+                src="{% static 'store/icons/instagram.svg' %}"
+                alt="Instagram">
+
+        </a>
+
+        {% endif %}
+
+        {% if site_settings.facebook %}
+
+        <a
+            href="{{ site_settings.facebook }}"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook">
+
+            <img
+                src="{% static 'store/icons/facebook.svg' %}"
+                alt="Facebook">
+
+        </a>
+
+        {% endif %}
+
+        {% if site_settings.pinterest %}
+
+        <a
+            href="{{ site_settings.pinterest }}"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Pinterest">
+
+            <img
+                src="{% static 'store/icons/pinterest.svg' %}"
+                alt="Pinterest">
+
+        </a>
+
+        {% endif %}
+
+    </div>
+
+</aside>

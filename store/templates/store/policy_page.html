@@ -1,0 +1,33 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block title %}{{ page.title }} | {{ site_settings.brand_name }}{% endblock %}
+
+{% block content %}
+
+<section class="policy-page">
+
+    <div class="policy-header">
+        <div class="container">
+            <h1>{{ page.title }}</h1>
+            {% if page.subtitle %}
+            <p>{{ page.subtitle }}</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="policy-wrapper">
+        {% if page.content %}
+        <div class="policy-card">
+            {{ page.content|safe }}
+        </div>
+        {% else %}
+        <div class="policy-card">
+            <p>This page is being updated — please check back soon.</p>
+        </div>
+        {% endif %}
+    </div>
+
+</section>
+
+{% endblock %}

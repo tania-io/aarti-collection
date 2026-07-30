@@ -1,0 +1,27 @@
+/* ==========================================================
+Global Reset & Base Utilities
+========================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Calibri Light', Arial, sans-serif;
+    background: #ffffff;
+    color: #1A1A1A;
+}
+
+/* .page-wrapper {
+    width: 100%;
+    overflow-x: hidden;
+} */
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+

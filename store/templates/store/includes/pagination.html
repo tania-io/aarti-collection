@@ -1,0 +1,36 @@
+{% if paginator.num_pages > 1 %}
+<nav class="pg-pagination" aria-label="Product pages">
+
+    {% if page_obj.has_previous %}
+    <a
+        href="?{{ querystring }}{% if querystring %}&{% endif %}page={{ page_obj.previous_page_number }}"
+        class="pg-page-link pg-page-prev">
+        ‹ Prev
+    </a>
+    {% endif %}
+
+    {% for num in paginator.page_range %}
+
+        {% if num == page_obj.number %}
+        <span class="pg-page-link pg-page-current">{{ num }}</span>
+
+        {% elif num > page_obj.number|add:"-3" and num < page_obj.number|add:"3" %}
+        <a
+            href="?{{ querystring }}{% if querystring %}&{% endif %}page={{ num }}"
+            class="pg-page-link">
+            {{ num }}
+        </a>
+        {% endif %}
+
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+    <a
+        href="?{{ querystring }}{% if querystring %}&{% endif %}page={{ page_obj.next_page_number }}"
+        class="pg-page-link pg-page-next">
+        Next ›
+    </a>
+    {% endif %}
+
+</nav>
+{% endif %}

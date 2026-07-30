@@ -1,0 +1,182 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block title %}Checkout | {{ site_settings.brand_name }}{% endblock %}
+
+{% block content %}
+
+<section class="checkout-banner">
+    <div class="checkout-banner-overlay">
+        <h1>Checkout</h1>
+        <p>Complete your order securely.</p>
+    </div>
+</section>
+
+<section class="checkout-section">
+
+    <div class="checkout-card">
+
+        <div class="checkout-header">
+            <h2>Delivery Information</h2>
+            <p>Please provide your shipping details below.</p>
+        </div>
+
+        <form 
+            id="checkoutForm"
+            method="POST" 
+            class="checkout-form">
+
+            {% csrf_token %}
+
+            <div class="form-group">
+
+                <label>Full Name</label>
+
+                <input
+                    id="checkoutName"
+                    type="text"
+                    name="name"
+                    placeholder="Enter your full name"
+                    autocomplete="name"
+                    required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Phone Number</label>
+
+                <input
+                    id="checkoutPhone"
+                    type="tel"
+                    name="phone"
+                    placeholder="+91 XXXXX XXXXX"
+                    autocomplete="tel"
+                    required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Delivery Address</label>
+
+                <textarea
+                    id="checkoutAddress"
+                    name="address"
+                    rows="5"
+                    placeholder="House No., Street, City, State, PIN Code"
+                    required>
+                </textarea>
+            </div>
+            <div class="form-group">
+
+                <label>Delivery Speed</label>
+
+                <div class="shipping-options">
+
+                    <label class="shipping-option-card">
+                        <input type="radio" name="shipping_option" value="standard" checked>
+                        <span class="shipping-option-main">
+                            <strong>Standard Delivery</strong>
+                            <small>5–7 business days</small>
+                        </span>
+                        <span class="shipping-option-price">Free</span>
+                    </label>
+
+                    <label class="shipping-option-card">
+                        <input type="radio" name="shipping_option" value="express">
+                        <span class="shipping-option-main">
+                            <strong>Special Delivery</strong>
+                            <small>1–2 business days</small>
+                        </span>
+                        <span class="shipping-option-price">+ ₹149</span>
+                    </label>
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label class="gift-toggle">
+                    <input type="checkbox" id="isGift" name="is_gift">
+                    🎁 This order is a gift
+                </label>
+
+                <textarea
+                    id="giftMessage"
+                    name="gift_message"
+                    class="gift-message-field"
+                    rows="3"
+                    placeholder="Add a gift note (optional)"
+                    style="display:none;">
+                </textarea>
+
+                <label class="gift-toggle gift-wrap-toggle">
+                    <input type="checkbox" id="giftWrap" name="gift_wrap">
+                    📦 Add gift wrap (+ ₹{{ gift_wrap_fee }})
+                </label>
+
+                <div id="giftPaperOptions" class="gift-paper-options" style="display:none;">
+
+                    <p class="gift-paper-label">Choose your wrapping paper</p>
+
+                    <div class="gift-paper-choices">
+                        {% for value, label in gift_paper_choices %}
+                        <label class="gift-paper-option">
+                            <input
+                                type="radio"
+                                name="gift_paper"
+                                value="{{ value }}"
+                                {% if forloop.first %}checked{% endif %}>
+                            <span class="gift-paper-swatch gift-paper-{{ value }}"></span>
+                            {{ label }}
+                        </label>
+                        {% endfor %}
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="orderSummary" class="order-summary">
+                <h3>Order Summary</h3>
+
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="checkoutSubtotal">₹{{ total }}</span>
+                </div>
+
+                <div class="summary-row">
+                    <span>Shipping</span>
+                    <span id="checkoutShipping">Free</span>
+                </div>
+
+                <div class="summary-row" id="giftWrapSummaryRow" style="display:none;">
+                    <span>Gift Wrap</span>
+                    <span id="checkoutGiftWrapFee">₹{{ gift_wrap_fee }}</span>
+                </div>
+
+                <div class="summary-row summary-total">
+                    <span>Total Amount</span>
+                    <strong id="checkoutTotal">
+                        ₹{{ total }}
+                    </strong>
+                </div>
+
+            </div>
+
+            <button 
+                id="checkoutSubmit"
+                type="submit" 
+                class="checkout-page-btn">
+                Proceed to Payment →
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}

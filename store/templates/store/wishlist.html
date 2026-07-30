@@ -1,0 +1,167 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block title %}Wishlist | {{ site_settings.brand_name }}{% endblock %}
+
+{% block content %}
+
+<div class="breadcrumb">
+    <a href="{% url 'home' %}">Home</a>
+    <span>/</span>
+    <span>Wishlist</span>
+</div>
+
+<section class="collection-page wishlist-page">
+
+    <div class="page-header">
+        <h1>My Wishlist</h1>
+        <p>{{ wishlist_items|length }} item{{ wishlist_items|length|pluralize }} saved</p>
+    </div>
+
+    {% if wishlist_items %}
+
+    <div class="wishlist-toolbar">
+
+        <label class="wishlist-select-all">
+            <input type="checkbox" id="wishlistSelectAll">
+            Select All
+        </label>
+
+        <div class="wishlist-toolbar-sort">
+            <label for="wishlistSort">Sort by</label>
+            <select id="wishlistSort">
+                <option value="date" {% if current_sort == "date" %}selected{% endif %}>Date Added</option>
+                <option value="price_low" {% if current_sort == "price_low" %}selected{% endif %}>Price: Low to High</option>
+                <option value="price_high" {% if current_sort == "price_high" %}selected{% endif %}>Price: High to Low</option>
+                <option value="availability" {% if current_sort == "availability" %}selected{% endif %}>Availability</option>
+            </select>
+        </div>
+
+        <div class="wishlist-toolbar-actions">
+            <button type="button" id="wishlistShareBtn" class="wishlist-icon-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.6" y1="10.5" x2="15.4" y2="6.5"></line><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"></line></svg>
+                Share
+            </button>
+            <button type="button" id="wishlistMoveAllBtn">Move All to Cart</button>
+            <button type="button" id="wishlistRemoveAllBtn" class="danger wishlist-icon-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path><path d="M10 11v6"></path><path d="M14 11v6"></path><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"></path></svg>
+                Remove All
+            </button>
+        </div>
+
+    </div>
+
+    <div class="wishlist-bulk-bar" id="wishlistBulkBar">
+        <span><span id="wishlistSelectedCount">0</span> selected</span>
+        <button type="button" id="wishlistMoveSelectedBtn">Move to Cart</button>
+        <button type="button" id="wishlistRemoveSelectedBtn" class="danger wishlist-icon-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path><path d="M10 11v6"></path><path d="M14 11v6"></path><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"></path></svg>
+            Remove
+        </button>
+    </div>
+
+    <div class="wishlist-grid">
+
+        {% for item in wishlist_items %}
+        <div class="wishlist-card" id="wishlist-item-{{ item.product.id }}" data-product-id="{{ item.product.id }}">
+
+            <label class="wishlist-card-checkbox">
+                <input type="checkbox" class="wishlist-item-checkbox" value="{{ item.product.id }}">
+            </label>
+
+            <a href="{% url 'product_detail' item.product.slug %}" class="wishlist-card-image">
+                {% if item.product.image %}
+                <img src="{{ item.product.image.url }}" alt="{{ item.product.title }}" loading="lazy">
+                {% endif %}
+                {% if not item.product.in_stock %}
+                <span class="wishlist-oos-badge">Out of Stock</span>
+                {% endif %}
+            </a>
+
+            <div class="wishlist-card-info">
+                <a href="{% url 'product_detail' item.product.slug %}">
+                    <h3>{{ item.product.title }}</h3>
+                </a>
+                <p class="price">₹{{ item.product.price }}</p>
+
+                <div class="wishlist-card-actions">
+                    <button
+                        type="button"
+                        class="wishlist-move-to-cart"
+                        data-product-id="{{ item.product.id }}"
+                        data-add-url="{% url 'add_to_cart' item.product.id %}"
+                        data-remove-url="{% url 'remove_wishlist' item.product.id %}"
+                        {% if not item.product.in_stock %}disabled{% endif %}>
+                        Move to Cart
+                    </button>
+
+                    <button
+                        type="button"
+                        class="wishlist-remove-btn"
+                        data-product-id="{{ item.product.id }}"
+                        data-remove-url="{% url 'remove_wishlist' item.product.id %}"
+                        aria-label="Remove from wishlist">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path><path d="M10 11v6"></path><path d="M14 11v6"></path><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"></path></svg>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <div class="wishlist-empty">
+        <img
+            src="{% static 'store/icons/wishlist.svg' %}"
+            alt=""
+            class="wishlist-empty-illustration">
+        <h2>Your wishlist is empty</h2>
+        <p>Save pieces you love and find them here anytime.</p>
+        <a href="{% url 'product_list' %}" class="shop-btn">Browse Collection</a>
+    </div>
+
+    {% if recently_viewed %}
+    <div class="wishlist-recently-viewed">
+        <h3>Recently Viewed</h3>
+        <div class="recently-viewed-row">
+            {% for product in recently_viewed %}
+            <a href="{% url 'product_detail' product.slug %}" class="recently-viewed-item">
+                {% if product.image %}
+                <img src="{{ product.image.url }}" alt="{{ product.title }}" loading="lazy">
+                {% endif %}
+                <span>{{ product.title }}</span>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    {% endif %}
+
+</section>
+
+<!-- ==========================
+SHARE WISHLIST MODAL
+========================== -->
+<div class="wishlist-share-modal" id="wishlistShareModal">
+    <div class="wishlist-share-box">
+        <button type="button" class="wishlist-share-close" id="wishlistShareClose" aria-label="Close">&times;</button>
+        <h2>Share Your Wishlist</h2>
+        <p>Anyone with this link can view your wishlist (they'll need to sign in to add items to their own cart).</p>
+
+        <div class="wishlist-share-link-row">
+            <input type="text" id="wishlistShareUrl" readonly>
+            <button type="button" id="wishlistCopyLinkBtn">Copy</button>
+        </div>
+
+        <a href="#" id="wishlistEmailBtn" class="wishlist-email-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z" opacity="0"></path><path d="M22 6l-10 7L2 6"></path><path d="M2 6h20v12H2z"></path></svg>
+            Email this wishlist
+        </a>
+    </div>
+</div>
+
+{% endblock %}

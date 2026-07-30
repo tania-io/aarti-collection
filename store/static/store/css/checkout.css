@@ -1,0 +1,367 @@
+/* ==========================================================
+Checkout Page
+========================================================== */
+
+/* ===========================
+   PAGE
+=========================== */
+
+.checkout-section{
+    background:#f8f9f7;
+    padding:70px 20px;
+}
+
+/* ===========================
+   HERO
+=========================== */
+
+.checkout-banner{
+    height:240px;
+    background:linear-gradient(rgba(22,52,20,.65),rgba(22,52,20,.65));
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:#fff;
+}
+
+.checkout-banner h1{
+    font-size:3rem;
+    margin-bottom:10px;
+    font-family:'Cormorant Garamond',serif;
+}
+
+.checkout-banner p{
+    font-size:1.1rem;
+    opacity:.9;
+}
+
+/* ===========================
+   CARD
+=========================== */
+
+.checkout-card{
+    max-width:720px;
+    margin:auto;
+    background:#fff;
+    border-radius:18px;
+    padding:50px;
+    box-shadow:0 12px 35px rgba(0,0,0,.08);
+}
+
+.checkout-header{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.checkout-header h2{
+    color:#163414;
+    font-size:2rem;
+    margin-bottom:10px;
+    font-family:'Cormorant Garamond',serif;
+}
+
+.checkout-header p{
+    color:#666;
+}
+
+/* ===========================
+   FORM
+=========================== */
+
+.checkout-form{
+    display:flex;
+    flex-direction:column;
+    gap:28px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+}
+
+.form-group label{
+    margin-bottom:8px;
+    color:#163414;
+    font-weight:600;
+}
+
+.form-group input,
+.form-group textarea{
+
+    padding:15px 18px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    font-size:15px;
+
+    transition:.3s;
+
+    background:#fff;
+}
+
+.form-group input:focus,
+.form-group textarea:focus{
+
+    outline:none;
+
+    border-color:#4f7942;
+
+    box-shadow:0 0 0 4px rgba(79,121,66,.12);
+}
+
+/* ===========================
+   SHIPPING OPTIONS
+=========================== */
+
+.shipping-options{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.shipping-option-card{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px 16px;
+    border:1px solid #e0e0e0;
+    border-radius:12px;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.shipping-option-card:has(input:checked){
+    border-color:#163414;
+    background:#f6fbf6;
+}
+
+.shipping-option-card input{
+    width:auto;
+    accent-color:#163414;
+}
+
+.shipping-option-main{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+}
+
+.shipping-option-main small{
+    color:#777;
+    font-size:.82rem;
+}
+
+.shipping-option-price{
+    font-weight:600;
+    color:#163414;
+    white-space:nowrap;
+}
+
+/* ===========================
+   GIFT OPTION
+=========================== */
+
+.gift-toggle{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    cursor:pointer;
+    font-weight:500;
+}
+
+.gift-toggle input{
+    width:auto;
+    accent-color:#163414;
+}
+
+.gift-message-field{
+    margin-top:10px;
+}
+
+.gift-wrap-toggle{
+    margin-top:16px;
+}
+
+.gift-paper-options{
+    margin-top:14px;
+    padding:16px;
+    background:#f8f6f2;
+    border-radius:10px;
+}
+
+.gift-paper-label{
+    font-size:13px;
+    color:#666;
+    margin-bottom:10px;
+}
+
+.gift-paper-choices{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+}
+
+.gift-paper-option{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:14px;
+    cursor:pointer;
+}
+
+.gift-paper-option input{
+    accent-color:#163414;
+}
+
+.gift-paper-swatch{
+    width:18px;
+    height:18px;
+    border-radius:4px;
+    border:1px solid rgba(0,0,0,.1);
+    display:inline-block;
+}
+
+.gift-paper-kraft{ background:#c8a27a; }
+.gift-paper-floral{ background:linear-gradient(135deg,#e8c7d8,#a8c7a0); }
+.gift-paper-gold_dot{ background:#163414; background-image:radial-gradient(#D4AF37 15%, transparent 16%); background-size:6px 6px; }
+
+/* ===========================
+   SUMMARY
+=========================== */
+
+.order-summary{
+
+    background:#f6fbf6;
+
+    border:1px solid #d9ead9;
+
+    border-radius:14px;
+
+    padding:25px;
+}
+
+.order-summary h3{
+
+    color:#163414;
+
+    margin-bottom:18px;
+
+    font-family:'Cormorant Garamond',serif;
+}
+
+.summary-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    font-size:1rem;
+
+    color:#444;
+
+    padding:4px 0;
+}
+
+.summary-row.summary-total{
+
+    margin-top:10px;
+
+    padding-top:14px;
+
+    border-top:1px solid #d9ead9;
+
+    font-size:1.15rem;
+
+    color:#222;
+}
+
+.summary-row strong{
+
+    color:#D4AF37;
+
+    font-size:1.5rem;
+}
+
+/* ===========================
+   BUTTON
+=========================== */
+
+.checkout-page-btn{
+
+    padding:18px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#163414;
+
+    color:#fff;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.checkout-page-btn:hover{
+
+    background:#2d5a3d;
+
+    transform:translateY(-2px);
+}
+
+.checkout-page-btn:active{
+
+    transform:translateY(0);
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:768px){
+
+.checkout-banner{
+
+    height:180px;
+}
+
+.checkout-banner h1{
+
+    font-size:2.2rem;
+}
+
+.checkout-card{
+
+    padding:30px 22px;
+}
+
+.summary-row{
+
+    font-size:1rem;
+}
+
+.summary-row strong{
+
+    font-size:1.25rem;
+}
+
+.checkout-page-btn{
+
+    width:100%;
+}
+
+}
+
+/* cart css */
+/* Overlay */

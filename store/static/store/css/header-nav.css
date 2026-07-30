@@ -1,0 +1,619 @@
+/* ==========================================================
+Site Header, Search Bar, Navigation, Mega Menu & Mobile Slide Menu
+========================================================== */
+.site-header {
+    position: relative;
+    z-index: 100;
+}
+.top-header {
+    width: 100%;
+    background: #f1f1ef;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 9px 25px;
+    font-size: 13.5px;
+    letter-spacing: .2px;
+    overflow: hidden;
+}
+.top-header-marquee {
+    position: relative;
+    height: 18px;
+    width: 100%;
+    max-width: 480px;
+    overflow: hidden;
+}
+.top-header-track {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.top-header-msg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    color: #163414;
+    text-align: center;
+    opacity: 0;
+    animation: topHeaderRotate 9s infinite;
+}
+.top-header-msg:nth-child(2) { animation-delay: 3s; }
+.top-header-msg:nth-child(3) { animation-delay: 6s; }
+@keyframes topHeaderRotate {
+    0%, 3%   { opacity: 0; transform: translateY(6px); }
+    8%, 28%  { opacity: 1; transform: translateY(0); }
+    33%, 100%{ opacity: 0; transform: translateY(-6px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .top-header-msg { animation: none; opacity: 1; position: static; }
+    .top-header-track { gap: 4px; }
+}
+/* ==========================================================
+MIDDLE HEADER & LOGO
+========================================================== */
+.sticky-header{
+    position:sticky;
+    top:0;
+    z-index:5000;
+    background:#fff;
+    box-shadow:none;
+    transition:.3s ease;
+}
+.sticky-header.scrolled{box-shadow:0 8px 25px rgba(0,0,0,.08);}
+.middle-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 40px;
+    border-bottom: 1px solid #eaeaea;
+}
+.middle-header .logo a {
+    font-family: 'Cinzel', serif;
+    font-size: 35px;
+    font-weight: 500;
+    color: #163414;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+}
+.page-header{
+    max-width:1400px;
+    margin:40px auto 20px;
+    padding:0 30px;
+}
+
+.page-header h1{
+    font-size:42px;
+    font-family:'Cormorant Garamond',serif;
+}
+
+.page-header p{
+    color:#666;
+    margin-top:8px;
+}
+/* ==========================================================
+DESKTOP SEARCH BAR
+========================================================== */
+.search-box {
+    flex: 1;
+    max-width: 500px;
+    margin: 0 40px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 30px;
+    padding: 8px 14px;
+    background: #fafafa;
+}
+.search-box input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 15px;
+    font-family: 'Calibri Light', serif;
+}
+.search-box button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.search-box button img {
+    width: 18px;
+    height: 18px;
+    opacity: 0.7;
+}
+
+/* ==========================================================
+MOBILE SEARCH BASE STYLES
+========================================================== */
+
+.mobile-search-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.mobile-search-toggle img {
+    width: 22px;
+    height: 22px;
+    filter: brightness(0) invert(1);
+}
+
+.mobile-nav-search {
+    display: none;
+    align-items: center;
+    background: #fff;
+    border-radius: 30px;
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+}
+
+.mobile-nav-search input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 15px;
+}
+
+.mobile-nav-search button {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.search-close-btn {
+    font-size: 18px;
+    color: #163414;
+    padding-right: 6px !important;
+}
+
+.mobile-nav-search img {
+    width: 18px;
+    height: 18px;
+}
+
+.mobile-search {
+    display: none;
+    align-items: center;
+}
+
+/* ==========================================================
+HEADER ICONS (👤 ♡ 🛍)
+========================================================== */
+.header-icons{
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    gap:15px;
+    flex-shrink:0;
+    width:auto;
+    height:auto;
+    
+}
+
+.header-icons img {
+    width: 18px;
+    height: 18px;
+    display: block;
+}
+.header-icons a{position:relative;}
+.cart-count,
+.wishlist-count{
+position:absolute;
+top:-6px;
+right:-8px;
+width:18px;
+height:18px;
+border-radius:50%;
+background:#163414;
+color:#D4AF37;
+font-size:11px;
+font-weight:600;
+display:flex;
+align-items:center;
+justify-content:center;
+line-height:1;
+}
+/* ==========================================================
+NAVIGATION (GREEN STRIP WRAPPER)
+========================================================== */
+.main-navbar {
+    height: 65px;
+    background: linear-gradient(135deg, #163414, #2d5a3d, #4f7942);
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    padding: 0 40px;
+}
+/* ==========================================================
+DESKTOP MENU LINKS
+========================================================== */
+
+.desktop-menu{
+    display:flex;
+    align-items:center;
+    gap: 45px;
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+.desktop-menu>li {position: relative;}
+.desktop-menu>li>a {
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Calibri Light', sans-serif;
+    font-size: 17px;
+    letter-spacing: .4px;
+    transition: .3s;
+}
+.desktop-menu>li>a:hover {color: #D4AF37;}
+/* ==========================================================
+MEGA MENU
+========================================================== */
+
+.mega-menu {
+    position:absolute;
+    top:100%;
+    left:50%;
+    transform:translateX(-50%);
+
+    min-width:420px;
+    padding:24px;
+
+    background:#fff;
+    border-radius:12px;
+    box-shadow:0 10px 30px rgba(0,0,0,.12);
+    display:grid;
+    grid-template-columns:180px 220px;
+    gap:40px;
+
+    opacity:0;
+    visibility:hidden;
+    transition:.25s;
+    z-index:4000;
+}
+
+.nav-item:hover .mega-menu {
+    opacity:1;
+    visibility:visible;
+}
+.mega-column:last-child{
+    column-count:2;
+    column-gap:30px;
+}
+.mega-column{
+    display:flex;
+    flex-direction:column;
+}
+.mega-column:last-child a{
+    display:block;
+    break-inside:avoid;
+}
+.mega-column h4{
+    margin-bottom:12px;
+    font-size:15px;
+    color:#163414;;
+    border-bottom:1px solid #eee;
+    font-family: 'Calibri Light', sans-serif;
+    padding-bottom:8px;
+}
+.mega-menu a {
+    display: block;
+    padding:8px 0;
+    text-decoration: none;
+    color: #222222;
+    font-family: 'Calibri Light', sans-serif;
+    transition: .25s;
+}
+.mega-menu a:hover {
+    color: #D4AF37;
+    padding-left:6px;
+}
+/* ==========================================================
+MOBILE BUTTON
+========================================================== */
+.menu-toggle{display:none;}
+/* ==========================================================
+RESPONSIVE LAYOUT CONTEXT (TABLETS & PHONE RESPONSES)
+========================================================== */
+@media (max-width:991px){
+    /* Hide desktop navbar */
+    .main-navbar{
+        display:none;
+    }
+    /* Hide desktop search */
+    .search-box{
+        display:none;
+    }
+    /* Sticky mobile header */
+    .middle-header{
+        display:grid;
+        grid-template-columns:
+            42px
+            42px
+            1fr
+            auto;
+        align-items:center;
+        gap:10px;
+        padding:14px 18px;
+    }
+    /* Hamburger */
+    .menu-toggle{
+        display:relative;
+        border:none;
+        background:none;
+        color:#163414;
+        font-size:28px;
+        cursor:pointer;
+        padding:0;
+    }
+    .mobile-menu-header{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:18px 20px;
+        border-bottom:1px solid #eee;
+    }
+
+    .close-menu{
+        background:none;
+        border:none;
+        font-size:34px;
+        color:#1111111;
+        cursor:pointer;
+    }
+    /* Search button */
+    .mobile-search-toggle{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        background:none;
+        border:none;
+        cursor:pointer;
+    }
+    .mobile-search-toggle img{
+        width:20px;
+        height:20px;
+        filter:none;
+    }
+    /* Logo */
+    .logo{justify-self:center;}
+    .logo h1{margin:0;}
+    .logo a{font-size:24px;}
+    /* Icons */
+    .header-icons{
+        justify-self:end;
+        gap:12px;
+    }
+    .header-icons img{
+        width:18px;
+        height:18px;
+    }
+    /* Mobile search dropdown */
+    .mobile-nav-search{display:none;}
+    .mobile-nav-search.active{
+        display:flex;
+        position:fixed;
+        top:0;
+        left:0;
+        right:0;
+        background:#fff;
+        padding:14px 20px;
+        border-bottom:1px solid #eaeaea;
+        box-shadow:0 8px 20px rgba(0,0,0,.08);
+        z-index:1999;
+        border-radius:0;
+    }
+}
+/* ==========================================================
+MOBILE SLIDE MENU
+========================================================== */
+.mobile-menu{
+    position: fixed;
+    top: 0;
+    left: -320px;
+    width: 320px;
+    max-width: 85vw;
+    height: 100vh;
+    height: 100dvh;
+    background: #fff;
+    z-index: 4000;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    transition: left .35s cubic-bezier(.4,0,.2,1);
+    box-shadow: 5px 0 30px rgba(0,0,0,.15);
+    box-sizing: border-box;
+}
+
+.mobile-menu *{
+    max-width:100%;
+    box-sizing:border-box;
+}
+
+.mobile-menu.active{
+    left:0;
+}
+
+.mobile-overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    width:100vw;
+    height:100vh;
+    height:100dvh;
+    background:rgba(0,0,0,.45);
+    opacity:0;
+    visibility:hidden;
+    transition:opacity .3s ease;
+    z-index:2999;
+}
+
+.mobile-overlay.active{
+    opacity:1;
+    visibility:visible;
+}
+
+.mobile-menu-header{
+    display:flex;
+    justify-content:flex-end;
+    padding:20px;
+}
+
+.close-menu{
+    border:none;
+    background:none;
+    font-size:28px;
+    cursor:pointer;
+}
+
+.mobile-menu-links{
+    display:flex;
+    flex-direction:column;
+}
+
+.mobile-category-btn{
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 24px;
+    border:none;
+    background:#fff;
+    cursor:pointer;
+    font-size:17px;
+}
+.mobile-subcategories{
+    display:none;
+    background:#ECFFDC;
+    flex-direction:column;
+}
+
+.mobile-subcategories.active{
+    display:flex;
+}
+.mobile-arrow{
+    transition:.3s ease;
+}
+
+.mobile-category-btn.active .mobile-arrow{
+    transform:rotate(90deg);
+}
+.mobile-subcategories a,
+.mobile-new{
+    display:block;
+    padding:14px 35px;
+    text-decoration:none;
+    color:#163414;
+}
+
+.mobile-social{
+    display:flex;
+    gap:18px;
+    justify-content:center;
+    padding:25px;
+    border-top:1px solid #eee;
+}
+
+/* ==========================================================
+TRANSPARENT NAVBAR (home page only) — starts transparent over
+the hero banner, becomes solid cream with a shadow on scroll.
+========================================================== */
+
+.sticky-header.transparent-nav{
+    position:absolute;
+    /* Start right below the announcement bar (the only in-flow content
+       left in .site-header once this header becomes absolutely
+       positioned) instead of top:0, which used to sit on top of and
+       hide the announcement bar. */
+    top:100%;
+    left:0;
+    right:0;
+    background:transparent;
+}
+
+/* BUG FIX (Home page only): the announcement bar must always stay
+   visible above the hero and scroll away naturally with the page —
+   it must never be hidden behind the transparent hero nav. */
+
+.sticky-header.transparent-nav .middle-header{
+    background:transparent;
+    border-bottom:1px solid rgba(255,255,255,.25);
+}
+
+.sticky-header.transparent-nav .main-navbar{
+    background:transparent;
+    border-bottom:none;
+}
+
+.sticky-header.transparent-nav .middle-header .logo a{
+    color:#fff;
+}
+
+.sticky-header.transparent-nav .desktop-menu>li>a{
+    color:#fff;
+}
+
+.sticky-header.transparent-nav .middle-header img:not(.logo img){
+    filter:brightness(0) invert(1);
+}
+
+.sticky-header.transparent-nav .search-box{
+    background:rgba(255,255,255,.15);
+    border-color:rgba(255,255,255,.35);
+}
+
+.sticky-header.transparent-nav .search-box input{
+    color:#fff;
+}
+
+.sticky-header.transparent-nav .search-box input::placeholder{
+    color:rgba(255,255,255,.75);
+}
+
+/* Once scrolled, behave exactly like the normal solid header */
+.sticky-header.transparent-nav.scrolled{
+    position:fixed;
+    top:0;
+    background:#fdfbf7;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
+.sticky-header.transparent-nav.scrolled .middle-header{
+    background:#fdfbf7;
+    border-bottom:1px solid #eaeaea;
+}
+
+.sticky-header.transparent-nav.scrolled .main-navbar{
+    background:#fdfbf7;
+    border-bottom:1px solid #ece4d6;
+}
+
+.sticky-header.transparent-nav.scrolled .middle-header .logo a{
+    color:#163414;
+}
+
+.sticky-header.transparent-nav.scrolled .desktop-menu>li>a{
+    color:#1a1a1a;
+}
+
+.sticky-header.transparent-nav.scrolled .middle-header img:not(.logo img){
+    filter:none;
+}
+
+.sticky-header.transparent-nav.scrolled .search-box{
+    background:#fafafa;
+    border-color:#ddd;
+}
+
+.sticky-header.transparent-nav.scrolled .search-box input{
+    color:#222;
+}

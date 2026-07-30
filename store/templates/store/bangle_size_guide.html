@@ -1,0 +1,242 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block title %}Bangle Size Guide | {{ site_settings.brand_name }}{% endblock %}
+
+{% block content %}
+
+<!-- ==========================
+PAGE HERO
+========================== -->
+
+<section class="guide-banner">
+    <div class="guide-banner-overlay">
+        <div class="hero-text">
+            <h1>Bangle Size Guide</h1>
+            <p>Know your perfect size in just a few minutes.</p>
+        </div>
+    </div>
+</section>
+
+<section class="size-guide">
+
+    <div class="size-guide-header">
+        <h2>How to Measure</h2>
+        <p>
+            Follow these simple methods to determine the correct bangle size for
+            a comfortable and secure fit.
+        </p>
+    </div>
+
+    <div class="size-guide-grid">
+
+        <!-- Method 1 -->
+        <div class="guide-card">
+
+            <h3>📏 1. Measure an Existing Bangle</h3>
+
+            <img src="{% static 'store/images/bangle-diameter.png' %}" alt="Existing Bangle" loading="lazy">
+
+            <p>
+                If you already own a bangle that fits comfortably, this is the
+                easiest and most accurate method.
+            </p>
+
+            <ul>
+                <li>Place the bangle on a flat surface.</li>
+                <li>Measure the inside diameter using a ruler.</li>
+                <li>Compare the measurement with the size chart below.</li>
+            </ul>
+
+        </div>
+
+        <!-- Method 2 -->
+        <div class="guide-card">
+
+            <h3>🖐 2. Wrap & Measure Your Hand</h3>
+
+            <img src="{% static 'store/images/hand-measuring-tape.png' %}" alt="Measure Hand" loading="lazy">
+
+            <p>
+                Bangles are <strong>NON-STRETCHABLE</strong>, so measuring your
+                hand correctly is important.
+            </p>
+
+            <ul>
+                <li>Bring your thumb and little finger together.</li>
+                <li>Wrap a measuring tape around the widest part of your hand.</li>
+                <li>If using thread, measure its length with a ruler.</li>
+                <li>Compare the circumference with the size chart.</li>
+            </ul>
+
+        </div>
+
+        <!-- Method 3 -->
+        <div class="guide-card">
+
+            <h3>📐 3. Find Your Size</h3>
+
+            <p>
+                Compare your measurements with the chart below.
+                If your measurement falls between two sizes,
+                choose the larger size for maximum comfort.
+            </p>
+
+            <table class="size-table">
+
+                <thead>
+                    <tr>
+                        <th>Size</th>
+                        <th>Inside Diameter (cm)</th>
+                        <th>Circumference (cm)</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr><td>2-4</td><td>5.4</td><td>16.9</td></tr>
+                    <tr><td>2-5</td><td>5.7</td><td>17.9</td></tr>
+                    <tr><td>2-6</td><td>6.0</td><td>18.8</td></tr>
+                    <tr><td>2-7</td><td>6.3</td><td>19.8</td></tr>
+                    <tr><td>2-8</td><td>6.5</td><td>20.5</td></tr>
+                    <tr><td>2-10</td><td>6.7</td><td>21.5</td></tr>
+
+                </tbody>
+
+            </table>
+
+            <p class="guide-note">
+                Measurements are approximate and may vary slightly depending on
+                the style and thickness of the bangle.
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- ==========================
+    HAND TYPES + FIT
+    ========================== -->
+
+    <div class="tips-grid">
+
+        <div class="tip-card">
+
+            <h3>✋ Hand Shape Guide</h3>
+
+            <div class="hand-types">
+
+                <div>
+
+                    <img src="{% static 'store/images/slender-hand.png' %}" alt="Slender Hand" loading="lazy">
+
+                    <h4>Slender Hand</h4>
+
+                    <p>
+                        If your measurement is close to the lower limit,
+                        you may prefer one size smaller.
+                    </p>
+
+                </div>
+
+                <div>
+
+                    <img src="{% static 'store/images/average-hand.png' %}" alt="Average Hand" loading="lazy">
+
+                    <h4>Average Hand</h4>
+
+                    <p>
+                        Your measured size should provide the best everyday fit.
+                    </p>
+
+                </div>
+
+                <div>
+
+                    <img src="{% static 'store/images/broad-hand.png' %}" alt="Broad Hand" loading="lazy">
+
+                    <h4>Broad Hand</h4>
+
+                    <p>
+                        If your measurement falls between two sizes,
+                        choosing the next larger size is recommended.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="tip-card">
+
+            <h3>✔ Check the Fit</h3>
+
+            <img src="{% static 'store/images/bangle-fit.png' %}" alt="Check Fit" loading="lazy">
+
+            <p>
+                A properly fitted bangle should slide over your hand with slight
+                resistance without feeling too loose or causing discomfort.
+            </p>
+
+            <ul>
+
+                <li>• Slides comfortably over your knuckles.</li>
+
+                <li>• Doesn't rotate excessively on your wrist.</li>
+
+                <li>• Doesn't require excessive force to wear.</li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+    <!-- ==========================
+    HELPFUL TIPS
+    ========================== -->
+
+    <div class="measurement-tips">
+
+        <h2>💡 Helpful Tips</h2>
+
+        <ul>
+
+            <li>• Measure your hand in the evening for the most accurate result.</li>
+
+            <li>• Avoid measuring immediately after exercise.</li>
+
+            <li>• Glass bangles cannot stretch.</li>
+
+            <li>• If you're between sizes, choose the larger size.</li>
+
+            <li>• Measuring an existing well-fitting bangle provides the most accurate result.</li>
+
+        </ul>
+
+    </div>
+
+    <!-- ==========================
+    STILL UNSURE
+    ========================== -->
+
+    <div class="size-warning">
+
+        <h3>Still Unsure?</h3>
+
+        <p>
+            If your measurements fall between two sizes, we recommend choosing
+            the larger size for a comfortable fit.
+        </p>
+
+        <p>
+            For gifting, measuring an existing well-fitting bangle is usually
+            the easiest and most accurate method.
+        </p>
+
+    </div>
+
+</section>
+
+{% endblock %}

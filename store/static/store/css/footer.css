@@ -1,0 +1,265 @@
+/* ==========================================================
+Site Footer
+========================================================== */
+
+/* ==========================================================
+FOOTER
+========================================================== */
+
+.footer{
+
+    margin-top:80px;
+
+    background:#163414;
+
+    color:white;
+
+    padding:50px 8% 30px;
+
+}
+
+.footer-container{
+
+    display:grid;
+
+    grid-template-columns:1.2fr 1fr 1fr 1fr;
+
+    gap:40px;
+
+    margin-bottom:40px;
+
+}
+
+.footer-tagline{
+    font-family:'Calibri Light',sans-serif;
+    color:rgba(255,255,255,.75);
+    margin:-14px 0 20px;
+    font-size:15px;
+}
+
+.footer-column h3{
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:34px;
+
+    margin-bottom:25px;
+
+}
+
+.footer-subheading{
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:20px;
+
+    margin:22px 0 12px;
+
+    color:rgba(255,255,255,.85);
+
+}
+
+.footer-column ul{
+
+    list-style:none;
+
+    padding:0;
+
+}
+
+.footer-column li{
+
+    margin-bottom:18px;
+
+}
+
+.footer-links{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+.footer-contact{
+    color:white;
+    text-decoration:none;
+    opacity:.9;
+}
+
+.footer-contact:hover{
+    opacity:1;
+    text-decoration:underline;
+}
+
+.footer-column a{
+
+    color:white;
+
+    text-decoration:none;
+
+    font-family:'Calibri Light',sans-serif;
+}
+.footer-links-empty{
+    color:rgba(255,255,255,.5);
+    font-family:'Calibri Light',sans-serif;
+    font-size:14px;
+}
+
+.footer-payments-row{
+    justify-content:flex-start;
+    align-items:center;
+    margin-top:10px;
+}
+
+.footer-payments-row span{
+    font-family:'Calibri Light',sans-serif;
+    color:rgba(255,255,255,.75);
+    margin-right:4px;
+}
+
+.payment-icons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.payment-icons img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    background: white;
+    padding: 6px;
+    border-radius: 8px;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,.15);
+    margin-top: 30px;
+    text-align: center;
+    padding: 24px 20px 0;
+    font-family: 'Calibri light', sans-serif;
+    font-size: 14px;
+}
+
+.footer-bottom-line{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:10px;
+    color:rgba(255,255,255,.75);
+}
+
+.footer-bottom-line a{
+    color:rgba(255,255,255,.85);
+    text-decoration:none;
+    transition:.2s;
+}
+
+.footer-bottom-line a:hover{
+    color:#d8c1a3;
+    text-decoration:underline;
+}
+
+.footer-bottom-dot{
+    color:rgba(255,255,255,.4);
+}
+.footer-social{
+display:flex;
+align-items:center;
+gap:14px;
+margin-top:18px;
+}
+
+.footer-social a{
+display:flex;
+align-items:center;
+justify-content:center;
+width:38px;
+height:38px;
+border-radius:50%;
+background:#f7f2eb;
+transition:.3s;
+}
+
+.footer-social a:hover{
+background:#d8c1a3;
+}
+
+.footer-social img{
+width:18px;
+height:18px;
+object-fit:contain;
+display:block;
+}
+@media (max-width:991px){
+    .footer-container{
+        text-align: center;
+        display: flex;
+        grid-template-columns:2fr;
+        gap:45px;
+        flex-direction: column;
+        text-align:center;
+    }
+    .payment-icons{
+        justify-content: center;
+    }
+
+    /* Collapsible footer sections (mobile only) */
+    .footer-heading{
+        cursor:pointer;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        gap:8px;
+        margin-bottom:0;
+        padding:14px 0;
+        border-bottom:1px solid rgba(255,255,255,.15);
+    }
+    .footer-heading::after{
+        content:"+";
+        font-size:20px;
+        transition:transform .25s ease;
+    }
+    .footer-column.open .footer-heading::after{
+        transform:rotate(45deg);
+    }
+    .footer-links{
+        display:none;
+        padding-top:0;
+    }
+    .footer-links > *{
+        min-height:0;
+    }
+    .footer-column.open .footer-links{
+        display:flex;
+        padding-top:18px;
+        animation:accordionReveal .25s ease;
+    }
+    .footer-column .footer-social{
+        display:none;
+        flex-direction:row;
+        justify-content:center;
+        gap:16px;
+        padding-top:18px;
+    }
+    .footer-column.open .footer-social{
+        display:flex;
+    }
+    .footer-tagline{
+        display:none;
+        margin:6px 0 4px;
+    }
+    .footer-column.open .footer-tagline{
+        display:block;
+    }
+    .footer-subheading{
+        display:none;
+    }
+    .footer-column.open .footer-subheading{
+        display:block;
+        font-family:'Cormorant Garamond',serif;
+        font-size:20px;
+        margin:6px 0 12px;
+    }
+}
+

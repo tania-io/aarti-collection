@@ -1,0 +1,71 @@
+{% load static %}
+{% for item in cart_items %}
+
+<tr class="cart-row" id="cart-row-{{ item.id }}" data-id="{{ item.id }}">
+
+    <td class="cart-row-product">
+        {% if item.variant.image %}
+        <img src="{{ item.variant.image.url }}" alt="{{ item.product.title }}">
+        {% elif item.product.image %}
+        <img src="{{ item.product.image.url }}" alt="{{ item.product.title }}">
+        {% else %}
+        <img src="{% static 'store/icons/placeholder.svg' %}" alt="{{ item.product.title }}">
+        {% endif %}
+        <div>
+            <h3>{{ item.product.title }}</h3>
+            {% if item.variant %}
+            <p class="cart-item-colour">
+                <span class="cart-colour-dot" style="background:{% if item.variant.colour.css_style %}{{ item.variant.colour.css_style }}{% else %}#{{ item.variant.colour.hex_code }}{% endif %};"></span>
+                {{ item.variant.colour.name }}
+            </p>
+            {% endif %}
+            <a href="#" class="remove-btn cart-row-remove-mobile" data-id="{{ item.id }}">Remove</a>
+        </div>
+    </td>
+
+    <td class="cart-row-price" data-label="Price">₹{{ item.product.price }}</td>
+
+    <td class="cart-row-qty" data-label="Quantity">
+        <div class="qty">
+            <a href="#" class="decrease-btn" data-id="{{ item.id }}" aria-label="Decrease Quantity">−</a>
+            <span class="qty-value">{{ item.quantity }}</span>
+            <a href="#" class="increase-btn" data-id="{{ item.id }}" aria-label="Increase Quantity">+</a>
+        </div>
+    </td>
+
+    <td class="cart-row-note" data-label="Note">
+        <input
+            type="text"
+            class="cart-note-input"
+            data-id="{{ item.id }}"
+            maxlength="200"
+            placeholder="Add a note (optional)"
+            value="{{ item.note }}">
+    </td>
+
+    <td class="cart-row-total" data-label="Total">₹{{ item.line_total }}</td>
+
+    <td class="cart-row-remove">
+        <button type="button" class="remove-btn" data-id="{{ item.id }}" aria-label="Remove item">&times;</button>
+    </td>
+
+</tr>
+
+{% empty %}
+
+<tr class="cart-row-empty">
+    <td colspan="6">
+        <div class="empty-cart">
+            <img
+                src="{% static 'store/icons/empty-cart.svg' %}"
+                alt=""
+                class="empty-cart-illustration"
+                onerror="this.style.display='none'">
+            <h3>Your cart is empty.</h3>
+            <p>Start exploring our latest collection.</p>
+            <a href="{% url 'product_list' %}" class="continue-shopping-link">Start Shopping</a>
+        </div>
+    </td>
+</tr>
+
+{% endfor %}

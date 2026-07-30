@@ -1,0 +1,196 @@
+{% load static %}
+{% load cart_filters %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+
+    <title>
+        {% block title %}
+            {{ site_settings.brand_name }}
+        {% endblock %}
+    </title>
+
+    <meta name="description" content="Aarti Collection - Premium Ethnic Wear">
+    <meta name="theme-color" content="#8c5b3f">
+
+    <link rel="icon" type="image/png"
+          href="{% if site_settings.logo %}{{ site_settings.logo.url }}{% else %}{% static 'store/icons/favicon.png' %}{% endif %}">
+
+    {% block extra_head %}{% endblock %}
+
+    <!-- Bundled + minified site-wide CSS (see store/management/commands/bundle_css.py).
+         Re-run `python manage.py bundle_css` any time a source CSS file under
+         static/store/css/ changes — this file is a generated build artifact,
+         not something to hand-edit. -->
+    <link rel="stylesheet" href="{% static 'store/css/bundle.min.css' %}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    {% block extra_css %}{% endblock %}
+
+</head>
+
+<body>
+
+<div class="page-wrapper">
+
+    {% include "store/includes/header.html" %}
+    {% include "store/includes/mobilemenu.html" %}
+
+    <main>
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+    <!-- CART DRAWER -->
+
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <aside class="cart-drawer" id="cartDrawer">
+
+        <div class="cart-header">
+
+            <h2>Shopping Bag</h2>
+
+            <button
+                id="closeCart"
+                type="button"
+                aria-label="Close Cart">
+
+                &times;
+
+            </button>
+
+        </div>
+
+        <div class="cart-loading-overlay" id="cartLoadingOverlay" aria-hidden="true">
+            <span class="cart-spinner"></span>
+        </div>
+
+        <div class="cart-drawer-content">
+
+        <div class="cart-body" id="cartDrawerBody">
+            {% include "store/includes/cart_drawer_body.html" %}
+        </div>
+
+        <div class="cart-footer">
+
+            <div class="subtotal">
+
+                <span>Subtotal</span>
+
+                <strong data-cart-subtotal>
+                    ₹{{ total }}
+                </strong>
+
+            </div>
+
+            <p class="shipping-note">
+                Taxes calculated at checkout. Need it fast? Choose
+                <strong>Special Delivery</strong> at checkout.
+            </p>
+
+            <a
+                href="{% url 'checkout' %}"
+                class="checkout-btn">
+
+                Secure Checkout
+
+            </a>
+
+            <a
+                href="{% url 'product_list' %}"
+                class="continue-shopping-link">
+
+                ← Continue Shopping
+
+            </a>
+
+            <div class="cart-share-row">
+
+                <span>Share your bag:</span>
+
+                <a
+                    href="https://wa.me/?text={{ site_settings.brand_name|urlencode }}%20-%20check%20out%20my%20cart"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="cart-share-btn"
+                    aria-label="Share on WhatsApp">
+                    <img src="{% static 'store/icons/whatsapp.svg' %}" alt="">
+                </a>
+
+                <a
+                    href="mailto:?subject=My%20Shopping%20Bag&body=Here's%20what%20I'm%20eyeing%20at%20{{ site_settings.brand_name|urlencode }}"
+                    class="cart-share-btn"
+                    aria-label="Share via Email">
+                    <img src="{% static 'store/icons/envelope.svg' %}" alt="">
+                </a>
+
+                <button
+                    type="button"
+                    id="copyCartLink"
+                    class="cart-share-btn"
+                    aria-label="Copy link">
+                    🔗
+                </button>
+
+            </div>
+
+        </div>
+
+        </div>
+
+    </aside>
+
+    <button
+        type="button"
+        id="backToTop"
+        class="back-to-top"
+        aria-label="Back to top">
+        ↑
+    </button>
+
+    <!-- Wishlist now opens the full /wishlist/ page (with sort, bulk
+         actions, and sharing) instead of this drawer-style popup. -->
+
+    <!-- ADD TO CART TOAST — minimal, no interaction required, auto-dismisses -->
+    <div class="cart-toast" id="cartToast" role="status" aria-live="polite">
+        <span class="cart-toast-check">✓</span>
+        <span id="cartToastName">Product added to cart</span>
+    </div>
+
+    {% include "store/includes/footer.html" %}
+
+</div>
+
+<!-- GLOBAL SCRIPTS -->
+
+<script src="{% static 'store/js/main.js' %}" defer></script>
+<script src="{% static 'store/js/home.js' %}" defer></script>
+<script src="{% static 'store/js/category.js' %}" defer></script>
+<script src="{% static 'store/js/product.js' %}" defer></script>
+<script src="{% static 'store/js/cart.js' %}" defer></script>
+<script src="{% static 'store/js/wishlist.js' %}" defer></script>
+<script src="{% static 'store/js/account.js' %}" defer></script>
+<script src="{% static 'store/js/auth.js' %}" defer></script>
+<script src="{% static 'store/js/checkout.js' %}" defer></script>
+<script src="{% static 'store/js/payment.js' %}" defer></script>
+<script src="{% static 'store/js/back-to-top.js' %}" defer></script>
+<script src="{% static 'store/js/footer.js' %}" defer></script>
+<script src="{% static 'store/js/product-grid.js' %}" defer></script>
+
+{% block extra_js %}{% endblock %}
+
+</body>
+</html>

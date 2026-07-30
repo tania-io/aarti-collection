@@ -1,0 +1,66 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block title %}{{ owner_name }}'s Wishlist | {{ site_settings.brand_name }}{% endblock %}
+
+{% block content %}
+
+<div class="breadcrumb">
+    <a href="{% url 'home' %}">Home</a>
+    <span>/</span>
+    <span>Shared Wishlist</span>
+</div>
+
+<section class="collection-page wishlist-page">
+
+    <div class="page-header">
+        <h1>{{ owner_name }}'s Wishlist</h1>
+        <p>{{ wishlist_items|length }} item{{ wishlist_items|length|pluralize }} — shared with you</p>
+    </div>
+
+    {% if wishlist_items %}
+
+    <div class="wishlist-grid">
+
+        {% for item in wishlist_items %}
+        <div class="wishlist-card">
+
+            <a href="{% url 'product_detail' item.product.slug %}" class="wishlist-card-image">
+                {% if item.product.image %}
+                <img src="{{ item.product.image.url }}" alt="{{ item.product.title }}" loading="lazy">
+                {% endif %}
+            </a>
+
+            <div class="wishlist-card-info">
+                <a href="{% url 'product_detail' item.product.slug %}">
+                    <h3>{{ item.product.title }}</h3>
+                </a>
+                <p class="price">₹{{ item.product.price }}</p>
+
+                <a href="{% url 'add_to_cart' item.product.id %}" class="wishlist-move-to-cart" style="display:block;text-align:center;text-decoration:none;">
+                    Add to My Cart
+                </a>
+            </div>
+
+        </div>
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <div class="wishlist-empty">
+        <img
+            src="{% static 'store/icons/wishlist.svg' %}"
+            alt=""
+            class="wishlist-empty-illustration">
+        <h2>This wishlist is empty</h2>
+        <p>{{ owner_name }} hasn't saved anything yet.</p>
+        <a href="{% url 'product_list' %}" class="shop-btn">Browse Collection</a>
+    </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

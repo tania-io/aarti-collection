@@ -1,0 +1,26 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block title %}Trending Now | {{ site_settings.brand_name }}{% endblock %}
+
+{% block content %}
+
+<div class="breadcrumb">
+    <a href="{% url 'home' %}">Home</a>
+    <span>/</span>
+    <span>Trending Now</span>
+</div>
+
+<section class="collection-page">
+
+    <div class="page-header">
+        <h1>Trending Now</h1>
+        <p>Our most loved designs this season.</p>
+    </div>
+
+    {% url 'product_list' as product_list_url %}
+    {% include "store/includes/product_grid.html" with empty_title="Nothing trending yet" empty_message="Check back soon for what's popular right now." empty_link_url=product_list_url empty_link_text="Browse Collection" %}
+
+</section>
+
+{% endblock %}

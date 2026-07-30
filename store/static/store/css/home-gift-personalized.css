@@ -1,0 +1,226 @@
+/* ==========================================================
+GIFT PROMO + PERSONALIZED RECOMMENDATIONS (Home page)
+========================================================== */
+.gift-personalized-row{
+    display:grid;
+    grid-template-columns:60% 40%;
+    width:100vw;
+    margin-left:calc(50% - 50vw);
+    margin-right:calc(50% - 50vw);
+    height:520px;
+}
+.gift-promo-card{
+    position:relative;
+    overflow:hidden;
+    height:100%;
+}
+
+.gift-promo-card img .gift-promo-card video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+.gift-wrapper-accent{
+    position:absolute !important;
+    bottom:16px;
+    right:16px;
+    width:90px !important;
+    height:90px !important;
+    object-fit:contain !important;
+    filter:drop-shadow(0 6px 14px rgba(0,0,0,.25));
+    pointer-events:none;
+    z-index:2;
+}
+
+.gift-promo-overlay{
+    position:absolute;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    align-items:flex-start;
+
+    padding:50px;
+    background:linear-gradient(
+        to top,
+        rgba(0,0,0,.65) 0%,
+        rgba(0,0,0,.35) 35%,
+        rgba(0,0,0,0) 70%
+    );
+}
+.gift-promo-overlay h3{
+    font-family:'Cormorant Garamond',serif;
+    font-size:28px;
+    color:#D4AF37;
+    margin-bottom:8px;
+}
+
+.gift-promo-overlay p{
+    font-size:14.5px;
+    margin-bottom:16px;
+    color:#ffffff;
+    max-width:340px;
+    line-height:1.6;
+}
+
+.gift-promo-overlay .luxury-btn{
+    border-color:#ffffff;
+    color:#ffffff;
+    align-self:flex-start;
+}
+
+.gift-promo-overlay .luxury-btn:hover{
+    background:#D4AF37;
+    border-color:#D4AF37;
+    color:#163414;
+}
+
+.personalized-card{
+    background:#faf8f2;
+    padding:28px;
+    height:100%;
+    overflow-y:auto;
+}
+
+.section-header.small h2{
+    font-size:24px;
+    margin-bottom:4px;
+}
+
+.section-header.small p{
+    font-size:13.5px;
+    color:#777;
+}
+
+.personalized-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+    margin-top:16px;
+}
+
+.personalized-item{
+    position:relative;
+    background:#fff;
+    padding:10px;
+    text-decoration:none;
+    color:inherit;
+    display:flex;
+    flex-direction:column;
+    transition:.25s;
+    box-shadow:0 2px 10px rgba(0,0,0,.04);
+}
+
+.personalized-badge{
+    position:absolute;
+    top:8px;
+    left:8px;
+    z-index:2;
+    background:#163414;
+    color:#fff;
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:.03em;
+    text-transform:uppercase;
+    padding:4px 9px;
+    border-radius:999px;
+}
+.personalized-item:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+.personalized-item img{
+    width:100%;
+    height:110px;
+    object-fit:cover;
+    margin-bottom:8px;
+}
+.personalized-title{
+    font-size:13px;
+    color:#333;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+.personalized-price{
+    font-size:13px;
+    font-weight:700;
+    color:#163414;
+    margin-top:2px;
+}
+
+@media(max-width:768px){
+    .gift-personalized-row{
+        grid-template-columns:1fr;
+    }
+}
+
+/* ==========================================================
+NEWSLETTER SUBSCRIBE BLOCK
+========================================================== */
+
+.newsletter-block{
+    background:#163414;
+    background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120"><circle cx="10" cy="10" r="1" fill="%23ffffff10"/></svg>');
+    padding:50px 6%;
+    text-align:center;
+    color:#fff;
+}
+
+.newsletter-block h2{
+    font-family:'Cormorant Garamond',serif;
+    font-size:30px;
+    color:#D4AF37;
+    margin-bottom:8px;
+}
+
+.newsletter-block p{
+    font-size:15px;
+    color:#f0ead9;
+    margin-bottom:22px;
+}
+
+.newsletter-form{
+    display:flex;
+    max-width:460px;
+    margin:0 auto;
+    gap:10px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.newsletter-form input{
+    flex:1 1 260px;
+    padding:14px 18px;
+    border-radius:30px;
+    border:none;
+    font-size:14.5px;
+}
+
+.newsletter-form button{
+    padding:14px 30px;
+    border-radius:30px;
+    border:none;
+    background:#D4AF37;
+    color:#163414;
+    font-weight:700;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.newsletter-form button:hover{
+    background:#fff;
+}
+
+.newsletter-note{
+    font-size:12.5px;
+    color:#cfd9c9;
+    margin-top:12px;
+}

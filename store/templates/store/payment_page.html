@@ -1,0 +1,148 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block title %}
+Payment | {{ site_settings.brand_name }}
+{% endblock %}
+
+{% block content %}
+
+<section class="payment-page">
+
+    <div class="payment-card">
+
+        <div class="payment-header">
+
+            <h1>Complete Your Payment</h1>
+
+            <p>
+                Scan the QR code below using any UPI app and submit your payment details.
+            </p>
+
+        </div>
+
+        <div class="payment-summary">
+
+            <h2>Order Total</h2>
+
+            <h3>₹{{ order.total_amount }}</h3>
+
+            {% if order.shipping_option == "express" %}
+            <p class="payment-note">Special Delivery selected (+₹{{ order.shipping_fee }})</p>
+            {% endif %}
+
+            {% if order.is_gift %}
+            <p class="payment-note">🎁 Marked as a gift order</p>
+            {% endif %}
+
+            {% if order.gift_wrap %}
+            <p class="payment-note">📦 Gift wrapped ({{ order.get_gift_paper_display }}, +₹{{ order.gift_wrap_fee }})</p>
+            {% endif %}
+
+        </div>
+
+        {% if site_settings.qr_code %}
+
+        <div class="payment-qr-section">
+
+            <img
+                id="paymentQR"
+                class="payment-qr"
+                src="{{ site_settings.qr_code.url }}"
+                alt="UPI QR Code">
+
+        </div>
+
+        {% endif %}
+
+        {% if site_settings.upi_id %}
+
+        <div class="upi-box">
+
+            <span id="upiId">
+
+                {{ site_settings.upi_id }}
+
+            </span>
+
+            <button
+                type="button"
+                id="copyUpi"
+                class="copy-btn">
+
+                Copy
+
+            </button>
+
+        </div>
+
+        {% endif %}
+
+        <form
+            id="paymentForm"
+            method="POST"
+            enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            <div class="form-group">
+
+                <label>
+
+                    UPI Transaction ID
+
+                </label>
+
+                <input
+                    id="transactionId"
+                    type="text"
+                    name="transaction_id"
+                    placeholder="Enter your UPI Transaction ID"
+                    autocomplete="off"
+                    required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+
+                    Upload Payment Screenshot
+
+                </label>
+
+                <input
+                    id="paymentScreenshot"
+                    type="file"
+                    name="screenshot"
+                    accept="image/*"
+                    required>
+
+            </div>
+
+            <div class="payment-preview">
+
+                <img
+                    id="paymentPreview"
+                    src=""
+                    alt="Payment Screenshot Preview"
+                    style="display:none;">
+
+            </div>
+
+            <button
+                id="paymentSubmit"
+                type="submit"
+                class="payment-btn">
+
+                Submit Payment Proof
+
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}

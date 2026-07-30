@@ -1,0 +1,68 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block title %}Contact Us | {{ site_settings.brand_name }}{% endblock %}
+
+{% block content %}
+
+<section class="policy-page">
+
+    <div class="policy-header">
+        <div class="container">
+            <h1>{{ page.title|default:"Contact Us" }}</h1>
+            <p>{{ page.subtitle|default:"We'd love to hear from you." }}</p>
+        </div>
+    </div>
+
+    <div class="policy-wrapper">
+
+        <div class="policy-card">
+
+            {% if page.content %}
+            {{ page.content|safe }}
+            {% endif %}
+
+            <div class="contact-card">
+
+                {% if site_settings.phone %}
+                <a href="tel:{{ site_settings.phone }}" class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <h3>Call Us</h3>
+                    <p>{{ site_settings.phone }}</p>
+                </a>
+                {% endif %}
+
+                {% if site_settings.email %}
+                <a href="mailto:{{ site_settings.email }}" class="contact-item">
+                    <div class="contact-icon">✉️</div>
+                    <h3>Email Us</h3>
+                    <p>{{ site_settings.email }}</p>
+                </a>
+                {% endif %}
+
+                {% if site_settings.whatsapp %}
+                <a href="https://wa.me/{{ site_settings.whatsapp }}" target="_blank" class="contact-item">
+                    <div class="contact-icon">💬</div>
+                    <h3>WhatsApp</h3>
+                    <p>Chat with us</p>
+                </a>
+                {% endif %}
+
+            </div>
+
+            {% if site_settings.address %}
+            <p class="contact-address">📍 {{ site_settings.address }}</p>
+            {% endif %}
+            {% if site_settings.gst_number %}
+            <p class="footer-gst">
+                <strong>GSTIN:</strong> {{ site_settings.gst_number }}
+            </p>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

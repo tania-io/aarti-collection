@@ -1,0 +1,47 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block title %}All Categories | {{ site_settings.brand_name }}{% endblock %}
+
+{% block content %}
+
+<div class="breadcrumb">
+    <a href="{% url 'home' %}">Home</a>
+    <span>/</span>
+    <span>All Categories</span>
+</div>
+
+<section class="collection-page">
+
+    <div class="page-header">
+        <h1>Shop by Category</h1>
+        <p>Browse our full collection by category.</p>
+    </div>
+
+    {% if categories %}
+
+    <div class="category-grid all-categories-grid">
+        {% for category in categories %}
+        {% if category.image %}
+        <a href="{% url 'category_products' category.slug %}" class="category-card">
+            <img src="{{ category.image.url }}" alt="{{ category.name }}" loading="lazy">
+            <div class="category-overlay">
+                <h3>{{ category.name }}</h3>
+            </div>
+        </a>
+        {% endif %}
+        {% endfor %}
+    </div>
+
+    {% else %}
+
+    <div class="pg-empty">
+        <h2>No categories yet</h2>
+        <a href="{% url 'product_list' %}" class="shop-btn">Browse Collection</a>
+    </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

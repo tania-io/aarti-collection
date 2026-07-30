@@ -1,0 +1,109 @@
+<!-- =========================================
+TOOLBAR (shared: product_list.html & category_products.html)
+========================================= -->
+
+<div class="collection-toolbar">
+
+    <button
+        id="filterBtn"
+        type="button"
+        class="filter-btn">
+        ☷ Filter
+    </button>
+
+    <!-- Mobile-only single/grid view toggle -->
+    <div class="view-toggle" role="group" aria-label="Change layout">
+
+        <button
+            type="button"
+            class="view-btn active"
+            data-view="grid"
+            aria-label="Grid view">
+            ⊞
+        </button>
+
+        <button
+            type="button"
+            class="view-btn"
+            data-view="list"
+            aria-label="Single column view">
+            ⊡
+        </button>
+
+    </div>
+
+    <div class="sort-wrapper">
+
+        <button id="sortBtn" type="button" class="filter-btn">
+            {% if selected_sort == "newest" %}Newest
+            {% elif selected_sort == "price_low" %}Price: Low → High
+            {% elif selected_sort == "price_high" %}Price: High → Low
+            {% elif selected_sort == "best_seller" %}Best Seller
+            {% else %}Featured
+            {% endif %}
+            ⇅
+        </button>
+
+        <div id="sortMenu" class="sort-menu">
+
+            <!-- "Featured" is the default state itself, shown as a
+                 heading, not a selectable option -->
+            <div class="sort-menu-heading">
+                Featured
+            </div>
+
+            <button type="button" class="sort-option" data-sort="newest">
+                Newest
+            </button>
+
+            <button type="button" class="sort-option" data-sort="price_low">
+                Price: Low → High
+            </button>
+
+            <button type="button" class="sort-option" data-sort="price_high">
+                Price: High → Low
+            </button>
+
+            <button type="button" class="sort-option" data-sort="best_seller">
+                Best Seller
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<form id="sortForm" method="GET">
+
+    {% if request.GET.price %}
+    <input type="hidden" name="price" value="{{ request.GET.price }}">
+    {% endif %}
+
+    {% if request.GET.colour %}
+    <input type="hidden" name="colour" value="{{ request.GET.colour }}">
+    {% endif %}
+
+    {% if request.GET.material %}
+    <input type="hidden" name="material" value="{{ request.GET.material }}">
+    {% endif %}
+
+    {% if request.GET.size %}
+    <input type="hidden" name="size" value="{{ request.GET.size }}">
+    {% endif %}
+
+    {% if request.GET.purpose %}
+    <input type="hidden" name="purpose" value="{{ request.GET.purpose }}">
+    {% endif %}
+
+    {% if query %}
+    <input type="hidden" name="q" value="{{ query }}">
+    {% endif %}
+
+    <input
+        type="hidden"
+        name="sort"
+        id="sortInput"
+        value="{{ selected_sort }}">
+
+</form>

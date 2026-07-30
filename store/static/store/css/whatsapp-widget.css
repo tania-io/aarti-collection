@@ -1,0 +1,77 @@
+/* ==========================================================
+Floating WhatsApp Button & Modal
+========================================================== */
+
+/* ==========================================================
+FLOATING WHATSAPP
+========================================================== */
+.floating-whatsapp{
+    position:fixed;
+    left:0;
+    bottom:28px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width:58px;
+    height:58px;
+    background:#25D366;
+    border-radius:0 16px 16px 0;
+    box-shadow:0 10px 28px rgba(0,0,0,.22);
+    z-index:9999;
+    opacity:1;
+    visibility:visible;
+    transition:.35s;
+}
+
+.floating-whatsapp:hover{
+    width:64px;
+}
+
+.floating-whatsapp img{
+
+    width:30px;
+
+}
+
+@media (max-width:600px){
+    .floating-whatsapp{
+        width:52px;
+        height:52px;
+        bottom:20px;
+    }
+    .floating-whatsapp img{
+        width:26px;
+    }
+}
+/* ==========================================================
+MODAL CONTENT
+========================================================== */
+
+.modal-content{
+
+    display:none;
+}
+
+.modal-content.active{
+
+    display:block;
+}
+.product-image-wrapper{
+    position:relative;
+    overflow:hidden;
+    height:320px;
+
+}
+
+.product-image-wrapper img{
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+
+
+
+
+

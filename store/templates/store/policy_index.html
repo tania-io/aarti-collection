@@ -1,0 +1,47 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block title %}Our Policy | {{ site_settings.brand_name }}{% endblock %}
+
+{% block content %}
+
+<section class="policy-page">
+
+    <div class="policy-header">
+        <div class="container">
+            <h1>Our Policy</h1>
+            <p>Everything you need to know before you shop with us.</p>
+        </div>
+    </div>
+
+    <div class="policy-wrapper">
+
+        {% if policies %}
+
+        <ul class="policy-index-list">
+
+            {% for page in policies %}
+
+            <li>
+                <a href="{% url 'policy_page' page.slug %}">
+                    {{ page.title }}
+                </a>
+            </li>
+
+            {% endfor %}
+
+        </ul>
+
+        {% else %}
+
+        <div class="policy-card">
+            <p>Our policy pages are being updated — please check back soon.</p>
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+{% endblock %}
