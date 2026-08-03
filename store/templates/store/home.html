@@ -176,10 +176,6 @@ SHOP BY CATEGORY
         {% endif %}
         {% endfor %}
     </div>
-
-    <div class="view-all-trendings">
-        <a href="{% url 'all_categories' %}" class="view-all-trendings-btn">View All Categories</a>
-    </div>
 </section>
 {% endif %}
 
@@ -189,14 +185,16 @@ BEST SELLERS
 {% if best_sellers %}
 <section class="best-sellers">
     <div class="section-header">
-        <h2>Best Sellers</h2>
-        <p>Handpicked favourites loved by our customers.</p>
+        <div>
+            <h2>Best Sellers</h2>
+            <p>Handpicked favourites loved by our customers.</p>
+        </div>
     </div>
 
-    <div class="best-grid">
+    <div class="best-grid" id="bestSellersGrid">
         {% for product in best_sellers %}
         {% if product.image %}
-        <div class="best-card card-{{ forloop.counter }}">
+        <div class="best-card{% if forloop.counter > 9 %} extra-card{% endif %}">
             <a href="{% url 'product_detail' product.slug %}">
                 <img src="{{ product.image.url }}" alt="{{ product.title }}" loading="lazy">
             </a>
@@ -228,11 +226,18 @@ BEST SELLERS
         {% endif %}
         {% endfor %}
 
-        <a href="{% url 'best_sellers' %}" class="best-card view-more-card">
+        {% if best_sellers|length > 9 %}
+        <button
+            type="button"
+            class="best-card view-more-card reveal-more-btn"
+            data-grid="bestSellersGrid">
             <span class="view-more-plus">+</span>
-            <span class="view-more-label">View All<br>Best Sellers</span>
-        </a>
+        </button>
+        {% endif %}
     </div>
+        <a href="{% url 'best_sellers' %}" class="section-view-all-link">
+            View All Best Sellers →
+        </a>
 </section>
 {% endif %}
 
@@ -245,9 +250,9 @@ SHOP THIS LOOK
         <h2>Shop This Look</h2>
     </div>
 
-    <div class="look-grid">
+    <div class="look-grid" id="shopLookGrid">
         {% for look in shop_looks %}
-        <div class="look-card {{ look.layout_size }}" data-look-id="{{ look.id }}">
+        <div class="look-card {{ look.layout_size }}{% if forloop.counter > 9 %} extra-card{% endif %}" data-look-id="{{ look.id }}">
             <img src="{{ look.image.url }}" alt="{{ look.title }}" loading="lazy">
             <div class="look-overlay">
                 <h3>{{ look.title }}</h3>
@@ -258,11 +263,19 @@ SHOP THIS LOOK
         </div>
         {% endfor %}
 
-        <a href="{% url 'shop_this_look' %}" class="look-card view-more-card">
+        {% if shop_looks|length > 9 %}
+        <button
+            type="button"
+            class="look-card view-more-card reveal-more-btn"
+            data-grid="shopLookGrid">
             <span class="view-more-plus">+</span>
-            <span class="view-more-label">View All<br>Looks</span>
-        </a>
+        </button>
+        {% endif %}
     </div>
+
+    <a href="{% url 'shop_this_look' %}" class="section-view-all-link">
+        View All Looks →
+    </a>
 </section>
 {% endif %}
 

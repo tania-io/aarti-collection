@@ -10,7 +10,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 import json
 import uuid
-from .models import Product, Category, SubCategory, ProductTag, Banner, Cart, Wishlist, ShopLook, SiteSettings, Order, Review, SizeOption, CustomerProfile, Colour, NewsletterSubscriber, ProductVariant, PolicyPage
+from .models import Product, Category, SubCategory, ProductTag, Banner, Cart, Wishlist, ShopLook, SiteSettings, Order, Review, ReviewImage, SizeOption, CustomerProfile, Colour, NewsletterSubscriber, ProductVariant, PolicyPage
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -46,8 +46,8 @@ def home(request):
 
     context = {
         "trending_products": Product.objects.filter(is_trending=True).select_related("category").prefetch_related("variants__colour"),
-        "best_sellers": Product.objects.filter(is_best_seller=True).select_related("category").prefetch_related("variants__colour"),
-        "shop_looks": ShopLook.objects.filter(active=True).prefetch_related("products"),
+        "best_sellers": Product.objects.filter(is_best_seller=True).select_related("category").prefetch_related("variants__colour")[:15],
+        "shop_looks": ShopLook.objects.filter(active=True).prefetch_related("products")[:15],
         "banners": Banner.objects.filter(active=True),
         "categories": Category.objects.filter(show_on_home=True),
         "gift_products": gift_products,
@@ -321,7 +321,7 @@ def product_detail(request, slug):
 
     reviews = product.reviews.filter(
         approved=True
-    )
+    ).prefetch_related("images")
 
     variants = list(product.variants.filter(active=True))
 
@@ -1483,7 +1483,7 @@ def add_review(request, slug):
         slug=slug
     )
     if request.method == "POST":
-        Review.objects.create(
+        review = Review.objects.create(
             product=product,
             user=request.user if request.user.is_authenticated else None,
             name=request.POST.get("name"),
@@ -1491,6 +1491,13 @@ def add_review(request, slug):
             rating=request.POST.get("rating"),
             comment=request.POST.get("comment"),
         )
+
+        # Optional photo attachments — cap at 5 to keep this sane
+        attachments = request.FILES.getlist("attachments")[:5]
+
+        for photo in attachments:
+            ReviewImage.objects.create(review=review, image=photo)
+
         messages.success(
             request,
             "Thank you! Your review has been submitted."

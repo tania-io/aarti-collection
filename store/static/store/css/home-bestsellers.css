@@ -64,7 +64,7 @@ VIEW MORE (reflows with the masonry, no separate blank row)
     gap: 10px;
     min-height: 200px;
     background: #f2f2ef;
-    color: #163414;
+    color: #444444;
     text-decoration: none;
     text-align: center;
     transition: background .25s ease;
@@ -78,12 +78,6 @@ VIEW MORE (reflows with the masonry, no separate blank row)
     font-size: 2.4rem;
     font-weight: 300;
     line-height: 1;
-}
-
-.view-more-label {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.05rem;
-    font-weight: 600;
 }
 /* ==========================================================
 TABLET RESPONSIVENESS

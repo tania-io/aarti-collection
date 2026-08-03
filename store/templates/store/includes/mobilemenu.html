@@ -1,62 +1,48 @@
 {% load static %}
 
 <!-- ==========================================
-MOBILE MENU
+MOBILE NAVIGATION DRAWER (canonical reference
+implementation — every other drawer/accordion
+on the site should match this architecture)
 ========================================== -->
 
-<div
-    class="mobile-overlay"
-    id="mobileOverlay">
-</div>
+<div id="mobileOverlay" class="mobile-overlay"></div>
 
-<aside
-    class="mobile-menu"
-    id="mobileMenu">
-
-    <!-- Header -->
+<div id="mobileMenu" class="mobile-menu" role="dialog" aria-modal="true" aria-label="Site menu">
 
     <div class="mobile-menu-header">
         <button
+            type="button"
             id="closeMenu"
-            class="close-menu">
-            ✕
+            class="close-menu"
+            aria-label="Close menu">
+            &times;
         </button>
     </div>
-
-    <!-- Navigation -->
 
     <nav class="mobile-menu-links">
 
         {% for category in categories %}
 
-        <div class="mobile-category">
+        <button
+            type="button"
+            class="mobile-category-btn"
+            aria-expanded="false">
+            {{ category.name }}
+            <span class="mobile-arrow">›</span>
+        </button>
 
-            <button
-                class="mobile-category-btn"
-                type="button"
-                aria-expanded="false">
+        <div class="mobile-subcategories">
 
-                <span>{{ category.name }}</span>
+            <a href="{% url 'category_products' category.slug %}">
+                All {{ category.name }}
+            </a>
 
-                <span class="mobile-arrow">›</span>
-
-            </button>
-
-            <div class="mobile-subcategories">
-
-                <a href="{% url 'category_products' category.slug %}">
-                    View All
-                </a>
-
-                {% for subcategory in category.subcategories.all %}
-
-                <a href="{% url 'subcategory_products' category.slug subcategory.slug %}">
-                    {{ subcategory.name }}
-                </a>
-
-                {% endfor %}
-
-            </div>
+            {% for sub in category.subcategories.all %}
+            <a href="{% url 'subcategory_products' category.slug sub.slug %}">
+                {{ sub.name }}
+            </a>
+            {% endfor %}
 
         </div>
 
@@ -64,58 +50,24 @@ MOBILE MENU
 
     </nav>
 
-    <!-- Social -->
-
     <div class="mobile-social">
-
         {% if site_settings.instagram %}
-
-        <a
-            href="{{ site_settings.instagram }}"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Instagram">
-
-            <img
-                src="{% static 'store/icons/instagram.svg' %}"
-                alt="Instagram">
-
+        <a href="{{ site_settings.instagram }}" target="_blank" rel="noopener noreferrer">
+            <img src="{% static 'store/icons/instagram.svg' %}" alt="Instagram">
         </a>
-
         {% endif %}
 
         {% if site_settings.facebook %}
-
-        <a
-            href="{{ site_settings.facebook }}"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Facebook">
-
-            <img
-                src="{% static 'store/icons/facebook.svg' %}"
-                alt="Facebook">
-
+        <a href="{{ site_settings.facebook }}" target="_blank" rel="noopener noreferrer">
+            <img src="{% static 'store/icons/facebook.svg' %}" alt="Facebook">
         </a>
-
         {% endif %}
 
         {% if site_settings.pinterest %}
-
-        <a
-            href="{{ site_settings.pinterest }}"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Pinterest">
-
-            <img
-                src="{% static 'store/icons/pinterest.svg' %}"
-                alt="Pinterest">
-
+        <a href="{{ site_settings.pinterest }}" target="_blank" rel="noopener noreferrer">
+            <img src="{% static 'store/icons/pinterest.svg' %}" alt="Pinterest">
         </a>
-
         {% endif %}
-
     </div>
 
-</aside>
+</div>

@@ -48,12 +48,13 @@ DRAWER
 .cart-drawer-content{
     flex:1;
     display:flex;
+    flex-direction:column;
     min-height:0;
     overflow:hidden;
 }
 
 .cart-drawer .cart-body{
-    flex:1 1 58%;
+    flex:1 1 auto;
     overflow-y:auto;
     overscroll-behavior:contain;
     -webkit-overflow-scrolling:touch;
@@ -62,12 +63,12 @@ DRAWER
 }
 
 .cart-drawer .cart-footer{
-    flex:0 0 42%;
-    max-width:220px;
+    flex:0 0 auto;
+    max-width:none;
     overflow-y:auto;
     overscroll-behavior:contain;
     -webkit-overflow-scrolling:touch;
-    border-left:1px solid #eee;
+    border-left:none;
     background:#fbfaf7;
     display:flex;
     flex-direction:column;
@@ -76,28 +77,6 @@ DRAWER
 @media (max-width:768px){
     .cart-drawer{
         width:100vw;
-    }
-    .cart-drawer-content{
-        flex-direction:column;
-    }
-    .cart-drawer .cart-body{
-        /* BUG FIX: this was `flex:none`, which strips flex-grow —
-           without it, .cart-body sized to its own content height
-           instead of "remaining space in the drawer", so it could
-           never establish an overflow context to scroll within,
-           and the drawer either clipped items or let the scroll
-           gesture fall through to the page behind. */
-        flex:1 1 auto;
-        max-width:none;
-        border-left:none;
-    }
-    .cart-drawer .cart-footer{
-        flex:0 0 auto;
-        max-width:none;
-        border-left:none;
-    }
-    .cart-drawer .cart-footer{
-        border-top:1px solid #eee;
     }
 }
 /*==========================================================
@@ -124,12 +103,100 @@ HEADER
     font-size:16px;
 }
 
-.cart-header button{
+.cart-header-actions{
+    display:flex;
+    align-items:center;
+    gap:6px;
+}
+
+.cart-icon-btn{
     border:none;
     background:none;
-    font-size:30px;
     cursor:pointer;
     color:#444;
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:background .2s;
+}
+
+.cart-icon-btn:hover{
+    background:#f4f1ea;
+}
+
+#closeCart{
+    font-size:26px;
+}
+
+#cartShareMenuBtn{
+    font-size:20px;
+    letter-spacing:1px;
+    border:1px solid #e2ddd0;
+}
+
+.cart-share-menu-wrapper{
+    position:relative;
+}
+
+.cart-share-menu{
+    position:absolute;
+    top:calc(100% + 8px);
+    right:0;
+    min-width:200px;
+    background:#fff;
+    border-radius:12px;
+    box-shadow:0 12px 32px rgba(0,0,0,.14);
+    padding:8px;
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(-6px);
+    transition:.2s ease;
+    z-index:20;
+}
+
+.cart-share-menu.active{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+}
+
+.cart-share-menu-item{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:10px 12px;
+    border:none;
+    background:none;
+    border-radius:8px;
+    font-size:14px;
+    color:#333;
+    text-decoration:none;
+    cursor:pointer;
+    text-align:left;
+    width:100%;
+    font-family:inherit;
+}
+
+.cart-share-menu-item:hover{
+    background:#f6f3ec;
+}
+
+.cart-share-menu-item img{
+    width:18px;
+    height:18px;
+    object-fit:contain;
+}
+
+.cart-share-menu-icon{
+    font-size:16px;
+    width:18px;
+    text-align:center;
 }
 .cart-overlay{
     opacity:0;
@@ -157,7 +224,7 @@ ITEM
 ==========================================================*/
 .cart-item{
     display:flex;
-    align-items:center;
+    align-items:flex-start;
     gap:15px;
     padding:18px 0;
     border-bottom:1px solid #ececec;
@@ -179,15 +246,28 @@ ITEM
     min-width:0;
 }
 
+.cart-item-top-row{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:12px;
+    margin-bottom:8px;
+}
+
 .cart-details h3{
-    margin:0 0 8px;
+    margin:0;
     font-size:18px;
     color:#163414;
     font-weight:600;
 }
 
+.cart-item-top-row .price{
+    margin:0;
+    flex-shrink:0;
+    white-space:nowrap;
+}
+
 .price{
-    margin:0 0 12px;
     color:#666;
     font-size:16px;
 }
@@ -282,16 +362,17 @@ FOOTER
 ==========================================================*/
 
 .cart-footer{
-    padding:24px;
+    padding:18px 24px 22px;
     border-top:1px solid #ececec;
     background:#fff;
+    flex-shrink:0;
 }
 
 .subtotal{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-bottom:12px;
+    margin-bottom:6px;
 }
 
 .subtotal span{
@@ -307,7 +388,7 @@ FOOTER
 .shipping-note{
     color:#888;
     font-size:13px;
-    margin-bottom:18px;
+    margin-bottom:14px;
 }
 
 /*==========================================================
@@ -317,7 +398,7 @@ BUTTONS
 .checkout-btn{
     background:linear-gradient(#163414, #2d5a3d);
     color:#fff;
-    margin-bottom:12px;
+    margin-bottom:0;
     display:block;
     width:100%;
     padding:14px;
@@ -409,10 +490,41 @@ CART ITEM COLOUR + LINE TOTAL
     border:1px solid rgba(0,0,0,.15);
 }
 
-.cart-line-total{
+.remove-btn{
+    display:inline-block;
+    color:#a33;
     font-size:13px;
-    color:var(--text-light,#6d6d6d);
-    margin-top:4px;
+    text-decoration:underline;
+    margin-top:8px;
+    width:fit-content;
+}
+
+.cart-line-total-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:10px;
+    padding-top:10px;
+    border-top:1px dashed #ececec;
+    font-size:14px;
+}
+
+.cart-line-total-row span{
+    color:#888;
+}
+
+.cart-line-total-row strong{
+    color:#333;
+    font-weight:600;
+}
+
+/*==========================================================
+CONTINUE SHOPPING — inline variant (lives inside the
+scrollable product list, after the last item, per spec)
+==========================================================*/
+
+.continue-shopping-inline{
+    margin-top:18px;
 }
 
 /*==========================================================
@@ -460,44 +572,10 @@ CART BODY TRANSITION (smooth swap when re-rendered)
 }
 
 /*==========================================================
-CART SHARE ROW (WhatsApp / Email)
-Fixes: the whatsapp.svg icon file has width="800px" baked in,
-and this row had zero CSS at all, so the icon rendered at full
-native size and buried the rest of the drawer content.
+CART SHARE MENU — see .cart-share-menu* rules near the header
+styles above. WhatsApp/Email/Copy Link now live in the
+three-dot dropdown instead of a row of icons in the footer.
 ==========================================================*/
-
-.cart-share-row{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    margin-top:14px;
-    padding-top:14px;
-    border-top:1px solid #eee;
-    font-size:13px;
-    color:#777;
-}
-
-.cart-share-btn{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    width:34px;
-    height:34px;
-    border-radius:50%;
-    background:#f4f1ea;
-    flex-shrink:0;
-    transition:.25s;
-}
-
-.cart-share-btn:hover{
-    background:#e9e2d4;
-}
-
-.cart-share-btn img{
-    width:18px;
-    height:18px;
-    object-fit:contain;
-}
 
 /*==========================================================
 ADD-TO-CART TOAST (minimal, no interaction required)

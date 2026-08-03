@@ -247,6 +247,17 @@ DESCRIPTION | PRODUCT DETAILS | CARE INSTRUCTIONS
                 {% endfor %}
             </p>
             <p>{{ review.comment }}</p>
+
+            {% if review.images.exists %}
+            <div class="review-attach-thumbs">
+                {% for photo in review.images.all %}
+                <a href="{{ photo.image.url }}" target="_blank" rel="noopener noreferrer">
+                    <img src="{{ photo.image.url }}" alt="Photo from {{ review.name }}'s review" loading="lazy">
+                </a>
+                {% endfor %}
+            </div>
+            {% endif %}
+
             <small>
                 {{ review.created_at|date:"d M Y" }}
             </small>
@@ -258,6 +269,7 @@ DESCRIPTION | PRODUCT DETAILS | CARE INSTRUCTIONS
 <section class="review-form">
     <h2>Write a Review</h2>
     <form method="POST"
+          enctype="multipart/form-data"
           action="{% url 'add_review' product.slug %}">
         {% csrf_token %}
         <input
@@ -285,6 +297,21 @@ DESCRIPTION | PRODUCT DETAILS | CARE INSTRUCTIONS
             placeholder="Write your review..."
             required>
         </textarea>
+
+        <label for="reviewAttachments" class="review-attach-label">
+            <span class="review-attach-icon">📎</span>
+            Add photos (optional, up to 5)
+        </label>
+        <input
+            type="file"
+            id="reviewAttachments"
+            name="attachments"
+            accept="image/png, image/jpeg, image/webp"
+            multiple
+            hidden>
+
+        <div class="review-attach-preview" id="reviewAttachPreview"></div>
+
         <button type="submit">
             Submit Review
         </button>

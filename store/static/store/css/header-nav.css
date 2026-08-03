@@ -416,9 +416,8 @@ MOBILE SLIDE MENU
 .mobile-menu{
     position: fixed;
     top: 0;
-    left: -320px;
-    width: 320px;
-    max-width: 85vw;
+    left: 0;
+    width: min(320px,85vw);
     height: 100vh;
     height: 100dvh;
     background: #fff;
@@ -427,7 +426,8 @@ MOBILE SLIDE MENU
     overflow-y: auto;
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
-    transition: left .35s cubic-bezier(.4,0,.2,1);
+    transform: translateX(-100%);
+    transition: transform .35s cubic-bezier(.4,0,.2,1);
     box-shadow: 5px 0 30px rgba(0,0,0,.15);
     box-sizing: border-box;
 }
@@ -435,10 +435,12 @@ MOBILE SLIDE MENU
 .mobile-menu *{
     max-width:100%;
     box-sizing:border-box;
+    overflow-wrap:anywhere;
+    word-break:break-word;
 }
 
 .mobile-menu.active{
-    left:0;
+    transform: translateX(0);
 }
 
 .mobile-overlay{

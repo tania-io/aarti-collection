@@ -216,15 +216,46 @@ function initializeCartDrawer() {
 
     overlay?.addEventListener("click", closeCart);
 
+    // ==========================
+    // Three-dot share menu
+    // ==========================
+
+    const shareMenuBtn = document.getElementById("cartShareMenuBtn");
+    const shareMenu = document.getElementById("cartShareMenu");
+
+    function closeShareMenu() {
+        shareMenu?.classList.remove("active");
+        shareMenuBtn?.setAttribute("aria-expanded", "false");
+    }
+
+    shareMenuBtn?.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const isOpen = shareMenu?.classList.toggle("active");
+        shareMenuBtn.setAttribute("aria-expanded", String(!!isOpen));
+    });
+
+    document.addEventListener("click", (e) => {
+        if (shareMenu && !shareMenu.contains(e.target) && e.target !== shareMenuBtn) {
+            closeShareMenu();
+        }
+    });
+
+    closeBtn?.addEventListener("click", closeShareMenu);
+    overlay?.addEventListener("click", closeShareMenu);
+
     const copyLinkBtn = document.getElementById("copyCartLink");
+    const copyLinkLabel = copyLinkBtn?.lastChild;
 
     copyLinkBtn?.addEventListener("click", () => {
 
         navigator.clipboard?.writeText(window.location.origin + "/cart/")
             .then(() => {
-                const original = copyLinkBtn.textContent;
-                copyLinkBtn.textContent = "✓";
-                setTimeout(() => { copyLinkBtn.textContent = original; }, 1500);
+                const original = copyLinkLabel?.textContent;
+                if (copyLinkLabel) copyLinkLabel.textContent = " Link copied!";
+                setTimeout(() => {
+                    if (copyLinkLabel) copyLinkLabel.textContent = original;
+                    closeShareMenu();
+                }, 1200);
             })
             .catch(() => {});
 

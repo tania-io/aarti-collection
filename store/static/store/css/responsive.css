@@ -184,6 +184,13 @@
     flex-direction:column;
 }
 
+.newsletter-form input{
+    flex:none;
+    width:100%;
+    height:52px;
+    box-sizing:border-box;
+}
+
 .review-summary{
     flex-direction:column;
 }
@@ -281,10 +288,6 @@
 
 .category-hero-content h1{
     font-size:2.5rem;
-}
-
-.newsletter-box{
-    padding:45px 30px;
 }
 
 .newsletter-form button{
@@ -441,10 +444,6 @@
 .checkout-form,
 .profile-content{
     padding:18px;
-}
-
-.newsletter-box{
-    padding:35px 20px;
 }
 
 .footer-bottom{

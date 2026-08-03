@@ -7,8 +7,78 @@ PRODUCT PAGE
 document.addEventListener("DOMContentLoaded", () => {
 
     initializeGallery();
+    initializeReviewAttachments();
 
 });
+
+
+/*=========================================
+REVIEW PHOTO ATTACHMENTS (live preview)
+=========================================*/
+
+function initializeReviewAttachments() {
+
+    const input = document.getElementById("reviewAttachments");
+    const preview = document.getElementById("reviewAttachPreview");
+
+    if (!input || !preview) return;
+
+    let selectedFiles = [];
+
+    function render() {
+
+        preview.innerHTML = "";
+
+        selectedFiles.forEach((file, index) => {
+
+            const thumb = document.createElement("div");
+            thumb.className = "review-attach-thumb";
+
+            const img = document.createElement("img");
+            img.src = URL.createObjectURL(file);
+            img.alt = file.name;
+
+            const removeBtn = document.createElement("button");
+            removeBtn.type = "button";
+            removeBtn.setAttribute("aria-label", "Remove photo");
+            removeBtn.textContent = "×";
+
+            removeBtn.addEventListener("click", () => {
+                selectedFiles.splice(index, 1);
+                syncInput();
+                render();
+            });
+
+            thumb.appendChild(img);
+            thumb.appendChild(removeBtn);
+            preview.appendChild(thumb);
+
+        });
+
+    }
+
+    function syncInput() {
+
+        // Keep the real <input type="file"> in sync with our own
+        // selectedFiles array so removing a preview actually removes
+        // it from what gets submitted.
+        const dataTransfer = new DataTransfer();
+        selectedFiles.forEach(file => dataTransfer.items.add(file));
+        input.files = dataTransfer.files;
+
+    }
+
+    input.addEventListener("change", () => {
+
+        const incoming = Array.from(input.files);
+        selectedFiles = [...selectedFiles, ...incoming].slice(0, 5);
+
+        syncInput();
+        render();
+
+    });
+
+}
 
 
 /*=========================================

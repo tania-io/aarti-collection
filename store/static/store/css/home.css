@@ -743,74 +743,11 @@ INSTAGRAM SECTION
     opacity:1;
 }
 
-/*==============================
-NEWSLETTER
-==============================*/
-.newsletter{
-    padding:90px 0;
-}
-.newsletter-box{
-    position:relative;
-    background:linear-gradient(135deg, #0F2F20 0%, #163D2C 50%, #1D4E36 100%);
-    border-radius:30px;
-    padding:70px;
-    text-align:center;
-    color:#fff;
-    box-shadow:0 25px 60px rgba(15,47,32,.35);
-    overflow:hidden;
-}
-.newsletter-box::before{
-    content:"";
-    position:absolute;
-    top:-40%;
-    right:-10%;
-    width:60%;
-    height:180%;
-    background:radial-gradient(circle, rgba(212,175,55,.16) 0%, transparent 65%);
-    pointer-events:none;
-}
-.newsletter-box h2{
-    color:#fff;
-    margin-bottom:18px;
-    font-family:'Cinzel',serif;
-    letter-spacing:.5px;
-    position:relative;
-}
-.newsletter-box p{
-    color:rgba(255,255,255,.85);
-    max-width:700px;
-    margin:0 auto 35px;
-    position:relative;
-}
-.newsletter-form{
-    max-width:650px;
-    margin:auto;
-    display:flex;
-    gap:15px;
-    position:relative;
-}
-.newsletter-form input{
-    flex:1;
-    height:58px;
-    border:none;
-    background:rgba(255,255,255,.96);
-    border-radius:999px;
-    padding:0 24px;
-}
-.newsletter-form button{
-    min-width:180px;
-    background:linear-gradient(135deg, #D4AF37, #B8860B);
-    color:#0F2F20;
-    font-weight:700;
-    border-radius:999px;
-    letter-spacing:.3px;
-    transition:transform .2s ease, box-shadow .2s ease;
-}
-
-.newsletter-form button:hover{
-    transform:translateY(-2px);
-    box-shadow:0 10px 24px rgba(212,175,55,.4);
-}
+/* NEWSLETTER — moved to home-gift-personalized.css (the one actual
+   .newsletter-block markup in home.html uses). This file used to have a
+   second, conflicting set of .newsletter-form rules targeting a
+   .newsletter-box wrapper that doesn't exist anywhere in the templates —
+   dead CSS that silently fought the real styles via cascade order. */
 
 /*==============================
 BACK TO TOP
@@ -1051,4 +988,62 @@ Transparent bordered secondary action — was completely unstyled.
 .view-all-trendings-btn:hover{
     background:#163414;
     color:#fff;
+}
+
+/* ==========================================================
+   SHARED: "9 shown, +6 on demand" home sections
+   (Best Sellers, Shop This Look)
+========================================================== */
+
+.section-header{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+}
+
+.section-view-all-link{
+    font-size:14px;
+    font-weight:600;
+    color:#163414;
+    text-decoration:none;
+    white-space:nowrap;
+    border-bottom:1px solid transparent;
+    transition:.2s;
+}
+
+.section-view-all-link:hover{
+    border-bottom-color:#163414;
+}
+
+/* Extra cards (10-15) stay out of the initial layout until expanded */
+.extra-card{
+    display:none;
+}
+
+.best-grid.expanded .best-card.extra-card{
+    display:inline-block;
+}
+
+.look-grid.expanded .look-card.extra-card{
+    display:block;
+}
+
+/* "+" reveal button — reuses the existing view-more-card look,
+   but it's a <button> that expands in place instead of a link
+   that navigates away */
+.reveal-more-btn{
+    font-family:inherit;
+}
+
+.reveal-more-btn.hidden{
+    display:none !important;
+}
+
+@media(max-width:768px){
+    .section-header{
+        flex-direction:column;
+        gap:6px;
+    }
 }

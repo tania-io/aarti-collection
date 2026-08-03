@@ -6,19 +6,20 @@ FOOTER
 
 <footer class="footer">
 
+    <!-- Static brand block — always visible, not part of the
+         accordion. Just the brand name/home link, framed by
+         thin dividers, matching the reference layout. -->
+    <a href="{% url 'home' %}" class="footer-brand-block">
+        {{ site_settings.brand_name|default:"Aarti Collection" }}
+    </a>
+
     <div class="footer-container">
 
-        <!-- Brand -->
+        <!-- The Brand -->
 
-        <div class="footer-column footer-column-brand">
+        <div class="footer-column">
 
-            <h3 class="footer-heading">
-                {{ site_settings.brand_name|default:"Aarti Collection" }}
-            </h3>
-
-            <p class="footer-tagline">
-                {{ site_settings.footer_text|default:"Premium Ethnic Wear" }}
-            </p>
+            <h3 class="footer-heading">The Brand</h3>
 
             <ul class="footer-links">
 
@@ -53,15 +54,16 @@ FOOTER
 
             </ul>
 
-            <h4 class="footer-subheading">Connect</h4>
+            <h4 class="footer-subheading">Follow Us</h4>
             <div class="footer-social">
                 {% if site_settings.instagram %}
                 <a
                     href="{{ site_settings.instagram }}"
                     target="_blank"
-                    rel="noopener noreferrer">
+                    rel="noopener noreferrer"
+                    aria-label="Instagram">
 
-                    <img src="{% static 'store/icons/instagram.svg' %}" alt="Instagram">
+                    <img src="{% static 'store/icons/instagram.svg' %}" alt="">
 
                 </a>
                 {% endif %}
@@ -70,9 +72,10 @@ FOOTER
                 <a
                     href="{{ site_settings.facebook }}"
                     target="_blank"
-                    rel="noopener noreferrer">
+                    rel="noopener noreferrer"
+                    aria-label="Facebook">
 
-                    <img src="{% static 'store/icons/facebook.svg' %}" alt="Facebook">
+                    <img src="{% static 'store/icons/facebook.svg' %}" alt="">
 
                 </a>
                 {% endif %}
@@ -81,9 +84,10 @@ FOOTER
                 <a
                     href="{{ site_settings.pinterest }}"
                     target="_blank"
-                    rel="noopener noreferrer">
+                    rel="noopener noreferrer"
+                    aria-label="Pinterest">
 
-                    <img src="{% static 'store/icons/pinterest.svg' %}" alt="Pinterest">
+                    <img src="{% static 'store/icons/pinterest.svg' %}" alt="">
 
                 </a>
                 {% endif %}
@@ -117,34 +121,6 @@ FOOTER
                         FAQs
                     </a>
                 </li>
-
-            </ul>
-
-        </div>
-
-        <!-- Our Policy — unlimited, admin-controlled (PolicyPage.show_in_policy_footer) -->
-
-        <div class="footer-column">
-
-            <h3 class="footer-heading">Our Policy</h3>
-
-            <ul class="footer-links">
-
-                {% for page in footer_policies %}
-
-                <li>
-                    <a href="{% url 'policy_page' page.slug %}">
-                        {{ page.title }}
-                    </a>
-                </li>
-
-                {% empty %}
-
-                <li class="footer-links-empty">
-                    More policies coming soon.
-                </li>
-
-                {% endfor %}
 
             </ul>
 

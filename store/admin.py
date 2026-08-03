@@ -16,6 +16,7 @@ from .models import (
     SizeCategory,
     SizeOption,
     Review,
+    ReviewImage,
     Cart,
     Wishlist,
     PolicyPage,
@@ -299,6 +300,10 @@ class SizeOptionAdmin(admin.ModelAdmin):
     list_filter = ("category",)
     search_fields = ("name",)
 
+class ReviewImageInline(admin.TabularInline):
+    model = ReviewImage
+    extra = 0
+
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
     list_display = (
@@ -307,6 +312,7 @@ class ReviewAdmin(admin.ModelAdmin):
         "rating",
         "approved",
         "created_at",
+        "photo_count",
     )
 
     list_filter = (
@@ -319,6 +325,12 @@ class ReviewAdmin(admin.ModelAdmin):
         "email",
         "product__title",
     )
+
+    inlines = [ReviewImageInline]
+
+    def photo_count(self, obj):
+        return obj.images.count()
+    photo_count.short_description = "Photos"
 @admin.register(Cart)
 class CartAdmin(admin.ModelAdmin):
     list_display = ("user", "product", "variant", "quantity", "note", "created_at")

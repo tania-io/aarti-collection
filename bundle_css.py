@@ -1,108 +1,33 @@
 """
-Standalone CSS bundler for Aarti Collection.
+Standalone convenience wrapper for the CSS bundler.
 
-Run this from your project root (the folder containing manage.py):
+Run from your project root (the folder containing manage.py):
 
     python bundle_css.py
 
-It does not need Django to discover it as a management command — it just
-reads the CSS files directly off disk. Use this any time you edit one of
-the source CSS files in store/static/store/css/, since base.html loads
-the bundled bundle.min.css, not the individual files.
+This used to be a full standalone copy of the bundler with its own
+CSS_LOAD_ORDER list — which quietly drifted out of sync with the real
+one in store/management/commands/bundle_css.py (it was missing
+payment.css and wishlist-popup.css, silently dropping them from every
+bundle it produced). That's exactly the kind of duplicate-logic bug
+this refactor is meant to eliminate, so this file now just calls the
+one real implementation instead of keeping its own copy.
+
+Prefer running the Django management command directly when you can:
+
+    python manage.py bundle_css
 """
 
 import os
-import re
+import sys
 
-# Must match store/management/commands/bundle_css.py exactly — this is
-# the same load order as base.html originally used, and order matters:
-# responsive.css deliberately loads last so its mobile overrides win.
-CSS_LOAD_ORDER = [
-    "cssvarient.css",
-    "reset.css",
-    "auth.css",
-    "login.css",
-    "base.css",
-    "home.css",
-    "header-nav.css",
-    "hero-banner.css",
-    "home-collections.css",
-    "category.css",
-    "home-trending.css",
-    "home-categories.css",
-    "home-bestsellers.css",
-    "home-shop-the-look.css",
-    "home-why-choose-us.css",
-    "home-gift-personalized.css",
-    "about.css",
-    "product.css",
-    "product-detail.css",
-    "account-page.css",
-    "whatsapp-widget.css",
-    "cart-drawer.css",
-    "size-guide.css",
-    "checkout.css",
-    "policy.css",
-    "wishlist-page.css",
-    "product-grid.css",
-    "footer.css",
-    "responsive.css",
-]
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mywebsite.settings")
 
+import django
+django.setup()
 
-def minify_css(css):
-    css = re.sub(r"/\*.*?\*/", "", css, flags=re.DOTALL)
-    css = re.sub(r"\s+", " ", css)
-    css = re.sub(r"\s*([{}:;,])\s*", r"\1", css)
-    css = re.sub(r";}", "}", css)
-    return css.strip()
-
-
-def find_css_dir():
-    # Look for store/static/store/css relative to wherever this script is run from
-    candidates = [
-        os.path.join("store", "static", "store", "css"),
-        os.path.join(os.path.dirname(os.path.abspath(__file__)), "store", "static", "store", "css"),
-    ]
-    for c in candidates:
-        if os.path.isdir(c):
-            return c
-    raise SystemExit(
-        "Could not find store/static/store/css — run this script from your "
-        "project root (the folder containing manage.py)."
-    )
-
-
-def main():
-    css_dir = find_css_dir()
-    output_path = os.path.join(css_dir, "bundle.min.css")
-
-    chunks = []
-    missing = []
-    original_size = 0
-
-    for filename in CSS_LOAD_ORDER:
-        path = os.path.join(css_dir, filename)
-        if not os.path.isfile(path):
-            missing.append(filename)
-            continue
-        with open(path, "r", encoding="utf-8") as f:
-            content = f.read()
-        original_size += os.path.getsize(path)
-        chunks.append(f"/* --- {filename} --- */\n{minify_css(content)}")
-
-    if missing:
-        print(f"WARNING: skipped missing files: {missing}")
-
-    bundled = "\n".join(chunks)
-    with open(output_path, "w", encoding="utf-8") as f:
-        f.write(bundled)
-
-    new_size = os.path.getsize(output_path)
-    print(f"Wrote {output_path}")
-    print(f"{len(chunks)} files bundled, {original_size:,} -> {new_size:,} bytes "
-          f"({(1 - new_size / original_size) * 100:.0f}% smaller)")
-
+from store.management.commands.bundle_css import Command
 
 if __name__ == "__main__":
-    main()
+    Command().handle()

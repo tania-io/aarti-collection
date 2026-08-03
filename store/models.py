@@ -760,6 +760,27 @@ class Review(models.Model):
             return f"{self.product.title} - {self.user.username} ({self.rating}⭐)"
         return f"{self.name} - {self.product.title}"
 
+
+class ReviewImage(models.Model):
+
+    review = models.ForeignKey(
+        Review,
+        on_delete=models.CASCADE,
+        related_name="images"
+    )
+
+    image = models.ImageField(
+        upload_to="review_attachments/",
+        validators=[FileExtensionValidator(
+            allowed_extensions=["jpg", "jpeg", "png", "webp"]
+        )],
+    )
+
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Photo for review #{self.review_id}"
+
 class CustomerProfile(models.Model):
 
     user = models.OneToOneField(

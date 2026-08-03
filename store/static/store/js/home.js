@@ -3,7 +3,34 @@ document.addEventListener("DOMContentLoaded", () => {
     initializeTrendingSlider();
     initializeShopLookModal();
     initializeNewsletterForm();
+    initializeRevealMoreButtons();
 });
+
+/*=========================================
+"SHOW MORE" — Best Sellers / Shop This Look
+Reveals the extra 6 cards (10-15) in place,
+no navigation, no page reload.
+=========================================*/
+
+function initializeRevealMoreButtons() {
+
+    document.querySelectorAll(".reveal-more-btn").forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            const grid = document.getElementById(button.dataset.grid);
+
+            if (!grid) return;
+
+            grid.classList.add("expanded");
+            button.classList.add("hidden");
+
+        });
+
+    });
+
+}
+
 /*=========================================
 NEWSLETTER FORM
 =========================================*/
@@ -276,7 +303,7 @@ function initializeShopLookModal() {
     });
 
 }
-document.querySelectorAll(".look-card").forEach(card => {
+document.querySelectorAll(".look-card:not(.view-more-card)").forEach(card => {
     card.addEventListener("click", () => {
         openLook(card.dataset.lookId);
     });

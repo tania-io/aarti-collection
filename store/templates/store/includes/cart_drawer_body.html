@@ -1,4 +1,6 @@
 {% load static %}
+{% if cart_items %}
+
 {% for item in cart_items %}
 
 <div class="cart-item" id="cart-item-{{ item.id }}" data-id="{{ item.id }}">
@@ -13,7 +15,10 @@
 
     <div class="cart-details">
 
-        <h3>{{ item.product.title }}</h3>
+        <div class="cart-item-top-row">
+            <h3>{{ item.product.title }}</h3>
+            <p class="price">₹{{ item.product.price }}</p>
+        </div>
 
         {% if item.variant %}
         <p class="cart-item-colour">
@@ -22,23 +27,30 @@
         </p>
         {% endif %}
 
-        <p class="price">₹{{ item.product.price }}</p>
-
         <div class="qty">
             <a href="#" class="decrease-btn" data-id="{{ item.id }}" aria-label="Decrease Quantity">−</a>
             <span class="qty-value">{{ item.quantity }}</span>
             <a href="#" class="increase-btn" data-id="{{ item.id }}" aria-label="Increase Quantity">+</a>
         </div>
 
-        <p class="cart-line-total">Item total: ₹{{ item.line_total }}</p>
-
         <a href="#" class="remove-btn" data-id="{{ item.id }}">Remove</a>
+
+        <div class="cart-line-total-row">
+            <span>Item Total</span>
+            <strong>₹{{ item.line_total }}</strong>
+        </div>
 
     </div>
 
 </div>
 
-{% empty %}
+{% endfor %}
+
+<a href="{% url 'product_list' %}" class="continue-shopping-link continue-shopping-inline">
+    ← Continue Shopping
+</a>
+
+{% else %}
 
 <div class="empty-cart">
     <img
@@ -51,4 +63,4 @@
     <a href="{% url 'product_list' %}" class="continue-shopping-link">Start Shopping</a>
 </div>
 
-{% endfor %}
+{% endif %}

@@ -197,7 +197,8 @@ NEWSLETTER SUBSCRIBE BLOCK
 }
 
 .newsletter-form input{
-    flex:1 1 260px;
+    flex:1 1 auto;
+    min-width:200px;
     padding:14px 18px;
     border-radius:30px;
     border:none;
