@@ -1,0 +1,178 @@
+[
+{
+  "model": "store.producttag",
+  "pk": 1,
+  "fields": {
+    "name": "glass bangles",
+    "slug": "glass-bangles"
+  }
+},
+{
+  "model": "store.producttag",
+  "pk": 2,
+  "fields": {
+    "name": "bangles",
+    "slug": "bangles"
+  }
+},
+{
+  "model": "store.producttag",
+  "pk": 3,
+  "fields": {
+    "name": "traditional jewellery",
+    "slug": "traditional-jewellery"
+  }
+},
+{
+  "model": "store.producttag",
+  "pk": 4,
+  "fields": {
+    "name": "jewellery box",
+    "slug": "jewellery-box"
+  }
+},
+{
+  "model": "store.producttag",
+  "pk": 5,
+  "fields": {
+    "name": "earring storage",
+    "slug": "earring-storage"
+  }
+},
+{
+  "model": "store.producttag",
+  "pk": 6,
+  "fields": {
+    "name": "raindrop bangles",
+    "slug": "raindrop-bangles"
+  }
+},
+{
+  "model": "store.producttag",
+  "pk": 7,
+  "fields": {
+    "name": "traditional looks",
+    "slug": "traditional-looks"
+  }
+},
+{
+  "model": "store.producttag",
+  "pk": 8,
+  "fields": {
+    "name": "Metal bangles",
+    "slug": "metal-bangles"
+  }
+},
+{
+  "model": "store.producttag",
+  "pk": 9,
+  "fields": {
+    "name": "Kashmiri ghungroos",
+    "slug": "kashmiri-ghungroos"
+  }
+},
+{
+  "model": "store.producttag",
+  "pk": 10,
+  "fields": {
+    "name": "Border bangles",
+    "slug": "border-bangles"
+  }
+},
+{
+  "model": "store.producttag",
+  "pk": 11,
+  "fields": {
+    "name": "saree",
+    "slug": "saree"
+  }
+},
+{
+  "model": "store.producttag",
+  "pk": 12,
+  "fields": {
+    "name": "silk-blend",
+    "slug": "silk-blend"
+  }
+},
+{
+  "model": "store.producttag",
+  "pk": 13,
+  "fields": {
+    "name": "handloom",
+    "slug": "handloom"
+  }
+},
+{
+  "model": "store.producttag",
+  "pk": 14,
+  "fields": {
+    "name": "clip-claw",
+    "slug": "clip-claw"
+  }
+},
+{
+  "model": "store.producttag",
+  "pk": 15,
+  "fields": {
+    "name": "stone-clip",
+    "slug": "stone-clip"
+  }
+},
+{
+  "model": "store.producttag",
+  "pk": 16,
+  "fields": {
+    "name": "earrings",
+    "slug": "earrings"
+  }
+},
+{
+  "model": "store.producttag",
+  "pk": 17,
+  "fields": {
+    "name": "Bracelets",
+    "slug": "bracelets"
+  }
+},
+{
+  "model": "store.producttag",
+  "pk": 18,
+  "fields": {
+    "name": "charms",
+    "slug": "charms"
+  }
+},
+{
+  "model": "store.producttag",
+  "pk": 19,
+  "fields": {
+    "name": "Charm bracelets",
+    "slug": "charm-bracelets"
+  }
+},
+{
+  "model": "store.producttag",
+  "pk": 20,
+  "fields": {
+    "name": "Danglers",
+    "slug": "danglers"
+  }
+},
+{
+  "model": "store.producttag",
+  "pk": 21,
+  "fields": {
+    "name": "Chandbali",
+    "slug": "chandbali"
+  }
+},
+{
+  "model": "store.producttag",
+  "pk": 22,
+  "fields": {
+    "name": "Pearls",
+    "slug": "pearls"
+  }
+}
+]

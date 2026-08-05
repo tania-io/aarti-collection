@@ -1,0 +1,563 @@
+[
+{
+  "model": "store.productvariant",
+  "pk": 1,
+  "fields": {
+    "product": 1,
+    "colour": 1,
+    "image": "variants/ChatGPT_Image_Jun_27_2026_10_04_25_PM_0PGNVmz.png",
+    "stock": 100,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 2,
+  "fields": {
+    "product": 1,
+    "colour": 2,
+    "image": "variants/WhatsApp_Image_2026-06-22_at_0jU6byB.jpeg",
+    "stock": 100,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 3,
+  "fields": {
+    "product": 1,
+    "colour": 3,
+    "image": "variants/lightmultijellybangles_2dY0LKw.png",
+    "stock": 100,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 4,
+  "fields": {
+    "product": 1,
+    "colour": 4,
+    "image": "variants/1000018664_nIA4Row.jpg",
+    "stock": 100,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 5,
+  "fields": {
+    "product": 1,
+    "colour": 5,
+    "image": "variants/1000018628_5z1dyAU.jpg",
+    "stock": 100,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 6,
+  "fields": {
+    "product": 2,
+    "colour": 6,
+    "image": "variants/smalljewellarybox_Zaha3MY.png",
+    "stock": 200,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 7,
+  "fields": {
+    "product": 2,
+    "colour": 7,
+    "image": "variants/ChatGPT_Image_Jul_2_2026_08_28_03_PM_Dy2o7Ot.png",
+    "stock": 100,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 8,
+  "fields": {
+    "product": 3,
+    "colour": 9,
+    "image": "variants/1000018842_4ZXjPwL.png",
+    "stock": 100,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 9,
+  "fields": {
+    "product": 3,
+    "colour": 8,
+    "image": "variants/ChatGPT_Image_Jul_8_2026_02_49_52_PM_Fw1hiH4.png",
+    "stock": 100,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 10,
+  "fields": {
+    "product": 3,
+    "colour": 2,
+    "image": "variants/ChatGPT_Image_Jun_27_2026_10_05_40_PM_0cXD03H.png",
+    "stock": 100,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 11,
+  "fields": {
+    "product": 3,
+    "colour": 23,
+    "image": "variants/pinkraindropglass_k28o4l0.png",
+    "stock": 100,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 12,
+  "fields": {
+    "product": 3,
+    "colour": 11,
+    "image": "variants/purpleraindropglass_bZYQUWY.png",
+    "stock": 100,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 13,
+  "fields": {
+    "product": 3,
+    "colour": 3,
+    "image": "variants/multicolorraindropglass.png",
+    "stock": 100,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 14,
+  "fields": {
+    "product": 6,
+    "colour": 14,
+    "image": "variants/ChatGPT_Image_Jul_8_2026_02_48_26_PM.png",
+    "stock": 100,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 15,
+  "fields": {
+    "product": 6,
+    "colour": 9,
+    "image": "variants/ChatGPT_Image_Jul_8_2026_02_54_55_PM.png",
+    "stock": 100,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 16,
+  "fields": {
+    "product": 6,
+    "colour": 12,
+    "image": "variants/greencombo.png",
+    "stock": 100,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 17,
+  "fields": {
+    "product": 6,
+    "colour": 10,
+    "image": "variants/pinkraindropglmtbangles_V0tvqUM.png",
+    "stock": 100,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 18,
+  "fields": {
+    "product": 6,
+    "colour": 13,
+    "image": "variants/wtraindropglmetalwh_l2DmJBJ.png",
+    "stock": 100,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 19,
+  "fields": {
+    "product": 6,
+    "colour": 15,
+    "image": "variants/yellowcombobagles_bOOAIEt.png",
+    "stock": 100,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 20,
+  "fields": {
+    "product": 6,
+    "colour": 2,
+    "image": "variants/ChatGPT_Image_Jun_27_2026_10_05_30_PM_ZVrzNUi.png",
+    "stock": 100,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 21,
+  "fields": {
+    "product": 7,
+    "colour": 16,
+    "image": "variants/pis_CYKoo07.jpeg",
+    "stock": 10,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 22,
+  "fields": {
+    "product": 7,
+    "colour": 17,
+    "image": "variants/WhatsApp_Image_2026-06-22_at_21_gMuPbd2.09.02.jpeg",
+    "stock": 10,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 23,
+  "fields": {
+    "product": 7,
+    "colour": 18,
+    "image": "variants/WhatsApp_Image_2026-06-22_at_21_ONr9piR.09.01.jpeg",
+    "stock": 10,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 24,
+  "fields": {
+    "product": 12,
+    "colour": 4,
+    "image": "variants/redcamel1_qVVw9di.png",
+    "stock": 40,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 25,
+  "fields": {
+    "product": 12,
+    "colour": 5,
+    "image": "variants/skybluecamel_5biGBmD.png",
+    "stock": 40,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 26,
+  "fields": {
+    "product": 12,
+    "colour": 15,
+    "image": "variants/yellowcamel_vGgTKy2.png",
+    "stock": 40,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 27,
+  "fields": {
+    "product": 13,
+    "colour": 10,
+    "image": "variants/WhatsApp_Image_2026-06-22_at_21_a2TVjHa.08.59.jpeg",
+    "stock": 10,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 28,
+  "fields": {
+    "product": 13,
+    "colour": 5,
+    "image": "variants/banner3_vvNLp3r.png",
+    "stock": 10,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 29,
+  "fields": {
+    "product": 13,
+    "colour": 20,
+    "image": "variants/WhatsApp_Image_2026-06-22_at_21_Sc4a41h.14.15.jpeg",
+    "stock": 10,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 30,
+  "fields": {
+    "product": 15,
+    "colour": 4,
+    "image": "variants/redtraditionalearing_2olOaar.png",
+    "stock": 40,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 31,
+  "fields": {
+    "product": 15,
+    "colour": 5,
+    "image": "variants/skybluetraditionalearing1_QqgCbtF.png",
+    "stock": 40,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 32,
+  "fields": {
+    "product": 15,
+    "colour": 21,
+    "image": "variants/lightbluetraditionalearing1_4cpdfSN.png",
+    "stock": 40,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 33,
+  "fields": {
+    "product": 15,
+    "colour": 22,
+    "image": "variants/lightpinktraditinalearing1_3XmFASf.png",
+    "stock": 40,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 34,
+  "fields": {
+    "product": 21,
+    "colour": 2,
+    "image": "variants/WhatsApp_lfZknXt.jpeg",
+    "stock": 40,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 35,
+  "fields": {
+    "product": 21,
+    "colour": 1,
+    "image": "variants/ChatGPT_Image_Jul_8_2026_02_50_26_PM_AEI5mG7.png",
+    "stock": 40,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 36,
+  "fields": {
+    "product": 21,
+    "colour": 11,
+    "image": "variants/ChatGPT_Image_Jul_2_2026_08_29_04_PM_QjNDjo7.png",
+    "stock": 40,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 37,
+  "fields": {
+    "product": 30,
+    "colour": 12,
+    "image": "variants/ChatGPT_Image_Apr_27_2026_02_53_37_PM.png",
+    "stock": 10,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 38,
+  "fields": {
+    "product": 30,
+    "colour": 11,
+    "image": "variants/ChatGPT_Image_Jul_10_2026_04_54_59_AM.png",
+    "stock": 10,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 39,
+  "fields": {
+    "product": 30,
+    "colour": 8,
+    "image": "variants/ChatGPT_Image_Jul_10_2026_04_53_55_AM.png",
+    "stock": 10,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 40,
+  "fields": {
+    "product": 31,
+    "colour": 12,
+    "image": "variants/ChatGPT_Image_Jul_27_2026_12_18_11_AM.png",
+    "stock": 100,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 41,
+  "fields": {
+    "product": 31,
+    "colour": 9,
+    "image": "variants/ChatGPT_Image_Jul_27_2026_12_24_40_AM.png",
+    "stock": 100,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 42,
+  "fields": {
+    "product": 31,
+    "colour": 8,
+    "image": "variants/ChatGPT_Image_Jul_27_2026_12_26_12_AM.png",
+    "stock": 100,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 43,
+  "fields": {
+    "product": 31,
+    "colour": 11,
+    "image": "variants/ChatGPT_Image_Jul_27_2026_12_26_55_AM.png",
+    "stock": 100,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 44,
+  "fields": {
+    "product": 31,
+    "colour": 15,
+    "image": "variants/ChatGPT_Image_Jul_27_2026_12_26_32_AM.png",
+    "stock": 100,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 45,
+  "fields": {
+    "product": 31,
+    "colour": 5,
+    "image": "variants/ChatGPT_Image_Jul_27_2026_12_25_10_AM.png",
+    "stock": 100,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 46,
+  "fields": {
+    "product": 31,
+    "colour": 16,
+    "image": "variants/ChatGPT_Image_Jul_27_2026_12_25_33_AM.png",
+    "stock": 100,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 47,
+  "fields": {
+    "product": 31,
+    "colour": 7,
+    "image": "variants/ChatGPT_Image_Jul_27_2026_12_25_52_AM.png",
+    "stock": 100,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 48,
+  "fields": {
+    "product": 31,
+    "colour": 4,
+    "image": "variants/ChatGPT_Image_Jul_27_2026_12_29_02_AM.png",
+    "stock": 100,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 49,
+  "fields": {
+    "product": 3,
+    "colour": 24,
+    "image": "variants/ChatGPT_Image_Jul_27_2026_08_46_09_AM.png",
+    "stock": 100,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 50,
+  "fields": {
+    "product": 37,
+    "colour": 5,
+    "image": "variants/IMG-20260710-WA0012.jpg",
+    "stock": 10,
+    "active": true
+  }
+},
+{
+  "model": "store.productvariant",
+  "pk": 51,
+  "fields": {
+    "product": 37,
+    "colour": 25,
+    "image": "variants/IMG-20260710-WA0006.jpg",
+    "stock": 10,
+    "active": true
+  }
+}
+]

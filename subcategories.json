@@ -1,0 +1,178 @@
+[
+{
+  "model": "store.subcategory",
+  "pk": 1,
+  "fields": {
+    "category": 1,
+    "name": "Glass bangles",
+    "description": "Premium quality, long lasting glass bangles",
+    "image": "subcategories/ChatGPT_Image_Jun_27_2026_10_07_24_PM.png",
+    "slug": "glass-bangles"
+  }
+},
+{
+  "model": "store.subcategory",
+  "pk": 2,
+  "fields": {
+    "category": 3,
+    "name": "Bangle storage",
+    "description": "Store your bangles safely to safeguard them from any damages and break.",
+    "image": "subcategories/1000019050.jpg",
+    "slug": "bangle-storage"
+  }
+},
+{
+  "model": "store.subcategory",
+  "pk": 3,
+  "fields": {
+    "category": 1,
+    "name": "Metal bangles",
+    "description": "Premium luxurious metal bangles",
+    "image": "subcategories/goldmetalgungroo_7zizjHx.png",
+    "slug": "metal-bangles"
+  }
+},
+{
+  "model": "store.subcategory",
+  "pk": 4,
+  "fields": {
+    "category": 1,
+    "name": "Bangles set",
+    "description": "This collection features two or more types of bangles set together making traditional yet timeless looks",
+    "image": "subcategories/ChatGPT_Image_Jul_2_2026_08_29_22_PM_yjHEKe1.png",
+    "slug": "bangles-set"
+  }
+},
+{
+  "model": "store.subcategory",
+  "pk": 5,
+  "fields": {
+    "category": 4,
+    "name": "Silk blend saree",
+    "description": "Discover our silk-blend sarees handcrafted with modern and traditional designers.",
+    "image": "subcategories/ChatGPT_Image_Jul_11_2026_07_28_49_PM.png",
+    "slug": "silk-blend-saree"
+  }
+},
+{
+  "model": "store.subcategory",
+  "pk": 6,
+  "fields": {
+    "category": 5,
+    "name": "Hair accessories",
+    "description": "Beautiful hair accessories are available at you next click.",
+    "image": "subcategories/ChatGPT_Image_Jul_8_2026_03_43_40_PM.png",
+    "slug": "hair-accessories"
+  }
+},
+{
+  "model": "store.subcategory",
+  "pk": 7,
+  "fields": {
+    "category": 2,
+    "name": "Danglers",
+    "description": "Pretty contemporary and Indian traditional danglers made for all kind of occasions and everyday wears.",
+    "image": "subcategories/skybluetraditionalearing.png",
+    "slug": "danglers"
+  }
+},
+{
+  "model": "store.subcategory",
+  "pk": 8,
+  "fields": {
+    "category": 4,
+    "name": "Cotton blend",
+    "description": "Discover our splendid quality handloom cotton blend saree collection with designs nowhere to find in market.",
+    "image": "subcategories/WhatsApp_Image_2026-06-22_at_21_uyOQgGm.08.59.jpeg",
+    "slug": "cotton-blend"
+  }
+},
+{
+  "model": "store.subcategory",
+  "pk": 9,
+  "fields": {
+    "category": 3,
+    "name": "Velvet covered",
+    "description": "Collect our velvet covered jewellery boxes to preserve all kind of precious jewels and accessories",
+    "image": "subcategories/emptyjewellarybox_58hbQd3.png",
+    "slug": "velvet-covered"
+  }
+},
+{
+  "model": "store.subcategory",
+  "pk": 10,
+  "fields": {
+    "category": 2,
+    "name": "Fashion earrings",
+    "description": "Get your fashion earrings with fashionable looks and  and designs.",
+    "image": "subcategories/ChatGPT_Image_Jun_23_2026_09_44_40_AM.png",
+    "slug": "fashion-earrings"
+  }
+},
+{
+  "model": "store.subcategory",
+  "pk": 11,
+  "fields": {
+    "category": 6,
+    "name": "Charm bracelets",
+    "description": "Grab our bracelets featured with cute charms",
+    "image": "subcategories/WhatsApp_Image_2026-05-15_at_11_nAHFleB.54.42.jpeg",
+    "slug": "charm-bracelets"
+  }
+},
+{
+  "model": "store.subcategory",
+  "pk": 12,
+  "fields": {
+    "category": 2,
+    "name": "Jhumka",
+    "description": "Explore our Indian traditional Jhumka",
+    "image": "subcategories/ChatGPT_Image_Jul_27_2026_12_32_20_AM.png",
+    "slug": "jhumka"
+  }
+},
+{
+  "model": "store.subcategory",
+  "pk": 13,
+  "fields": {
+    "category": 3,
+    "name": "Gift",
+    "description": "Our gift jewellery box featuring 12 pairs of earrings and pendent neckpieces.",
+    "image": "subcategories/ChatGPT_Image_Jul_2_2026_08_28_21_PM_0OLAWGn.png",
+    "slug": "gift"
+  }
+},
+{
+  "model": "store.subcategory",
+  "pk": 14,
+  "fields": {
+    "category": 2,
+    "name": "Chandbali",
+    "description": "Shop our exclusive elegant traditional Indian Chandbali",
+    "image": "subcategories/b47ac20b-4db0-4307-b939-b1552a243232.png",
+    "slug": "chandbali"
+  }
+},
+{
+  "model": "store.subcategory",
+  "pk": 15,
+  "fields": {
+    "category": 2,
+    "name": "Statement earrings",
+    "description": "Explore our reasonable premium quality statement earrings",
+    "image": "subcategories/ChatGPT_Image_Jul_27_2026_08_56_39_AM.png",
+    "slug": "statement-earrings"
+  }
+},
+{
+  "model": "store.subcategory",
+  "pk": 16,
+  "fields": {
+    "category": 4,
+    "name": "Handloom",
+    "description": "We have exclusive collections of modern traditional handloom sarees",
+    "image": "subcategories/IMG-20260710-WA0006.jpg",
+    "slug": "handloom"
+  }
+}
+]

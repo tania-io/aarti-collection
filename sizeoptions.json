@@ -1,0 +1,50 @@
+[
+{
+  "model": "store.sizeoption",
+  "pk": 1,
+  "fields": {
+    "category": 1,
+    "name": "2.2"
+  }
+},
+{
+  "model": "store.sizeoption",
+  "pk": 2,
+  "fields": {
+    "category": 1,
+    "name": "2.4"
+  }
+},
+{
+  "model": "store.sizeoption",
+  "pk": 3,
+  "fields": {
+    "category": 1,
+    "name": "2.6"
+  }
+},
+{
+  "model": "store.sizeoption",
+  "pk": 4,
+  "fields": {
+    "category": 1,
+    "name": "2.8"
+  }
+},
+{
+  "model": "store.sizeoption",
+  "pk": 7,
+  "fields": {
+    "category": 2,
+    "name": "12-pockets"
+  }
+},
+{
+  "model": "store.sizeoption",
+  "pk": 8,
+  "fields": {
+    "category": 2,
+    "name": "16-pockets"
+  }
+}
+]

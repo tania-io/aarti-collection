@@ -1,0 +1,74 @@
+[
+{
+  "model": "store.category",
+  "pk": 1,
+  "fields": {
+    "name": "Bangles",
+    "slug": "bangles",
+    "description": "We have every kind of bangles capable of wearing along, with matching pairs and as you like",
+    "image": "categories/ChatGPT_Image_Jul_27_2026_12_22_51_AM.png",
+    "show_on_home": true,
+    "home_sort_order": 0
+  }
+},
+{
+  "model": "store.category",
+  "pk": 2,
+  "fields": {
+    "name": "Earings",
+    "slug": "earings",
+    "description": "Collections of trendy and traditional pairs of earrings",
+    "image": "categories/redtraditionalearing_tFajM3L.png",
+    "show_on_home": true,
+    "home_sort_order": 0
+  }
+},
+{
+  "model": "store.category",
+  "pk": 3,
+  "fields": {
+    "name": "Jewellery case",
+    "slug": "jewellery-case",
+    "description": "We have storage containers, box, pouch etc. of all kind for storing your precious jewels",
+    "image": "categories/mirrorjewellarybox_8AtxO3k.png",
+    "show_on_home": true,
+    "home_sort_order": 0
+  }
+},
+{
+  "model": "store.category",
+  "pk": 4,
+  "fields": {
+    "name": "Saree",
+    "slug": "saree",
+    "description": "Our saree collection have combinations of both modern and traditional looking saree perfect for work, party, occasions, everyday wear and many more",
+    "image": "categories/ChatGPT_Image_Jul_10_2026_04_54_59_AM.png",
+    "show_on_home": true,
+    "home_sort_order": 0
+  }
+},
+{
+  "model": "store.category",
+  "pk": 5,
+  "fields": {
+    "name": "Accessories",
+    "slug": "accessories",
+    "description": "From our accessories category collection you will find various kind of hair accessories and many more",
+    "image": "categories/ChatGPT_Image_Jul_8_2026_03_42_43_PM.png",
+    "show_on_home": true,
+    "home_sort_order": 0
+  }
+},
+{
+  "model": "store.category",
+  "pk": 6,
+  "fields": {
+    "name": "Bracelets",
+    "slug": "bracelets",
+    "description": "Discover our pretty, charming bracelets, also featuring with cute charms",
+    "image": "categories/WhatsApp_Image_2026-07-08_at_15.23.4.jpeg",
+    "show_on_home": true,
+    "home_sort_order": 0
+  }
+}
+]

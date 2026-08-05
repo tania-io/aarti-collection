@@ -1,0 +1,252 @@
+[
+{
+  "model": "store.colour",
+  "pk": 1,
+  "fields": {
+    "name": "Transparent",
+    "slug": "Clear",
+    "hex_code": "",
+    "css_style": ".color-transparent {     background:         conic-gradient(#e5e5e5 25%, #ffffff 0 50%, #e5e5e5 0 75%, #ffffff 0);"
+  }
+},
+{
+  "model": "store.colour",
+  "pk": 2,
+  "fields": {
+    "name": "Rainbow",
+    "slug": "multi-color",
+    "hex_code": "",
+    "css_style": ".background: linear-gradient(     90deg,     #E63946,     #F77F00,     #F4D35E,     #43AA8B,     #277DA1,     #4361EE,     #7209B7 );"
+  }
+},
+{
+  "model": "store.colour",
+  "pk": 3,
+  "fields": {
+    "name": "Light-rainbow",
+    "slug": "light-multi-color",
+    "hex_code": "",
+    "css_style": ".background: linear-gradient(     90deg,     #FFD6E7,     #FFE8B6,     #FFF7AE,     #D8F8C8,     #CDEEFF,     #E6D5FF,     #FFD6F7 );"
+  }
+},
+{
+  "model": "store.colour",
+  "pk": 4,
+  "fields": {
+    "name": "Red",
+    "slug": "red",
+    "hex_code": "D32F2F",
+    "css_style": ""
+  }
+},
+{
+  "model": "store.colour",
+  "pk": 5,
+  "fields": {
+    "name": "Sky blue",
+    "slug": "sky-blue",
+    "hex_code": "87CEEB",
+    "css_style": ""
+  }
+},
+{
+  "model": "store.colour",
+  "pk": 6,
+  "fields": {
+    "name": "Black",
+    "slug": "black",
+    "hex_code": "000000",
+    "css_style": ""
+  }
+},
+{
+  "model": "store.colour",
+  "pk": 7,
+  "fields": {
+    "name": "Brown",
+    "slug": "brown",
+    "hex_code": "795548",
+    "css_style": ""
+  }
+},
+{
+  "model": "store.colour",
+  "pk": 8,
+  "fields": {
+    "name": "Orange",
+    "slug": "orange",
+    "hex_code": "FB8C00",
+    "css_style": ""
+  }
+},
+{
+  "model": "store.colour",
+  "pk": 9,
+  "fields": {
+    "name": "Deep teal",
+    "slug": "deep-teal",
+    "hex_code": "033E33",
+    "css_style": ""
+  }
+},
+{
+  "model": "store.colour",
+  "pk": 10,
+  "fields": {
+    "name": "Pink",
+    "slug": "pink",
+    "hex_code": "b93b8f",
+    "css_style": ""
+  }
+},
+{
+  "model": "store.colour",
+  "pk": 11,
+  "fields": {
+    "name": "Purple",
+    "slug": "purple",
+    "hex_code": "800080",
+    "css_style": ""
+  }
+},
+{
+  "model": "store.colour",
+  "pk": 12,
+  "fields": {
+    "name": "Green",
+    "slug": "green",
+    "hex_code": "008000",
+    "css_style": ""
+  }
+},
+{
+  "model": "store.colour",
+  "pk": 13,
+  "fields": {
+    "name": "White gold",
+    "slug": "white-gold",
+    "hex_code": "",
+    "css_style": "background: linear-gradient( 135deg, #FFFFFF, #FFF8DC, #F5D76E, #D4AF37 );"
+  }
+},
+{
+  "model": "store.colour",
+  "pk": 14,
+  "fields": {
+    "name": "Dark pink",
+    "slug": "pink-dark",
+    "hex_code": "E91E63",
+    "css_style": ""
+  }
+},
+{
+  "model": "store.colour",
+  "pk": 15,
+  "fields": {
+    "name": "Yellow",
+    "slug": "yellow",
+    "hex_code": "FDD835",
+    "css_style": ""
+  }
+},
+{
+  "model": "store.colour",
+  "pk": 16,
+  "fields": {
+    "name": "Navy blue",
+    "slug": "navy-blue",
+    "hex_code": "1A237E",
+    "css_style": ""
+  }
+},
+{
+  "model": "store.colour",
+  "pk": 17,
+  "fields": {
+    "name": "White",
+    "slug": "white",
+    "hex_code": "ffffff",
+    "css_style": ""
+  }
+},
+{
+  "model": "store.colour",
+  "pk": 18,
+  "fields": {
+    "name": "Maroon",
+    "slug": "maroon",
+    "hex_code": "800000",
+    "css_style": ""
+  }
+},
+{
+  "model": "store.colour",
+  "pk": 19,
+  "fields": {
+    "name": "Golden",
+    "slug": "golden",
+    "hex_code": "D4AF37",
+    "css_style": ""
+  }
+},
+{
+  "model": "store.colour",
+  "pk": 20,
+  "fields": {
+    "name": "Peach",
+    "slug": "peach",
+    "hex_code": "FFE5B4",
+    "css_style": ""
+  }
+},
+{
+  "model": "store.colour",
+  "pk": 21,
+  "fields": {
+    "name": "Light blue",
+    "slug": "light-blue",
+    "hex_code": "add8e6",
+    "css_style": ""
+  }
+},
+{
+  "model": "store.colour",
+  "pk": 22,
+  "fields": {
+    "name": "Lavender",
+    "slug": "lavender",
+    "hex_code": "E6E6FA",
+    "css_style": ""
+  }
+},
+{
+  "model": "store.colour",
+  "pk": 23,
+  "fields": {
+    "name": "Magenta",
+    "slug": "magenta",
+    "hex_code": "e11584",
+    "css_style": ""
+  }
+},
+{
+  "model": "store.colour",
+  "pk": 24,
+  "fields": {
+    "name": "Baby pink",
+    "slug": "baby-pink",
+    "hex_code": "F4C2C2",
+    "css_style": ""
+  }
+},
+{
+  "model": "store.colour",
+  "pk": 25,
+  "fields": {
+    "name": "Olive",
+    "slug": "olive",
+    "hex_code": "808000",
+    "css_style": ""
+  }
+}
+]

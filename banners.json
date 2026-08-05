@@ -1,0 +1,16 @@
+[
+{
+  "model": "store.banner",
+  "pk": 1,
+  "fields": {
+    "title": "Traditional eligence",
+    "subtitle": "for every women",
+    "description": "Discover our timeless jewellery collections available for every occasions.",
+    "image": "banners/ChatGPT_Image_Jul_11_2026_08_13_03_PM_KogOwh1.png",
+    "video": "",
+    "button_text": "Explore Now",
+    "active": true,
+    "order": 0
+  }
+}
+]

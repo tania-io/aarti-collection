@@ -1,0 +1,25 @@
+[
+{
+  "model": "store.sitesettings",
+  "pk": 1,
+  "fields": {
+    "brand_name": "Aarti Collection",
+    "phone": "+91 70449 48566",
+    "email": "aarticollectionn@gmail.com",
+    "instagram": "https://www.instagram.com/aarticollections?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
+    "facebook": "https://www.facebook.com/share/1H4UjG3fnH/",
+    "pinterest": "https://pin.it/7bSBVJpCg",
+    "logo": "",
+    "whatsapp": "+91 70449 48566",
+    "address": "Kolkata ,West Bangal",
+    "upi_id": "7602502297@ybl",
+    "gst_number": "19EVRPP1250H1Z5",
+    "qr_code": "payment/WhatsApp_Image_2026-07-06_at_19_ckgfYXm.51.41.jpeg",
+    "gift_section_video": "",
+    "gift_section_image": "gift_section/gift_banner_yMqpVwX.png",
+    "gift_wrapper_image": "gift_section/printable-christmas-wrapping-paper_336838.jpg",
+    "gift_background_image": "",
+    "footer_text": ""
+  }
+}
+]
