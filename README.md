@@ -45,10 +45,12 @@ Aarti Collection allows customers to browse products, manage wishlists, add item
 - Forgot Password
 - User Profile
 - Edit Profile
+- Save Profile
+- Forgot Password
 - Delete Profile
 - Saved Wishlist
 - Order Checkout
-
+- Newsletter Subscription
 ---
 
 ## ⭐ Product Reviews
@@ -141,7 +143,7 @@ Aarti Collection allows customers to browse products, manage wishlists, add item
 
 ---
 
-## 🛍 Product Detail
+## 👁️‍🗨️ Product Detail
 
 ![](screenshots/product_detail.png)
 
@@ -195,13 +197,13 @@ Aarti Collection allows customers to browse products, manage wishlists, add item
 
 ---
 
-## 🎛 Filter
+## 🔁 Filter
 
 ![](screenshots/filter.png)
 
 ---
 
-## ↕ Sort
+## ↕️ Sort
 
 ![](screenshots/sort.png)
 
@@ -219,6 +221,20 @@ Aarti Collection allows customers to browse products, manage wishlists, add item
 
 ---
 
+## 🔐 Authentication
+
+### Login
+
+![](screenshots/login.png)
+
+---
+
+### 🆕 Register
+
+![](screenshots/register.png)
+
+---
+
 ## 👤 User Profile
 
 ![](screenshots/profile.png)
@@ -231,10 +247,46 @@ Aarti Collection allows customers to browse products, manage wishlists, add item
 
 ---
 
+### ✒️ Edit Profile
+
+![](screenshots/edit_profile.png)
+
+---
+
+### ☑️ Save Profile
+
+![](screenshots/save-profile.png)
+
+---
+
 ## 👋 Welcome Screen
 
 ![](screenshots/welcome_user.png)
 
+---
+
+### 🔑 Forgot Password
+
+![](screenshots/forgot_password.png)
+
+---
+### ⛔ Delete Profile
+
+![](screenshots/delete_profile.png)
+
+---
+
+## 📧 Newsletter
+
+### Newsletter Subscription
+
+![](screenshots/newsletter.png)
+
+---
+
+### ✔️ Newsletter Thank You
+
+![](screenshots/newsletter_thankyou.png)
 ---
 
 ## 📤 Share Cart
